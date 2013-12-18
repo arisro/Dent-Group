@@ -1,0 +1,24 @@
+# config/unicorn.rb
+APP_PATH = "/var/www/com.buzachis-aris.drs/current"
+SHARED_PATH = "/var/www/com.buzachis-aris.drs/shared"
+
+worker_processes 2
+timeout 30
+preload_app true
+
+working_directory APP_PATH
+pid SHARED_PATH + "/pids/unicorn.pid"
+
+listen SHARED_PATH + "/sockets/.unicorn.sock", :backlog => 64
+listen 2123, :tcp_nopush => true
+
+stderr_path SHARED_PATH + "/log/unicorn.stderr.log"
+stdout_path SHARED_PATH + "/log/unicorn.stdout.log"
+
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
+end 
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
