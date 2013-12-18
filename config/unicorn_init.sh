@@ -15,7 +15,7 @@ TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/var/www/com.buzachis-aris.drs/current
 APP_SHARED=/var/www/com.buzachis-aris.drs/shared
 PID=$APP_SHARED/pids/unicorn.pid
-CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
+CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production -l $APP_SHARED/sockets/.unicorn.sock"
 AS_USER=aris
 set -u
 
