@@ -30,6 +30,7 @@ end
 
 group :development, :test do
   gem 'capistrano'
+  gem 'rvm-capistrano'
   gem 'capistrano-unicorn', :require => false
   
   gem 'rspec-rails', '~> 2.14'

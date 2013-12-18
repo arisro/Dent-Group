@@ -1,25 +1,43 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require "bundler/capistrano" 
+require "capistrano-unicorn"
+require "rvm/capistrano"
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "DRS"
+set :repository,  "git@github.com:arisro/drs.git"
+set :scm, :git
+set :branch, "master"
+set :deploy_via, :remote_cache
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+default_run_options[:pty] = true
+set :ssh_options, { :forward_agent => true, :port => 443 }
+set :keep_releases, 5
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+before 'deploy:setup', 'rvm:install_rvm'
+before 'deploy:setup', 'rvm:install_ruby'
+set :rvm_ruby_string, '2.0.0-p353'
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+server "drs.buzachis-aris.com", :app, :web, :db, :primary => true
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+set :deploy_to, "/var/www/com.buzachis-aris.drs"
+set :user, "aris"
+set :use_sudo, false
+
+set :rails_env, "production"
+
+namespace :deploy do
+  desc "Symlink shared config files"
+  task :symlink_config_files do
+      run "#{try_sudo} ln -s #{deploy_to}/shared/config/database.yml #{deploy_to}/releases/#{release_name}/config/database.yml"
+  end
+  
+  task :custom_bundle_install, roles: :app do
+    run "cd #{deploy_to}/releases/#{release_name} && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 bundle install --gemfile #{deploy_to}/releases/#{release_name}/Gemfile --path #{deploy_to}/shared/bundle --deployment --quiet --without development test"
+  end
+end
+
+after "deploy:finalize_update", "deploy:symlink_config_files"
+after 'deploy:finalize_update', 'deploy:migrate'
+
+before "bundle:install", "deploy:custom_bundle_install"
+after 'deploy:restart', 'unicorn:reload'
+after 'deploy:restart', 'unicorn:restart'

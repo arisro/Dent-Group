@@ -15,3 +15,5 @@ config/secrets.yml
 .rspec
 /coverage/
 /spec/tmp
+
+.DS_Store
