@@ -1,1 +1,4 @@
-<%# add navigation links to this file %>
+<% if user_signed_in? %>
+	<%= link_to 'Customers', root_path, class: 'navbar-brand' %>
+<% end %>
+<%= link_to 'About', root_path, class: 'navbar-brand' %>

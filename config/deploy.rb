@@ -25,14 +25,20 @@ set :rails_env, "production"
 set(:unicorn_env) { rails_env }
 
 namespace :deploy do
+  task :copy_config_files do
+    put File.read("config/unicorn.rb.deploy"), "#{shared_path}/config/unicorn.rb"
+    put File.read("config/initializers/secret_token.rb.dist"), "#{shared_path}/config/secret_token.rb"
+    
+    put File.read("config/unicorn_init.sh"), "#{shared_path}/config/unicorn_init.sh"
+    run "#{try_sudo} chmod +x #{shared_path}/config/unicorn_init.sh && #{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+  end
+  after "deploy:setup", "deploy:copy_config_files"
+  
   desc "Symlink shared config files"
   task :symlink_config_files do
-      put File.read("config/unicorn.rb.deploy"), "#{shared_path}/config/unicorn.rb"
-      run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/releases/#{release_name}/config/unicorn.rb"
-
       run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/database.yml #{deploy_to}/releases/#{release_name}/config/database.yml"
-      put File.read("config/unicorn_init.sh"), "#{shared_path}/config/unicorn_init.sh"
-      run "#{try_sudo} chmod +x #{shared_path}/config/unicorn_init.sh && #{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/releases/#{release_name}/config/unicorn.rb"      
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/secret_token.rb #{deploy_to}/releases/#{release_name}/config/initializers/secret_token.rb"
   end
   after "deploy:finalize_update", "deploy:symlink_config_files"
   
