@@ -1,0 +1,1 @@
+window.App = angular.module('Drs', ['ngResource', 'Drs.controllers', 'Drs.services'])

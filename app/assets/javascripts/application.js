@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require_tree .
+//= require fancybox
+//= require html5shiv
+//= require jquery.easing.1.3
+//= require script
+
+// require angular
+// require angular-animate
+// require angular-route
+// require angular-resource
+// require_tree ./angular
+// require app
