@@ -46,6 +46,18 @@ namespace :deploy do
     run "cd #{deploy_to}/releases/#{release_name} && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 bundle install --gemfile #{deploy_to}/releases/#{release_name}/Gemfile --path #{deploy_to}/shared/bundle --deployment --quiet --without development test"
   end
   before "bundle:install", "deploy:custom_bundle_install"
+
+  desc 'copy ckeditor nondigest assets'
+  task :copy_nondigest_assets, roles: :app do
+    run "cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} ckeditor:create_nondigest_assets"
+  end
+  after 'deploy:assets:precompile', 'copy_nondigest_assets'
+
+  desc "build missing paperclip styles"
+  task :build_missing_paperclip_styles, :roles => :app do
+    run "cd #{release_path}; RAILS_ENV=production bundle exec rake paperclip:refresh:missing_styles"
+  end
+  after("deploy:update_code", "deploy:build_missing_paperclip_styles")
   
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"

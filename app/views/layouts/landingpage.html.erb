@@ -1,6 +1,6 @@
 <!doctype html>
-<html>
-  <head lang="en">
+<html lang="en" ng-app="Drs">
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -15,9 +15,26 @@
 
     <link rel="prefetch" href="images/zoom.png">
   </head>
-  <body>
+  <body id="lp">
     <header>
-      <%= render 'layouts/header' %>
+      <div class="navbar navbar-fixed-top" data-activeslide="1">
+        <div class="container">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="nav-collapse collapse navbar-responsive-collapse">
+            <ul class="nav row">
+              <%= render 'layouts/landingpage_navigation_links' %>
+            </ul>
+            <div class="row">
+              <div class="col-sm-2 active-menu"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- === Arrows === -->
@@ -40,24 +57,37 @@
         </div><!-- /col-12 -->
       </div><!-- /row -->
       <div id="home-row-2" class="row clearfix">
-        <div class="col-12 col-sm-2"><div class="home-hover navigation-slide" data-slide="4"><img src="/assets/s02.png"></div><span>PROFESSIONAL</span></div>
-        <div class="col-12 col-sm-2"><div class="home-hover navigation-slide" data-slide="3"><img src="/assets/s01.png"></div><span>FRIENDLY</span></div>
-        <div class="col-12 col-sm-2"><div class="home-hover navigation-slide" data-slide="5"><img src="/assets/s03.png"></div><span>SUITABLE</span></div>
-         <div class="col-12 col-sm-2">&nbsp;</div>
-        <div class="col-12 col-sm-3 signup">
-          Sign up
-          <%= simple_form_for(:session, :url => user_session_path, html: { id: "signupForm", role: "form" } ) do |f| %>
-            <div class="form-inputs">
-              <%= f.input :fname, :required => false, label: false, placeholder: "First name", input_html: { class: "form-control" } %>
-              <%= f.input :lname, :required => false, label: false, placeholder: "Last name", input_html: { class: "form-control" } %>
-              <%= f.input :email, :required => false, label: false, placeholder: "Your e-mail", input_html: { class: "form-control" } %>
-              <%= f.input :password, :required => false, label: false, placeholder: "Password", input_html: { class: "form-control" } %>
-            </div>
+        <div class="col-12 col-sm-2 feat-badge"><div class="home-hover navigation-slide" data-slide="4"><img src="/assets/s02.png"></div><span>PROFESSIONAL</span></div>
+        <div class="col-12 col-sm-2 feat-badge"><div class="home-hover navigation-slide" data-slide="3"><img src="/assets/s01.png"></div><span>FRIENDLY</span></div>
+        <div class="col-12 col-sm-2 feat-badge"><div class="home-hover navigation-slide" data-slide="5"><img src="/assets/s03.png"></div><span>SUITABLE</span></div>
+        <div class="col-12 col-sm-2">&nbsp;</div>
+        <div class="col-12 col-sm-3 signup-container">
+          <div class="signup" ng-controller="UsersController">
+            <p>Sign up</p>
+            <%= simple_form_for(:user, html: { id: "signupForm", role: "form" } ) do |f| %>
+              <div class="form-inputs">
+                <%= f.input :fname, :required => false, label: false, placeholder: "First name", input_html: { class: "form-control", 'ng-model' => "newUser.fname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.fname}" } %>
+                <%= f.input :lname, :required => false, label: false, placeholder: "Last name", input_html: { class: "form-control", 'ng-model' => "newUser.lname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.lname}" } %>
+                <div class="errors-container" ng-show="register_errors.fname || register_errors.lname">
+                  <p class="text-danger">Please type in your first and last names</p>
+                </div>
 
-            <div class="form-actions">
-              <%= f.button :submit, "Sign up", class: "btn btn-success btn-lg" %>
-            </div>
-          <% end %>
+                <%= f.input :email, :required => false, label: false, placeholder: "Your e-mail", input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
+                <div class="errors-container" ng-show="register_errors.email">
+                  <p class="text-danger">Please type a valid e-mail address</p>
+                </div>
+
+                <%= f.input :password, :required => false, label: false, placeholder: "Password", input_html: { class: "form-control", 'ng-model' => "newUser.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.password}" } %>
+                <div class="errors-container" ng-show="register_errors.password">
+                  <p class="text-danger" ng-repeat="err in register_errors.password">Password {{err}}</p>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <%= f.button :submit, "Create account", class: "btn btn-success btn-lg", 'ng-click' => 'signUp()' %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div><!-- /row -->
     </div><!-- /container -->

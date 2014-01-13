@@ -13,13 +13,19 @@ gem 'fancybox2-rails', '~> 0.2.4'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bourbon'
+gem 'kaminari'
 gem 'simple_form',    '~> 3.0.0'
+gem 'country_select'
+gem "ckeditor"
+gem "paperclip"
 
 gem 'roar-rails',     '~> 0.1.4'
 gem 'roar',           '~> 0.12.0'
 
 gem 'devise'
 gem 'cancan'
+
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
 
 group :production do
   gem 'logstasher'

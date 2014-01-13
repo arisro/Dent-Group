@@ -1,0 +1,19 @@
+<div class="box jobs-box">
+	<h1>Jobs listing</h1>
+	<%= link_to 'Add new job offer', new_job_path %>
+	<br/>
+
+	<%= paginate @jobs %>
+	
+	<ul class="jobs-list">
+		<% @jobs.each do |job| %>
+			<li class="job-item">
+				<a href="<%= job_path(job) %>">
+					<h4><%= job.title %></h4>
+					<p class="job-item-company"><%= job.company_name %> <span class="job-item-location">in <%= "#{job.city}, #{job.country}" %></span></p>
+					<span class="job-item-time">Posted on <i><%= job.created_at %></i> Valid until <i><%= job.valid_until %></i></span>
+				</a>
+			</li>
+		<% end %>
+	</ul>
+</div>

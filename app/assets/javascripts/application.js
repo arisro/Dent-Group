@@ -16,11 +16,15 @@
 //= require fancybox
 //= require html5shiv
 //= require jquery.easing.1.3
+//= require jquery.Jcrop
 //= require script
-
-// require angular
-// require angular-animate
-// require angular-route
-// require angular-resource
-// require_tree ./angular
-// require app
+//= require angular
+//= require angular-animate
+//= require angular-route
+//= require angular-resource
+//= require_tree ./angular
+//= require app
+//= require jobs
+//= require bootstrap-datetimepicker
+//= require ckeditor/override
+//= require ckeditor/init

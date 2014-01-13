@@ -1,5 +1,6 @@
-
 $(document).ready(function(e) {
+	// $('#cropbox').Jcrop();
+	
 	$('.with-hover-text, .regular-link').click(function(e){
 		e.stopPropagation();
 	});
@@ -200,9 +201,9 @@ jQuery(document).ready(function ($) {
 /*************
 * = Parallax *
 *************/
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function ($) {	
 	//Cache some variables
-	var links = $('.nav').find('li');
+	var links = $('.nav').find('li.menu-item');
 	slide = $('.slide');
 	button = $('.button');
 	mywindow = $(window);
@@ -211,18 +212,22 @@ jQuery(document).ready(function ($) {
 	//Create a function that will be passed a slide number and then will scroll to that slide using jquerys animate. The Jquery
 	//easing plugin is also used, so we passed in the easing method of 'easeInOutQuint' which is available throught the plugin.
 	function goToByScroll(dataslide) {
-		var offset_top = ( dataslide == 1 ) ? '0px' : $('.slide[data-slide="' + dataslide + '"]').offset().top;
+		if ($("#lp").length > 0) {
+			var offset_top = ( dataslide == 1 ) ? '0px' : $('.slide[data-slide="' + dataslide + '"]').offset().top;
 
-		htmlbody.stop(false, false).animate({
-			scrollTop: offset_top
-		}, 1500, 'easeInOutQuart');
+			htmlbody.stop(false, false).animate({
+				scrollTop: offset_top
+			}, 1500, 'easeInOutQuart');
+		}
 	}
 	
 	//When the user clicks on the navigation links, get the data-slide attribute value of the link and pass that variable to the goToByScroll function
 	links.click(function (e) {
-		e.preventDefault();
-		dataslide = $(this).attr('data-slide');
-		goToByScroll(dataslide);
+		if ($("#lp").length > 0) {
+			e.preventDefault();
+			dataslide = $(this).attr('data-slide');
+			goToByScroll(dataslide);
+		}
 	});
 	
 	//When the user clicks on the navigation links, get the data-slide attribute value of the link and pass that variable to the goToByScroll function
@@ -238,7 +243,7 @@ jQuery(document).ready(function ($) {
 ***************/
 jQuery(document).ready(function ($) {
 	//Cache some variables
-	var menu_item = $('.nav').find('li');
+	var menu_item = $('.nav').find('li.menu-item');
 	
 	menu_item.hover(
 		function(e) {

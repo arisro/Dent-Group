@@ -1,0 +1,31 @@
+<li data-slide="1" class="col-12 col-sm-2 active menu-item"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
+<li data-slide="2" class="col-12 col-sm-2 menu-item"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="icon icon-user"></span> <span class="text">ABOUT US</span></a></li>
+<li data-slide="3" class="col-12 col-sm-2 menu-item"><a id="menu-link-3" href="#slide-3" title="Next Section"><span class="icon icon-briefcase"></span> <span class="text">FEATURES</span></a></li>
+<li data-slide="6" class="col-12 col-sm-2 menu-item"><a id="menu-link-6" href="#slide-6" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">CONTACT</span></a></li>
+<li class="col-12 col-sm-4">
+	<div class="signin" ng-controller="UsersController">
+		 <%= simple_form_for(:user, url: '', html: { id: "signinForm", role: "form" } ) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email, :required => false, label: false, placeholder: "Your e-mail", input_html: { class: "form-control", 'ng-model' => "user.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': login_error}" } %>
+            <%= f.input :password, :required => false, label: false, placeholder: "Password", input_html: { class: "form-control", 'ng-model' => "user.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': login_error}" } %>
+            <%= f.button :submit, "Sign in", class: "btn btn-primary btn-xs", 'ng-click' => 'signIn()' %>
+
+            <div class="errors-container" ng-show="login_errors.password">
+              <p class="text-danger" ng-repeat="err in login_errors.password">Password {{err}}</p>
+            </div>
+          </div>
+          <div class="login-additional">
+          	<% if devise_mapping.rememberable? %>
+          		<% #f.input :remember_me, :as => :boolean, wrapper_html: nil  %>
+          		<div class="checkbox-inline remember-me">
+          			<label>
+          				<input type="checkbox" value="" ng-model="user.remember_me">
+          				Remember me
+          			</label>
+          		</div>
+          	<% end %>
+          		<div class="forgot-password"><a href="#">Forgot password</a></div>
+          </div>
+        <% end %>
+	</div>
+</li>

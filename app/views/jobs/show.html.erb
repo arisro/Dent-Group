@@ -1,0 +1,23 @@
+<div class="box">
+	<h1><%= @job.title %></h1>
+	<h5><%= @job.company_name %> <span>in <%= "#{@job.city}, #{@job.country}" %></span></h5>
+	<hr/>
+	<div class="job-links">
+		<%= link_to 'Edit', edit_job_path(@job) %>
+	</div>
+	<div class="job-info">
+		<ul>
+			<li>Type: <span><%= ['', 'Full time', 'Part time'][@job.type] %></span></li>
+			<li>Positions opened: <span><%= @job.count %></span></li>
+			<li>Wage offer: <span><%= @job.offer %></span></li>
+			<li>Valid until: <span><%= @job.valid_until %></span></li>
+		</ul>
+	</div>
+	<div class="job-description">
+		<h4>Job description</h4>
+		<%= raw(@job.description) %>
+	</div>
+	<div class="job-author">
+		Posted by <%= link_to @job.user.full_name, user_path(@job.user) %>
+	</div>
+</div>
