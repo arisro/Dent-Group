@@ -37,6 +37,7 @@ class JobsController < ApplicationController
 	def show
 		@job = Job.where(deleted: false, id: params[:id]).first
 		not_found if @job.nil?
+		@job.increment!(:views)
 	end
 
 	def destroy
@@ -46,6 +47,6 @@ class JobsController < ApplicationController
 
 	private
 		def job_params
-			params.require(:job).permit(:company_name, :title, :description, :country, :city, :type, :count, :offer, :valid_until)
+			params.require(:job).permit(:company_name, :title, :description, :country, :city, :type, :count, :offer, :valid_until, :contact_email, :contact_phone)
 		end
 end

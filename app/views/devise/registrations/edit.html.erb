@@ -1,7 +1,7 @@
 <div class="box">
   <h1>Update your profile</h1>
   <div>
-    <div class="span6 offset3">
+    <div class="form-container span6 offset3">
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, role: "form", id: 'updateProfieForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
         <%= f.error_notification %>
 
@@ -9,8 +9,7 @@
           <%= f.input :fname, :required => true, label: 'First name' %>
           <%= f.input :lname, :required => true, label: 'Last name' %>
           <%= f.input :email, :required => true, label: 'E-mail' %>
-          
-          <%= f.input :avatar, label: 'Profile picture', as: :avatar, input_html: { id: 'cropbox' } %>
+          <%= f.input :specialization, :required => true, label: 'Specialization' %>
 
           <br/>
           <%= f.input :password, :required => false, label: 'New password' %>
@@ -21,7 +20,34 @@
           <br/>
           <%= f.button :submit, "Update", class: "btn btn-primary" %>
         </div>
-          <% end %>
+      <% end %>
     </div>  
+  </div>
+  <div class="pic-container">
+    <p class="mlabel">Profile picture</p>
+    <a id="bUploader" href="#dUploader"><%= image_tag "/profile_pictures/thumbs2/#{current_user.profile_picture}", id: 'iCurrentProfilePic' %></a>
+    <div>
+      <span>Click to change</span>
+    </div>
+  </div>
+</div>
+<div style="display:none">
+  <div id="dUploader">
+    <h2>Change your profile picture</h2>
+    <%= simple_form_for(:temp_image, url: user_upload_profile_picture_path, :html => { :multipart => true, id: "fProfilePicture" }, :remote => true) do |f| %>
+      <input type="file" name="profile_picture" id="tiInput" />
+      <a href="#" class="btn btn-primary" id="fPicker">Choose a picture</a>
+      <a href="#" class="btn btn-warning" id="fPickerCancel">Cancel</a>
+      <a href="#" class="btn btn-success" id="fPickerDone">Save</a>
+      <br/>
+      <div id="jcrop">
+        <img id="picUrl" src="" />
+        <input type="hidden" id="user_pic_name" value="" />
+        <input type="hidden" id="user_pic_cropx" value="0" />
+        <input type="hidden" id="user_pic_cropy" value="0" />
+        <input type="hidden" id="user_pic_cropw" value="0" />
+        <input type="hidden" id="user_pic_croph" value="0" />
+      </div>
+    <% end %>
   </div>
 </div>

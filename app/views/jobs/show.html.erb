@@ -1,23 +1,32 @@
-<div class="box">
-	<h1><%= @job.title %></h1>
-	<h5><%= @job.company_name %> <span>in <%= "#{@job.city}, #{@job.country}" %></span></h5>
-	<hr/>
-	<div class="job-links">
-		<%= link_to 'Edit', edit_job_path(@job) %>
+<div class="box job-box">
+	<div class="job-title">
+		<h1><%= @job.title %></h1>
+		<h5><span><%= @job.company_name %></span> in <span><%= "#{@job.city}, #{@job.country}" %></span></h5>
 	</div>
+	<div class="job-links">
+		<%= link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary btn-sm' %>
+	</div>
+
+	<hr/>
+
 	<div class="job-info">
 		<ul>
 			<li>Type: <span><%= ['', 'Full time', 'Part time'][@job.type] %></span></li>
 			<li>Positions opened: <span><%= @job.count %></span></li>
 			<li>Wage offer: <span><%= @job.offer %></span></li>
-			<li>Valid until: <span><%= @job.valid_until %></span></li>
+			<li>Contact e-mail: <span><%= @job.contact_email %></span></li>
+			<li>Contact phone: <span><%= @job.contact_phone %></span></li>
+		</ul>
+		<ul>
+			<li>Valid until: <span><%= @job.valid_until.to_formatted_s(:date) %></span></li>
+			<li>Views: <span><%= @job.views %></span></li>
+			<li>Posted by: <span><%= link_to @job.user.full_name, user_path(@job.user) %></span></li>
 		</ul>
 	</div>
+
+	<hr/>
+
 	<div class="job-description">
-		<h4>Job description</h4>
 		<%= raw(@job.description) %>
-	</div>
-	<div class="job-author">
-		Posted by <%= link_to @job.user.full_name, user_path(@job.user) %>
 	</div>
 </div>

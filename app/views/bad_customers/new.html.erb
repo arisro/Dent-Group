@@ -1,0 +1,16 @@
+<div class="box jobs-box">
+	<h1>Report customer</h1>
+	<%= simple_form_for(@customer, url: bad_customers_path, html: { role: "form", id: 'addCustomerForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
+
+		<%= f.error_notification %>
+		<div class="form-inputs">
+			<%= f.input :name, :required => true, label: 'Name' %>
+			<%= f.input :cnp, :required => true, label: 'CNP', input_html: { maxlength: '4' }, hint: 'Last 4 digits' %>
+
+			<%= f.input :message, :required => true, label: 'Reason' %>
+		</div>
+
+		<br/>
+        <%= f.button :submit, "Post", class: "btn btn-primary" %>
+	<% end %>
+</div>

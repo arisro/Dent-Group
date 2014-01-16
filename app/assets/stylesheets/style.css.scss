@@ -19,10 +19,6 @@
 	font-weight: 300;
 }
 
-* {
-	position: relative;
-}
-
 .breaker {
 	clear: both;
 	font-size: 1px;
@@ -93,15 +89,18 @@ body {
 }
 
 .nav-collapse > .row {
-	width: 100%;
+	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 ul.nav {
-	width: 900px;
+	width: 990px;
 	margin-left: auto;
 	margin-right: auto;
+}
+#lp ul.nav {
+	width: 900px;
 }
 
 .nav li {
@@ -471,7 +470,7 @@ ul.nav {
 #slide-4 {
 	background-color: #34495e;
 	color: #e4e6e5;
-	padding-top: 90px;
+	padding-top: 115px;
 }
 
 #slide-4 i {
@@ -789,7 +788,7 @@ ul.nav {
 #menu-additional {
 	float: right;
 	text-align: left;
-	margin-top: 6px;
+	margin-top: 3px;
 	li {
 		text-align: left;
 	}
@@ -798,6 +797,51 @@ ul.nav {
 	}
 	.dropdown-menu a {
 		color: #000;
+		margin-top: 4px;
+	}
+	.dropdown {
+		height: 42px;
+		background-color: #444;
+		padding: 4px;
+		border: 1px solid #666;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		-webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
+		box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.75);
+
+		.dropdown-pic {
+			float: left;
+		}
+		.dropdown-name {
+			float: left;
+			margin-left: 3px;
+			p {
+				margin: 0;
+				padding: 0;
+			}
+			.dropdown-name-full {
+				font-size: 14px;
+			}
+			.dropdown-name-specialization {
+				color: #ccc;
+				font-style: italic;
+				font-size: 11px;
+				line-height: 10px;
+				margin-top: 1px;
+			}
+		}
+		&:hover {
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			background-color: #555;
+		}
+	}
+	.dropdown-toggle {
+		background: none;
+		text-decoration: none;
 	}
 }
 
@@ -823,6 +867,7 @@ body {
 	margin: 0;
 	position: relative;
 	padding: 5px 20px 10px 20px;
+	overflow: auto;
 }
 
 .messages {
@@ -865,7 +910,7 @@ body {
 }
 .sidebar-left {
 	float: left;
-	margin-right: 20px;
+	margin-right: 10px;
 	.search-box {
 		margin-top:10px;
 	}
@@ -973,6 +1018,46 @@ body {
 	}
 }
 
-#lp #contact-row-4 .icon {
-	font-size: 60px;
+
+
+#lp {
+	#contact-row-4 .icon {
+		font-size: 60px;
+	}
+	.nav-collapse {
+		.logo {
+			float: left;
+			margin-top: 5px;
+			img {
+				height: 40px;
+			}
+		}
+		.row.slider {
+			clear: both;
+		}
+		ul.nav {
+			float: left;
+		}
+	}
+}
+
+body.def {
+	.navbar {
+		.logo {
+			float: left;
+			margin-top: 5px;
+			img {
+				height: 40px;
+			}
+		}
+		.container {
+			float: left;
+			width: 1020px;
+		}
+		.container-logo {
+			width: 1170px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
 }

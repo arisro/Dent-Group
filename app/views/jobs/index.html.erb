@@ -10,8 +10,8 @@
 			<li class="job-item">
 				<a href="<%= job_path(job) %>">
 					<h4><%= job.title %></h4>
-					<p class="job-item-company"><%= job.company_name %> <span class="job-item-location">in <%= "#{job.city}, #{job.country}" %></span></p>
-					<span class="job-item-time">Posted on <i><%= job.created_at %></i> Valid until <i><%= job.valid_until %></i></span>
+					<p class="job-item-company"><span class="job-item-company-name"><%= job.company_name %></span> in <span class="job-item-location"><%= "#{job.city}, #{job.country}" %></span></p>
+					<span class="job-item-time">Posted on <i><%= job.created_at.to_formatted_s(:date) %></i> Valid until <i><%= job.valid_until.to_formatted_s(:date) %></i></span>
 				</a>
 			</li>
 		<% end %>

@@ -18,12 +18,17 @@ gem 'simple_form',    '~> 3.0.0'
 gem 'country_select'
 gem "ckeditor"
 gem "paperclip"
+gem 'remotipart', '~> 1.2'
+gem 'fastimage'
+gem "mini_magick"
 
 gem 'roar-rails',     '~> 0.1.4'
 gem 'roar',           '~> 0.12.0'
 
 gem 'devise'
 gem 'cancan'
+gem 'paper_trail', '~> 3.0.0'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
 

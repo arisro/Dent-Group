@@ -1,35 +1,47 @@
 <div class="navbar navbar-fixed-top">
-	<div class="container">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
+	<div class="container-logo">
+		<div class="logo">
+			<%= link_to image_tag('logo1.png', alt: "logo", title: "Dent Group"), root_path %>
+		</div>
+		<div class="container">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 
-		<div class="nav-collapse collapse navbar-responsive-collapse">
-			<ul class="nav row" id="main-top-left-menu">
-				<li class="menu-item <%= put_active_menu('home') %>"><a id="menu-link-1" href="/" title="Next Section"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
-				<li class="menu-item <%= put_active_menu('customers') %>"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="icon icon-user"></span> <span class="text">CUSTOMERS</span></a></li>
-				<li class="menu-item <%= put_active_menu('offers') %>"><a id="menu-link-3" href="#slide-3" title="Next Section"><span class="icon icon-briefcase"></span> <span class="text">OFFERS</span></a></li>
-				<li class="menu-item <%= put_active_menu('jobs') %>"><a id="menu-link-6" href="<%= jobs_path %>" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">JOBS</span></a></li>
-				<li class="menu-item <%= put_active_menu('suppliers') %>"><a id="menu-link-6" href="#slide-6" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">SUPPLIERS</span></a></li>
-				<li class="menu-item <%= put_active_menu('articles') %>"><a id="menu-link-6" href="#slide-6" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">ARTICLES</span></a></li>
-				<li id="menu-additional">
-					<div class="dropdown">
-				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				        	<%= image_tag current_user.avatar.url(:thumb), class: 'menu-profile-icon' %>
-				        	<%= current_user.full_name %>
-				        </a>
-				        <ul class="dropdown-menu">
-				          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-				          <li class="divider"></li>
-				          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-				        </ul>
-				    </div>
-      			</li>
-			</ul>
-			<div class="row">
-				<div class="col-sm-2 active-menu"></div>
+			<div class="nav-collapse collapse navbar-responsive-collapse">
+				<ul class="nav row" id="main-top-left-menu">
+					<li class="menu-item <%= put_active_menu('home') %>"><a id="menu-link-1" href="<%= root_path %>" title="Home"><span class="icon icon-home"></span><span class="text">HOME</span></a></li>
+					<li class="menu-item <%= put_active_menu('customers') %>"><a id="menu-link-2" href="<%= bad_customers_path %>" title="Customers"><span class="icon icon-user"></span> <span class="text">CUSTOMERS</span></a></li>
+					<li class="menu-item <%= put_active_menu('offers') %>"><a id="menu-link-3" href="<%= offers_path %>" title="Offers"><span class="icon icon-briefcase"></span> <span class="text">OFFERS</span></a></li>
+					<li class="menu-item <%= put_active_menu('jobs') %>"><a id="menu-link-6" href="<%= jobs_path %>" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">JOBS</span></a></li>
+					<li class="menu-item <%= put_active_menu('suppliers') %>"><a id="menu-link-6" href="<%= suppliers_path %>" title="Suppliers"><span class="icon icon-envelope"></span><span class="text">SUPPLIERS</span></a></li>
+					<li class="menu-item <%= put_active_menu('articles') %>"><a id="menu-link-6" href="#slide-6" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">ARTICLES</span></a></li>
+					<li id="menu-additional">
+						<div class="dropdown">
+					        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					        	<div class="dropdown-pic">
+						        	<%= image_tag "/profile_pictures/thumbs2/#{current_user.profile_picture}", class: 'menu-profile-icon' %>
+						        </div>
+					        	<div class="dropdown-name">
+					        		<p class="dropdown-name-full"><%= current_user.full_name %></p>
+					        		<% unless current_user.specialization.empty? %>
+					        			<p class="dropdown-name-specialization"><%= current_user.specialization %></p>
+					        		<% end %>
+					        	</div>
+					        </a>
+					        <ul class="dropdown-menu">
+					          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+					          <li class="divider"></li>
+					          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+					        </ul>
+					    </div>
+	      			</li>
+				</ul>
+				<div class="row">
+					<div class="col-sm-2 active-menu"></div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -11,7 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113220418) do
+ActiveRecord::Schema.define(version: 20140116222020) do
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "bad_customer_comments", force: true do |t|
+    t.integer  "bad_customer_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.boolean  "deleted",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bad_customers", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "cnp"
+    t.text     "message"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "views"
+  end
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -43,7 +78,36 @@ ActiveRecord::Schema.define(version: 20140113220418) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
-    t.boolean  "deleted",      default: false
+    t.boolean  "deleted",       default: false
+    t.integer  "views"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+  end
+
+  create_table "offers", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.integer  "views"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "country"
+    t.string   "city"
+    t.text     "address"
+    t.integer  "views"
+    t.boolean  "deleted",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -67,15 +131,25 @@ ActiveRecord::Schema.define(version: 20140113220418) do
     t.datetime "updated_at"
     t.string   "fname"
     t.string   "lname"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.string   "profile_picture"
+    t.string   "specialization"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "versions", force: true do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+    t.text     "object_changes"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end

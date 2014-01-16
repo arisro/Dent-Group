@@ -8,6 +8,12 @@ module ApplicationHelper
 		case params[:controller]
 		when 'jobs'
 			where = 'jobs'
+		when 'bad_customers'
+			where = 'customers'
+		when 'offers'
+			where = 'offers'
+		when 'suppliers'
+			where = 'suppliers'
 		else
 			where = 'home'
 		end

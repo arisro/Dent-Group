@@ -146,7 +146,7 @@ function menu_focus( element, i ) {
 	
 	enable_arrows( i );
 		
-	if ( i == 1 || i == 6 )
+	if ( i == 1 || i == 3 )
 		$('.navbar').removeClass('inv');
 	else
 		$('.navbar').addClass('inv');
@@ -156,7 +156,10 @@ function menu_focus( element, i ) {
 	
 	var icon = $(element).find('.icon');
 	
-	var left_pos = icon.offset().left - $('.nav').offset().left;
+	var left_pos = icon.offset().left - $('.nav').offset().left
+	if ($("#lp").length > 0) {
+		left_pos += $(".logo img").width();
+	}
 	var el_width = icon.width() + $(element).find('.text').width() + 10;
 	
 	$('.active-menu').stop(false, false).animate(
@@ -184,18 +187,30 @@ function enable_arrows( dataslide ) {
 }
 
 jQuery(document).ready(function ($) {
-	var element = $("ul.nav li.active:first");
-	var icon = $(element).find('.icon');	
-	var left_pos = icon.offset().left - $('.nav').offset().left;
-	var el_width = icon.width() + $(element).find('.text').width() + 10;
-	$('.active-menu').stop(false, false).animate(
-		{
-			left: left_pos,
-			width: el_width
-		},
-		1500,
-		'easeInOutQuart'
-	);
+	setTimeout(function() {
+		var element = $("ul.nav li.active:first");
+		var dataslide = $(element).attr('data-slide');
+		var icon = $(element).find('.icon');	
+		var left_pos = icon.offset().left - $('.nav').offset().left;
+		if ($("#lp").length > 0) {
+			left_pos += $(".logo img").width();
+		}
+		var el_width = icon.width() + $(element).find('.text').width() + 10;
+		$('.active-menu').stop(false, false).animate(
+			{
+				left: left_pos,
+				width: el_width
+			},
+			1500,
+			'easeInOutQuart'
+		);
+
+		// if (dataslide == 1 || dataslide == 3) {
+		// 	$(".logo img").attr("src", $(".logo img").attr("src").replace("logo1","logo2"));
+		// } else {
+		// 	$(".logo img").attr("src", $(".logo img").attr("src").replace("logo2","logo1"));
+		// }
+	}, 300);
 });
 
 /*************
@@ -218,6 +233,16 @@ jQuery(document).ready(function ($) {
 			htmlbody.stop(false, false).animate({
 				scrollTop: offset_top
 			}, 1500, 'easeInOutQuart');
+
+			if (dataslide == 1 || dataslide == 3) {
+				$(".logo img").fadeOut(750, function() {
+					$(this).attr("src", $(this).attr("src").replace("logo1","logo2")).fadeIn(750);
+				});
+			} else {
+				$(".logo img").fadeOut(750, function() {
+					$(this).attr("src", $(this).attr("src").replace("logo2","logo1")).fadeIn(750);
+				});
+			}
 		}
 	}
 	
@@ -250,6 +275,9 @@ jQuery(document).ready(function ($) {
 			var icon = $(this).find('.icon');
 			
 			var left_pos = icon.offset().left - $('.nav').offset().left;
+			if ($("#lp").length > 0) {
+				left_pos += $(".logo img").width();
+			}
 			var el_width = icon.width() + $(this).find('.text').width() + 10;
 			
 			var hover_bar = $('<div class="active-menu special-active-menu"></div>')

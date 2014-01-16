@@ -1,10 +1,12 @@
-#addJobForm {
+form {
 	.form-inputs {
 		overflow: auto;
 	}
 	.input.string,
 	.input.country,
 	.input.text,
+	.input.email,
+	.input.tel,
 	.input.select {
 		width: 300px;
 	}
@@ -26,5 +28,115 @@
 	}
 	.btn-primary {
 		clear: both;
+	}
+	.job_contact_email {
+		clear: both;
+	}
+}
+
+.jobs-box {
+	.jobs-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		h4 {
+			margin-bottom: 0px;
+		}
+
+		.job-item {
+			a {
+				color: #006AA4;
+				min-height: 70px;
+				padding: 0;
+				display: block;
+				width: 100%;
+				text-decoration: none;
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+				-webkit-box-flex: 1;
+				-moz-box-flex: 1;
+				box-flex: 1;
+			}
+
+			.job-item-company {
+				color: #333;
+				font-size: 14px;
+				margin: 0;
+
+				.job-item-company-name,
+				.job-item-location {
+					font-weight: bold;
+				}
+			}
+			.job-item-time {
+				padding: 0;
+				color: #999;
+				font-family: "PTSerif",Georgia,serif;
+				font-style: italic;
+				font-size: 12px;
+				line-height: 21px;
+				padding-left: 18px;
+				margin-left: 10px;
+				background-image: url("/assets/article.svg");
+				background-repeat: no-repeat;
+				background-position: center left;
+
+				i {
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+.job-box {
+	h1 {
+		color: #006AA4;
+		margin-bottom: 0px;	
+	}
+	h5 {
+		margin: 5px 0;
+		span {
+			font-weight: bold;
+		}
+	}
+	hr {
+		margin: 5px 0;
+		border-top: 1px solid #ccc;
+		clear: both;
+	}
+	.job-title {
+		float: left;
+	}
+	.job-links {
+		float: right;
+		padding-top: 50px;
+		margin-right: 5px;
+	}
+	.job-info {
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			li {
+				display: inline;
+				margin-left: 20px;
+				font-weight: bold;
+
+				&:first-child {
+					margin-left: 0px;
+				}
+
+				span {
+					font-weight: normal;
+				}
+			}
+		}
+	}
+	.job-description {
+		margin-top: 20px;
+		border-left: 3px solid #ddd;
+		padding-left: 10px;
+		margin-left: 10px;
 	}
 }

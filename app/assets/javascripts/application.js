@@ -17,6 +17,7 @@
 //= require html5shiv
 //= require jquery.easing.1.3
 //= require jquery.Jcrop
+//= require jquery.remotipart
 //= require script
 //= require angular
 //= require angular-animate
@@ -25,6 +26,7 @@
 //= require_tree ./angular
 //= require app
 //= require jobs
+//= require users
 //= require bootstrap-datetimepicker
 //= require ckeditor/override
 //= require ckeditor/init

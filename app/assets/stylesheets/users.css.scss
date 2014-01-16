@@ -3,3 +3,38 @@
 		width: 300px;
 	}
 }
+#tiInput {
+	display: none;
+}
+
+.form-container {
+	float: left;
+}
+.pic-container {
+	float: left;
+	margin-left: 40px;
+	div {
+		text-align: center;
+	}
+	.mlabel {
+		margin-bottom: 5px;
+		font-weight: bold;
+	}
+}
+
+#dUploader {
+	h2 {
+		margin-top: 5px;
+	}
+	#fPickerDone {
+		float: right;
+		margin-right: 5px;
+	}
+	#fPickerCancel {
+		float: right;
+	}
+	#jcrop {
+		margin-top: 10px;
+		background: 1px solid #000;
+	}
+}

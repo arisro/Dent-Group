@@ -19,10 +19,6 @@ class RegistrationsController < Devise::RegistrationsController
 		end
 	end
 
-	def show
-
-	end
-
 	private
 		def needs_password?(user, params)
 			user.email != params[:user][:email] ||

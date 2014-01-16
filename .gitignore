@@ -17,3 +17,6 @@ config/secrets.yml
 /spec/tmp
 
 .DS_Store
+
+/public/temp_profile_pictures/*
+/public/profile_pictures/*

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title><%= content_for?(:title) ? yield(:title) : "Drs" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Dental Group" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Drs" %>">
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -12,10 +12,8 @@
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <%= csrf_meta_tags %>
-
-    <link rel="prefetch" href="images/zoom.png">
   </head>
-  <body>
+  <body class="def">
     <header>
       <%= render 'layouts/header' %>
     </header>
@@ -58,5 +56,7 @@
        <%= yield %>
       </div>
     </div>
+    
+    <%= render 'layouts/analytics' %>
   </body>
 </html>
