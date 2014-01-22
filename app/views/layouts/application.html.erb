@@ -18,12 +18,38 @@
       <%= render 'layouts/header' %>
     </header>
 
-    <div class="main-container">
-      <div class="sidebar sidebar-left">
-        <div class="search-box">
-          <input class='form-control' type="text" placeholder="Search for anything" />
+    <div class="main-container<%= " unpaid" unless current_user.is_paid? %>">
+      <% if current_user.is_paid? %>
+        <div class="sidebar sidebar-left sidebar-chat">
+          <div class="search-box">
+            <div class="chat-toggle">
+                <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
+            </div>
+            <input class='form-control' type="text" placeholder="Search" />
+          </div>
+          <hr />
+          <div class="chat-box">
+            <ul class="chat-list">
+              <% @online_users.each do |user| %>
+              <li class="chat-user-item">
+                <a class="chat-link" href="<%= user_path(user) %>" title="Click to chat">
+                  <%= image_tag "/profile_pictures/#{user.get_profile_picture}", class: "chat-item-image" %>
+                  <span class="chat-user-name"><%= user.full_name %></span>
+                  <br/>
+                  <span class="chat-user-specialization"><%= user.specialization %></span>
+                </a>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-        <hr/>
+      <% end %>
+      <div class="main-content">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+      </div>
+      <div class="sidebar sidebar-right">
+        <button type="button" class="close" aria-hidden="true">&times;</button>
         <div class="activity-box">
           <ul class="activity-list">
             <li class="activity-item">
@@ -49,12 +75,15 @@
               </a>
             </li>
           </ul>
+      </div>
+
+      <% if current_user.is_paid? %>
+        <div class="box chat-box-bot">
+          <a href="#" id="aShowChat">
+            <i class="glyphicon glyphicon-user"></i> Chat
+          </a>
         </div>
-      </div>
-      <div class="main-content">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-      </div>
+      <% end %>
     </div>
     
     <%= render 'layouts/analytics' %>

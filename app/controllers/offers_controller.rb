@@ -1,52 +1,57 @@
 class OffersController < ApplicationController
+	before_filter :deny_not_paid
+	
 	def index
-		# @jobs = Job.where(deleted: false).order("id").page(params[:page]).per(10)
+		type_conditions = {}
+		type_conditions[:type] = params[:type] unless params[:type].nil?
+		@offers = Offer.where(deleted: false, website_country: get_country).where(type_conditions).order("id").page(params[:page]).per(10)
 	end
 
 	def new
-		# @job = Job.new
+		@offer = Offer.new
 	end
 
 	def create
-		# @job = Job.new(job_params)
-		# @job.user_id = current_user.id
-		# if @job.save
-		# 	flash[:success] = "Job announcement posted!"
-  #     		redirect_to @job
-		# else
-		# 	render 'new'
-		# end
+		@offer = Offer.new(offer_params)
+		@offer.user_id = current_user.id
+		@offer.website_country = get_country
+		if @offer.save
+			flash[:success] = "Offer announcement posted!"
+      		redirect_to @offer
+		else
+			render 'new'
+		end
 	end
 
 	def edit
-		# @job = Job.where(deleted: false, id: params[:id]).first
-		# not_found if @job.nil?
+		@offer = Offer.where(deleted: false, id: params[:id]).first
+		not_found if @offer.nil?
 	end
 
 	def update
-		# @job = Job.where(deleted: false, id: params[:id]).first
-		# not_found if @job.nil?
-		# if @job.update_attributes(job_params)
-		# 	flash[:success] = "Job announcement updated!"
-  #     		redirect_to @job
-		# else
-		# 	render 'edit'
-		# end
+		@offer = Offer.where(deleted: false, id: params[:id]).first
+		not_found if @offer.nil?
+		if @offer.update_attributes(offer_params)
+			flash[:success] = "Offer announcement updated!"
+      		redirect_to @offer
+		else
+			render 'edit'
+		end
 	end
 
 	def show
-		# @job = Job.where(deleted: false, id: params[:id]).first
-		# not_found if @job.nil?
-		# @job.increment!(:views)
+		@offer = Offer.where(deleted: false, id: params[:id], website_country: get_country).first
+		not_found if @offer.nil?
+		@offer.increment!(:views)
 	end
 
 	def destroy
-		# @job = Job.find(params[:id]).update_attributes(deleted: true)
-		# redirect_to jobs_path
+		@offer = Offer.find(params[:id]).update_attributes(deleted: true)
+		redirect_to jobs_path
 	end
 
 	private
-		# def job_params
-		# 	params.require(:job).permit(:company_name, :title, :description, :country, :city, :type, :count, :offer, :valid_until, :contact_email, :contact_phone)
-		# end
+		def offer_params
+			params.require(:offer).permit(:title, :body, :type, :summary, :contact_phone, :contact_email)
+		end
 end

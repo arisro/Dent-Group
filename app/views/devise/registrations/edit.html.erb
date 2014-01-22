@@ -11,6 +11,8 @@
           <%= f.input :email, :required => true, label: 'E-mail' %>
           <%= f.input :specialization, :required => true, label: 'Specialization' %>
 
+          <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], label: 'Language' %>
+
           <br/>
           <%= f.input :password, :required => false, label: 'New password' %>
           <%= f.input :confirm_password, :required => false, label: 'Confirm password' %>
@@ -25,7 +27,7 @@
   </div>
   <div class="pic-container">
     <p class="mlabel">Profile picture</p>
-    <a id="bUploader" href="#dUploader"><%= image_tag "/profile_pictures/thumbs2/#{current_user.profile_picture}", id: 'iCurrentProfilePic' %></a>
+    <a id="bUploader" href="#dUploader"><%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", id: 'iCurrentProfilePic' %></a>
     <div>
       <span>Click to change</span>
     </div>

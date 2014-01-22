@@ -1,0 +1,22 @@
+<div class="box suppliers-box">
+	<h1>Edit supplier - <%= @supplier.name %></h1>
+	<%= simple_form_for(@supplier, html: { role: "form", id: 'editSupplierForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
+
+		<%= f.error_notification %>
+		<div class="form-inputs">
+			<%= f.input :name, :required => true, label: 'Name' %>
+			<%= f.input :email, :required => false, label: 'E-mail' %>
+			<%= f.input :phone, :required => false, label: 'Phone' %>
+			<%= f.input :website, :required => false, label: 'Website' %>
+			<%= f.input :description, :required => true, label: 'Description'  %>
+			<%= f.input :country, :required => true, label: 'Country' %>
+			<%= f.input :city, :required => true, label: 'City' %>
+			<%= f.input :address, :required => false, label: 'Address' %>
+		</div>
+
+		<br/>
+        <%= f.button :submit, "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", supplier_path(@supplier), class: "btn btn-warning" %>
+        <%= link_to "Delete", supplier_path(@supplier), method: :delete, :confirm => "Are you sure you want to delete this supplier?", class: "btn btn-danger" %>
+	<% end %>
+</div>

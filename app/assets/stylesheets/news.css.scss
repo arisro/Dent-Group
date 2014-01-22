@@ -1,0 +1,39 @@
+.news-list-box {
+	.news-list {
+		list-style: none;
+		padding-left: 0;
+
+		.news-item {
+			h4 {
+				margin-bottom: 5px;
+			}
+			a {
+				text-decoration: none;
+			}
+			.news-item-time {
+				font: 14px/16px "PTSerif",Georgia,serif;
+				color: #999;
+			}
+		}
+	}
+}
+
+.news-box {
+	.news-title {
+		float: left;
+		margin-bottom: 10px;
+	}
+	.news-links {
+		float: right;
+		padding-top: 30px;
+		margin-right: 5px;
+	}
+	hr {
+		clear: both;
+		margin: 10px 0;
+	}
+	.timestamp {
+		font: 14px/16px "PTSerif",Georgia,serif;
+		color: #999;
+	}
+}

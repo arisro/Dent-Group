@@ -1,52 +1,57 @@
 class SuppliersController < ApplicationController
+	before_filter :deny_not_paid
+
 	def index
-		# @jobs = Job.where(deleted: false).order("id").page(params[:page]).per(10)
+		@suppliers = Supplier.where(deleted: false, website_country: get_country).order("id").page(params[:page]).per(10)
 	end
 
 	def new
-		# @job = Job.new
+		@supplier = Supplier.new
 	end
 
 	def create
-		# @job = Job.new(job_params)
-		# @job.user_id = current_user.id
-		# if @job.save
-		# 	flash[:success] = "Job announcement posted!"
-  #     		redirect_to @job
-		# else
-		# 	render 'new'
-		# end
+		@supplier = Supplier.new(supplier_params)
+		@supplier.user_id = current_user.id
+		@supplier.website_country = get_country
+		if @supplier.save
+			flash[:success] = "Supplier posted!"
+      		redirect_to @supplier
+		else
+			render 'new'
+		end
 	end
 
 	def edit
-		# @job = Job.where(deleted: false, id: params[:id]).first
-		# not_found if @job.nil?
+		@supplier = Supplier.where(deleted: false, id: params[:id]).first
+		not_found if @supplier.nil?
 	end
 
 	def update
-		# @job = Job.where(deleted: false, id: params[:id]).first
-		# not_found if @job.nil?
-		# if @job.update_attributes(job_params)
-		# 	flash[:success] = "Job announcement updated!"
-  #     		redirect_to @job
-		# else
-		# 	render 'edit'
-		# end
+		@supplier = Supplier.where(deleted: false, id: params[:id]).first
+		not_found if @supplier.nil?
+		if @supplier.update_attributes(supplier_params)
+			flash[:success] = "Supplier updated!"
+      		redirect_to @supplier
+		else
+			render 'edit'
+		end
 	end
 
 	def show
-		# @job = Job.where(deleted: false, id: params[:id]).first
-		# not_found if @job.nil?
-		# @job.increment!(:views)
+		@supplier = Supplier.where(deleted: false, id: params[:id], website_country: get_country).first
+		not_found if @supplier.nil?
+		@supplier.increment!(:views)
+		@comments = @supplier.supplier_comments.where(deleted: false)
+		@comment = SupplierComment.new
 	end
 
 	def destroy
-		# @job = Job.find(params[:id]).update_attributes(deleted: true)
-		# redirect_to jobs_path
+		@supplier = Supplier.find(params[:id]).update_attributes(deleted: true)
+		redirect_to suppliers_path
 	end
 
 	private
-		# def job_params
-		# 	params.require(:job).permit(:company_name, :title, :description, :country, :city, :type, :count, :offer, :valid_until, :contact_email, :contact_phone)
-		# end
+		def supplier_params
+			params.require(:supplier).permit(:name, :description,:email,:phone,:website,:country,:city,:address)
+		end
 end

@@ -30,3 +30,4 @@
 //= require bootstrap-datetimepicker
 //= require ckeditor/override
 //= require ckeditor/init
+//= require jquery.dd

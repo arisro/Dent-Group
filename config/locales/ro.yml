@@ -1,0 +1,35 @@
+ro:
+  about: "Despre noi"
+  news: "Știri"
+  offers: "Anunțuri"
+  jobs: "Jobs"
+  suppliers: "Furnizori"
+  edit_profile: "Editează profilul"
+  sign_out: "Deconectează-te"
+  sign_up: "Înscrie-te"
+  sign_in: "Conectează-te"
+  your_email: "E-mailul tău"
+  password: "Parola"
+  remember_me: "Nu mă deconecta"
+  forgot_password: "Ai uitat parola?"
+  lp_subtitle_html: "Suntem o comunitate <span class='font-semibold'>cu circuit închis</span>, dedicată medicilor dentiști."
+  pick_language: "Alege limba:"
+  first_name: "Prenume"
+  last_name: "Nume"
+  signup_names_error: "Trebuie să completezi numele și prenumele"
+  signup_email_error: "Trebuie să introduci o adresă de e-mail validă"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "Trebuie să introduci o parolă"
+              too_short: "Parola trebuie să conțină minimum 8 caractere"
+
+  datetime:
+    distance_in_words:
+      x_days:
+        one: 'o zi'
+        more: '%{count} zile'

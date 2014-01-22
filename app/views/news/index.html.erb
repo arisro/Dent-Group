@@ -1,0 +1,18 @@
+<div class="box news-list-box">
+	<h1>News</h1>
+
+	<%= link_to 'Add news', new_news_path %>
+	<br/>
+
+	<%= paginate @news %>
+
+	<ul class="news-list">
+		<% @news.each do |news| %>
+			<li class="news-item">
+				<a href="<%= news_path(news) %>"><h4><%= news.title %></h4></a>
+				<span class="news-item-time"><%= time_ago_in_words(news.published_at) %> ago</i></span>
+				<p class="news-item-summary"><%= news.summary %></p>
+			</li>
+		<% end %>
+	</ul>
+</div>

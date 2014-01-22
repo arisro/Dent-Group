@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  before_filter :deny_not_paid
+
+  def index
+    redirect_to root_path
+  end
+  
 	def show
-		
+		@user = User.find(params[:id])
 	end
 
 	def upload_profile_picture

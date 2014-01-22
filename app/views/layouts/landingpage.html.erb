@@ -26,68 +26,54 @@
           </button>
 
           <div class="nav-collapse collapse navbar-responsive-collapse">
-            <div class="logo">
-              <%= image_tag "logo2.png", alt: "logo", title: "Dent Group" %>
+            <div class='language-picker'>
+              <div><%= t('pick_language') %></div>
+              <%= link_to '', change_language_path('en'), class: 'flag gb', title: 'English' %>
+              <%= link_to '', change_language_path('ro'), class: 'flag ro', title: 'Română' %>
             </div>
-            <ul class="nav row">
+            <ul class="nav row navbar-right">
               <%= render 'layouts/landingpage_navigation_links' %>
             </ul>
-            <div class="row slider">
-              <div class="col-sm-2 active-menu"></div>
-            </div>
           </div>
         </div>
       </nav>
     </header>
-
-    <!-- === Arrows === -->
-  <div id="arrows">
-    <div id="arrow-up" class="disabled"></div>
-    <div id="arrow-down"></div>
-    <div id="arrow-left" class="disabled visible-lg"></div>
-    <div id="arrow-right" class="disabled visible-lg"></div>
-  </div><!-- /.arrows -->
 
   <!-- === MAIN Background === -->
   <div class="slide story" id="slide-1" data-slide="1">
     <div class="container">
       <div id="home-row-1" class="row clearfix">
         <div class="col-12">
-          <h1 class="font-semibold">DENT <span class="font-thin">GROUP</span></h1>
-          <h4 class="font-thin">We are a <span class="font-semibold">closed community</span> dedicated for dentists.</h4>
-          <br>
-          <br>
+          <img class="img-logo" src="/assets/logo_big2.png" alt="Logo" title="Dent Group" />
+          <h4 class="font-thin"><%= t('lp_subtitle_html') %></h4>
         </div><!-- /col-12 -->
       </div><!-- /row -->
       <div id="home-row-2" class="row clearfix">
-        <div class="col-12 col-sm-2 feat-badge"><div class="home-hover navigation-slide" data-slide="4"><img src="/assets/s02.png"></div><span>PROFESSIONAL</span></div>
-        <div class="col-12 col-sm-2 feat-badge"><div class="home-hover navigation-slide" data-slide="3"><img src="/assets/s01.png"></div><span>FRIENDLY</span></div>
-        <div class="col-12 col-sm-2 feat-badge"><div class="home-hover navigation-slide" data-slide="5"><img src="/assets/s03.png"></div><span>SUITABLE</span></div>
-        <div class="col-12 col-sm-2">&nbsp;</div>
+        <div class="col-12 col-sm-8">&nbsp;</div>
         <div class="col-12 col-sm-3 signup-container">
           <div class="signup" ng-controller="UsersController">
-            <p>Sign up</p>
+            <p><%= t('sign_up') %></p>
             <%= simple_form_for(:user, html: { id: "signupForm", role: "form" } ) do |f| %>
               <div class="form-inputs">
-                <%= f.input :fname, :required => false, label: false, placeholder: "First name", input_html: { class: "form-control", 'ng-model' => "newUser.fname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.fname}" } %>
-                <%= f.input :lname, :required => false, label: false, placeholder: "Last name", input_html: { class: "form-control", 'ng-model' => "newUser.lname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.lname}" } %>
+                <%= f.input :fname, :required => false, label: false, placeholder: t('first_name'), input_html: { class: "form-control", 'ng-model' => "newUser.fname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.fname}" } %>
+                <%= f.input :lname, :required => false, label: false, placeholder: t('last_name'), input_html: { class: "form-control", 'ng-model' => "newUser.lname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.lname}" } %>
                 <div class="errors-container" ng-show="register_errors.fname || register_errors.lname">
-                  <p class="text-danger">Please type in your first and last names</p>
+                  <p class="text-danger"><%= t('signup_names_error') %></p>
                 </div>
 
-                <%= f.input :email, :required => false, label: false, placeholder: "Your e-mail", input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
+                <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
                 <div class="errors-container" ng-show="register_errors.email">
-                  <p class="text-danger">Please type a valid e-mail address</p>
+                  <p class="text-danger"><%= t('signup_email_error') %></p>
                 </div>
 
-                <%= f.input :password, :required => false, label: false, placeholder: "Password", input_html: { class: "form-control", 'ng-model' => "newUser.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.password}" } %>
+                <%= f.input :password, :required => false, label: false, placeholder: t('password'), input_html: { class: "form-control", 'ng-model' => "newUser.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.password}" } %>
                 <div class="errors-container" ng-show="register_errors.password">
-                  <p class="text-danger" ng-repeat="err in register_errors.password">Password {{err}}</p>
+                  <p class="text-danger" ng-repeat="err in register_errors.password">{{err}}</p>
                 </div>
               </div>
 
               <div class="form-actions">
-                <%= f.button :submit, "Create account", class: "btn btn-success btn-lg", 'ng-click' => 'signUp()' %>
+                <%= f.button :submit, t('sign_up'), class: "btn btn-success btn-lg", 'ng-click' => 'signUp()' %>
               </div>
             <% end %>
           </div>
@@ -95,94 +81,6 @@
       </div><!-- /row -->
     </div><!-- /container -->
   </div><!-- /slide1 -->
-
-  <!-- === Slide 2 === -->
-  <div class="slide story" id="slide-2" data-slide="2">
-    <div class="container">
-      <div class="row title-row">
-        <div class="col-12 font-thin">Dent Group, <span class="font-semibold">connects</span> you with your colleagues from <span class="font-semibold">everywhere around the world.</span></div>
-      </div><!-- /row -->
-      <div class="row line-row">
-        <div class="hr">&nbsp;</div>
-      </div><!-- /row -->
-      <div class="row subtitle-row">
-        <div class="col-12 font-thin">This is what <span class="font-semibold">we can offer you</span></div>
-      </div><!-- /row -->
-      <div class="row content-row">
-        <div class="col-12 col-lg-3 col-sm-6">
-          <p><i class="icon icon-globe"></i></p>
-          <h2 class="font-semibold">Connect</h2>
-          <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-        </div><!-- /col12 -->
-        <div class="col-12 col-lg-3 col-sm-6">
-          <p><i class="icon icon-share"></i></p>
-          <h2 class="font-semibold">Share</h2>
-          <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-        </div><!-- /col12 -->
-        <div class="col-12 col-lg-3 col-sm-6">
-          <p><i class="icon icon-group"></i></p>
-          <h2 class="font-semibold">Discuss</h2>
-          <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-        </div><!-- /col12 -->
-        <div class="col-12 col-lg-3 col-sm-6">
-          <p><i class="icon icon-pencil"></i></p>
-          <h2 class="font-semibold">Something else</h2>
-          <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-        </div><!-- /col12 -->
-      </div><!-- /row -->
-    </div><!-- /container -->
-  </div><!-- /slide2 -->
-  
-  <!-- === SLide 3 - Portfolio -->
-  <div class="slide story" id="slide-3" data-slide="3">
-    <div class="row">
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/p01-large.jpg"><img class="thumb" src="/assets/portfolio/p01-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p02-large.jpg"><img class="thumb" src="/assets/portfolio/p02-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p09-large.jpg"><img class="thumb" src="/assets/portfolio/p09-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p010-large.jpg"><img class="thumb" src="/assets/portfolio/p10-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p05-large.jpg"><img class="thumb" src="/assets/portfolio/p05-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p06-large.jpg"><img class="thumb" src="/assets/portfolio/p06-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p07-large.jpg"><img class="thumb" src="/assets/portfolio/p07-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p08-large.jpg"><img class="thumb" src="/assets/portfolio/p08-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p03-large.jpg"><img class="thumb" src="/assets/portfolio/p03-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p04-large.jpg"><img class="thumb" src="/assets/portfolio/p04-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p11-large.jpg"><img class="thumb" src="/assets/portfolio/p11-small.jpg" alt=""></a></div>
-      <div class="col-12 col-sm-6 col-lg-2"><a data-fancybox-group="portfolio" class="fancybox" href="/assets/portfolio/p12-large.jpg"><img class="thumb" src="/assets/portfolio/p12-small.jpg" alt=""></a></div>
-    </div><!-- /row -->
-  </div><!-- /slide3 -->
-  
-  <!-- === Slide 4 / Contact === -->
-  <div class="slide story" id="slide-4" data-slide="4">
-    <div class="container">
-      <div class="row title-row">
-        <div class="col-12 font-light">Leave us a <span class="font-semibold">message</span></div>
-      </div><!-- /row -->
-      <div class="row line-row">
-        <div class="hr">&nbsp;</div>
-      </div><!-- /row -->
-      <div class="row subtitle-row">
-        <div class="col-sm-1 hidden-sm">&nbsp;</div>
-        <div class="col-12 col-sm-10 font-light">You can find us literally anywhere, just push a button and we’re there</div>
-        <div class="col-sm-1 hidden-sm">&nbsp;</div>
-      </div><!-- /row -->
-      <div id="contact-row-4" class="row">
-        <div class="col-12 col-sm-3">&nbsp;</div>
-        <div class="col-12 col-sm-2 with-hover-text">
-          <p><a target="_blank" href="#"><i class="icon icon-phone"></i></a></p>
-          <span class="hover-text font-light ">+40 744 650 186</span></a>
-        </div><!-- /col12 -->
-        <div class="col-12 col-sm-2 with-hover-text">
-          <p><a target="_blank" href="mailto:buzachis.aris@gmail.com"><i class="icon icon-envelope"></i></a></p>
-          <span class="hover-text font-light ">buzachis.aris@gmail.com</span></a>
-        </div><!-- /col12 -->
-        <div class="col-12 col-sm-2 with-hover-text">
-          <p><a target="_blank" href="http://www.facebook.com/buzachis.aris"><i class="icon icon-facebook"></i></a></p>
-          <span class="hover-text font-light ">facebook/buzachis.aris</span></a>
-        </div><!-- /col12 -->
-        <div class="col-12 col-sm-3">&nbsp;</div>
-      </div><!-- /row -->
-    </div><!-- /container -->
-  </div><!-- /Slide 6 -->
 
   <%= render 'layouts/analytics' %>
   </body>

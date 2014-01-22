@@ -24,5 +24,5 @@ Ckeditor.setup do |config|
   # Paginate assets
   # config.default_per_page = 24
 
-  config.assets_languages = ['en', 'fr']
+  config.assets_languages = ['en', 'ro']
 end

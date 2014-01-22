@@ -19,8 +19,68 @@
 	}
 	.customer-links {
 		float: right;
-		padding-top: 50px;
+		padding-top: 20px;
 		margin-right: 5px;
+	}
+	.customer-info {
+		font-size: 12px;
+		clear: both;
+	}
+
+	.customer-message {
+		margin: 10px 0 10px 10px;
+		font-weight: bold;
+	}
+
+	.comments-list {
+		margin-top: 10px;
+		.comment-item {
+			margin-bottom: 5px;
+			clear: both;
+			overflow: auto;
+			.user-icon {
+				float: left;
+				margin-right: 5px;
+			}
+			.comment-body {
+				min-height: 50px;
+				float: left;
+				border-left: 1px solid #aaa;
+				padding-left: 5px;
+			}
+			.customer-item-time {
+				margin-left: 0px;
+				a {
+					margin-left: 20px;
+				}
+			}
+		}
+	}
+
+	form {
+		.form-inputs {
+			clear: both;
+
+			img {
+				width: 50px;
+				float: left;
+				margin-top: 3px;
+				margin-left: 5px;
+			}
+			.bad_customer_comment_body {
+				border-left: 1px solid #aaa;
+				padding-left: 5px;
+				float: left;
+				margin-left: 10px;
+				label {
+					display: none;
+				}
+			}
+			.button {
+				margin-left: 10px;
+				margin-top: 20px;
+			}
+		}
 	}
 }
 
@@ -32,6 +92,10 @@
 
 		h4 {
 			margin-bottom: 0px;
+
+			span {
+				font-size: 12px;
+			}
 		}
 
 		.customer-item {
@@ -53,29 +117,46 @@
 			&:last-child > hr {
 				display: none;
 			}
-
-			.customer-item-time {
-				padding: 0;
-				color: #999;
-				font-family: "PTSerif",Georgia,serif;
-				font-style: italic;
-				font-size: 12px;
-				line-height: 21px;
-				padding-left: 18px;
-				margin-left: 10px;
-				background-image: url("/assets/article.svg");
-				background-repeat: no-repeat;
-				background-position: center left;
-
-				i {
-					font-weight: bold;
-				}
-			}
 		}
 	}
 	hr {
 		margin: 5px 0;
 		border-top: 1px solid #ccc;
 		clear: both;
+	}
+}
+
+.customer-item-time {
+	padding: 0;
+	color: #999;
+	font-family: "PTSerif",Georgia,serif;
+	font-style: italic;
+	font-size: 12px;
+	line-height: 21px;
+	padding-left: 18px;
+	margin-left: 10px;
+	background-image: url("/assets/article.svg");
+	background-repeat: no-repeat;
+	background-position: center left;
+
+	i {
+		font-weight: bold;
+	}
+}
+
+.user-icon {
+	width: 60px;
+	a {
+		font-size: 10px;
+		text-align: center;
+		font-weight: bold;
+		img {
+			width: 50px;
+			margin-left: 5px;
+		}
+		span {
+			margin-top: 2px;
+			display: block;
+		}
 	}
 }

@@ -20,4 +20,31 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  about: "About us"
+  news: "News"
+  offers: "Offers"
+  jobs: "Jobs"
+  suppliers: "Suppliers"
+  edit_profile: "Edit profile"
+  sign_out: "Sign out"
+  sign_up: "Sign up"
+  sign_in: "Sign in"
+  your_email: "Your e-mail"
+  password: "Password"
+  remember_me: "Remember me"
+  forgot_password: "Forgot password?"
+  lp_subtitle_html: "We are a <span class='font-semibold'>closed community</span>, dedicated for dentists."
+  pick_language: "Pick language:"
+  first_name: "First name"
+  last_name: "Last name"
+  signup_names_error: "Please type in your first and last names"
+  signup_email_error: "Please type a valid e-mail address"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "Password can't be blank"
+              too_short: "Password is too short (minimum 8 characters)"

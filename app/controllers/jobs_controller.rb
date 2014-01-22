@@ -1,6 +1,8 @@
 class JobsController < ApplicationController
+	before_filter :deny_not_paid
+	
 	def index
-		@jobs = Job.where(deleted: false).order("id").page(params[:page]).per(10)
+		@jobs = Job.where(deleted: false, website_country: get_country).order("id").page(params[:page]).per(10)
 	end
 
 	def new
@@ -10,6 +12,7 @@ class JobsController < ApplicationController
 	def create
 		@job = Job.new(job_params)
 		@job.user_id = current_user.id
+		@job.website_country = get_country
 		if @job.save
 			flash[:success] = "Job announcement posted!"
       		redirect_to @job
@@ -35,7 +38,7 @@ class JobsController < ApplicationController
 	end
 
 	def show
-		@job = Job.where(deleted: false, id: params[:id]).first
+		@job = Job.where(deleted: false, id: params[:id], website_country: get_country).first
 		not_found if @job.nil?
 		@job.increment!(:views)
 	end

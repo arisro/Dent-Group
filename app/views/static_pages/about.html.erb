@@ -1,0 +1,9 @@
+<% unless current_user.is_paid? %>
+	<div class="alert alert-warning subscription-alert">
+		You are on a limited account. To gain full access you need to subscribe to our services. You can find more informations <%= link_to 'here', subscriptions_path %>.
+	</div>
+<% end %>
+
+<div class="box">
+	<h1>About us</h1>
+</div>

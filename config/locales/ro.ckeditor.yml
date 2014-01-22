@@ -1,0 +1,9 @@
+ro:
+  ckeditor:
+    page_title: "CKEditor Files Manager"
+    confirm_delete: "Ștergeți fișierul?"
+    buttons:
+      cancel: "Anulează"
+      upload: "Încarcă"
+      delete: "Șterge"
+      next: "Următorul"

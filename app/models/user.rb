@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
+  ROLES = %w[visitor user moderator admin]
+
   has_paper_trail
 
   validates :fname, :lname, presence: true
@@ -13,7 +15,35 @@ class User < ActiveRecord::Base
   	"#{fname} #{lname}"
   end
 
+  def get_profile_picture
+    profile_picture || '0.png'
+  end
+
+  def is_paid?
+    false if paid_until.nil?
+    paid_until > Time.now unless paid_until.nil?
+  end
+
 	def admin_permalink
 		admin_user_path(self)
 	end
+
+  # login after registration
+  def active_for_authentication?
+    true
+  end
+
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def roles
+    ROLES.reject do |r|
+      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
+
+  def is?(role)
+    roles.include?(role.to_s)
+  end
 end

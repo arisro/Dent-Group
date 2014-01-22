@@ -1,3 +1,4 @@
+<% unless flash.empty? %>
 <div class="messages">
 	<% flash.each do |name, msg| %>
 	  <% if msg.is_a?(String) %>
@@ -8,3 +9,4 @@
 	  <% end %>
 	<% end %>
 </div>
+<% end %>

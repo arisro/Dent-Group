@@ -9,7 +9,12 @@
 	<ul class="customers-list">
 		<% @customers.each do |customer| %>
 			<li class="customer-item">
-				<h4><%= link_to "#{customer.name} (#{customer.cnp})", bad_customer_path(customer) %></h4>
+				<h4>
+					<%= link_to "#{customer.name} (#{customer.cnp})", bad_customer_path(customer) %>
+					<% if customer.comments_count > 0 %>
+						<span>(<%= pluralize(customer.comments_count, 'comment')%>)</span>
+					<% end %>
+				</h4>
 				<p class="customer-item-reason"><%= customer.message %></p>
 				<span class="customer-item-time">Reported on <i><%= customer.created_at.to_formatted_s(:date) %></i> by <%= link_to customer.user.full_name, user_path(customer.user) %></span>
 				<hr/>

@@ -1,6 +1,8 @@
 class BadCustomersController < ApplicationController
+	before_filter :deny_not_paid
+	
 	def index
-		@customers = BadCustomer.where(deleted: false).order("id").page(params[:page]).per(10)
+		@customers = BadCustomer.where(deleted: false, website_country: get_country).order("id").page(params[:page]).per(10)
 	end
 
 	def new
@@ -10,6 +12,7 @@ class BadCustomersController < ApplicationController
 	def create
 		@customer = BadCustomer.new(bad_customer_params)
 		@customer.user_id = current_user.id
+		@customer.website_country = get_country
 		if @customer.save
 			flash[:success] = "Customer reported!"
       		redirect_to @customer
@@ -35,9 +38,11 @@ class BadCustomersController < ApplicationController
 	end
 
 	def show
-		@customer = BadCustomer.where(deleted: false, id: params[:id]).first
+		@customer = BadCustomer.where(deleted: false, id: params[:id], website_country: get_country).first
 		not_found if @customer.nil?
 		@customer.increment!(:views)
+		@comments = @customer.bad_customer_comments.where(deleted: false)
+		@comment = BadCustomerComment.new
 	end
 
 	def destroy

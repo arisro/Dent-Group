@@ -12,29 +12,46 @@
 
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav row" id="main-top-left-menu">
-					<li class="menu-item <%= put_active_menu('home') %>"><a id="menu-link-1" href="<%= root_path %>" title="Home"><span class="icon icon-home"></span><span class="text">HOME</span></a></li>
-					<li class="menu-item <%= put_active_menu('customers') %>"><a id="menu-link-2" href="<%= bad_customers_path %>" title="Customers"><span class="icon icon-user"></span> <span class="text">CUSTOMERS</span></a></li>
-					<li class="menu-item <%= put_active_menu('offers') %>"><a id="menu-link-3" href="<%= offers_path %>" title="Offers"><span class="icon icon-briefcase"></span> <span class="text">OFFERS</span></a></li>
-					<li class="menu-item <%= put_active_menu('jobs') %>"><a id="menu-link-6" href="<%= jobs_path %>" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">JOBS</span></a></li>
-					<li class="menu-item <%= put_active_menu('suppliers') %>"><a id="menu-link-6" href="<%= suppliers_path %>" title="Suppliers"><span class="icon icon-envelope"></span><span class="text">SUPPLIERS</span></a></li>
-					<li class="menu-item <%= put_active_menu('articles') %>"><a id="menu-link-6" href="#slide-6" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">ARTICLES</span></a></li>
+					<li class="menu-item <%= put_active_menu('news') %>"><a id="menu-link-3" href="<%= news_index_path %>" title="News"><span class="icon icon-briefcase"></span> <span class="text"><%= t('news')%></span></a></li>
+					<li class="menu-item <%= put_active_menu('about') %>"><a id="menu-link-3" href="<%= about_path %>" title="About"><span class="icon icon-briefcase"></span> <span class="text"><%= t('about')%></span></a></li>
+					
+					<% if current_user.is_paid? %>
+						<li class="menu-item <%= put_active_menu('offers') %>">
+							<a id="menu-link-3" href="<%= offers_path %>" title="Offers"><span class="icon icon-briefcase"></span> <span class="text"><%= t('offers')%></span></a>
+							<div class="dropdown">
+								<ul>
+									<li><<%= link_to 'Selling', offers_selling_path %></a></li>
+									<li class="last"><%= link_to 'Buying', offers_buying_path %></li>
+								</ul>
+							</div>
+						</li>
+						<li class="menu-item <%= put_active_menu('jobs') %>"><a id="menu-link-6" href="<%= jobs_path %>" title="Next Section"><span class="icon icon-envelope"></span> <span class="text"><%= t('jobs')%></span></a></li>
+						<li class="menu-item <%= put_active_menu('suppliers') %>"><a id="menu-link-6" href="<%= suppliers_path %>" title="Suppliers"><span class="icon icon-envelope"></span><span class="text"><%= t('suppliers')%></span></a></li>
+					<% end %>
 					<li id="menu-additional">
+						<div class="country-select">
+							<select name="countries" id="countrySelect" style="width:300px;">
+								<option value='int' data-image="/assets/msdropdown/icons/blank.gif" data-imagecss="flag int" data-title="International" <%= "selected" if current_country == 'int'%>>International</option>
+								<option value='ro' data-image="/assets/msdropdown/icons/blank.gif" data-imagecss="flag ro" data-title="Romania" <%= "selected" if current_country == 'ro'%>>Romania</option>
+								<option value='de' data-image="/assets//msdropdown/icons/blank.gif" data-imagecss="flag de" data-title="Germany" <%= "selected" if current_country == 'de'%>>Germany</option>
+							</select>
+						</div>
 						<div class="dropdown">
 					        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					        	<div class="dropdown-pic">
-						        	<%= image_tag "/profile_pictures/thumbs2/#{current_user.profile_picture}", class: 'menu-profile-icon' %>
+						        	<%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", class: 'menu-profile-icon' %>
 						        </div>
 					        	<div class="dropdown-name">
-					        		<p class="dropdown-name-full"><%= current_user.full_name %></p>
-					        		<% unless current_user.specialization.empty? %>
+					        		<p class="dropdown-name-full"><%= current_user.fname %></p>
+					        		<% unless current_user.specialization.nil? %>
 					        			<p class="dropdown-name-specialization"><%= current_user.specialization %></p>
 					        		<% end %>
 					        	</div>
 					        </a>
 					        <ul class="dropdown-menu">
-					          <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+					          <li><%= link_to t('edit_profile'), edit_user_registration_path %></li>
 					          <li class="divider"></li>
-					          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+					          <li><%= link_to t('sign_out'), destroy_user_session_path, method: :delete %></li>
 					        </ul>
 					    </div>
 	      			</li>
@@ -46,3 +63,7 @@
 		</div>
 	</div>
 </nav>
+
+<div id="menu-search-box">
+	<input class='form-control' type="text" placeholder="Search for anything" />
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116222020) do
+ActiveRecord::Schema.define(version: 20140123004547) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -42,10 +42,11 @@ ActiveRecord::Schema.define(version: 20140116222020) do
     t.string   "name"
     t.string   "cnp"
     t.text     "message"
-    t.boolean  "deleted",    default: false
+    t.boolean  "deleted",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "views"
+    t.string   "website_country", limit: 3
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -78,10 +79,24 @@ ActiveRecord::Schema.define(version: 20140116222020) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
-    t.boolean  "deleted",       default: false
+    t.boolean  "deleted",                   default: false
     t.integer  "views"
     t.string   "contact_phone"
     t.string   "contact_email"
+    t.string   "website_country", limit: 3
+  end
+
+  create_table "news", force: true do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "published_at"
+    t.integer  "deleted",                   default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "website_country", limit: 3
+    t.integer  "views",                     default: 0, null: false
   end
 
   create_table "offers", force: true do |t|
@@ -89,7 +104,21 @@ ActiveRecord::Schema.define(version: 20140116222020) do
     t.string   "title"
     t.text     "body"
     t.integer  "views"
-    t.boolean  "deleted",    default: false
+    t.boolean  "deleted",                   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "website_country", limit: 3
+    t.integer  "type",                                      null: false
+    t.text     "summary"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+  end
+
+  create_table "supplier_comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "supplier_id"
+    t.text     "body"
+    t.boolean  "deleted",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,18 +134,19 @@ ActiveRecord::Schema.define(version: 20140116222020) do
     t.string   "city"
     t.text     "address"
     t.integer  "views"
-    t.boolean  "deleted",     default: false
+    t.boolean  "deleted",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website_country", limit: 3
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                            default: "",   null: false
+    t.string   "encrypted_password",               default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                    default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -124,7 +154,7 @@ ActiveRecord::Schema.define(version: 20140116222020) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",        default: 0,  null: false
+    t.integer  "failed_attempts",                  default: 0,    null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at"
@@ -133,6 +163,9 @@ ActiveRecord::Schema.define(version: 20140116222020) do
     t.string   "lname"
     t.string   "profile_picture"
     t.string   "specialization"
+    t.datetime "paid_until"
+    t.integer  "roles_mask",                       default: 1,    null: false
+    t.string   "language",               limit: 5, default: "en", null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
