@@ -27,5 +27,8 @@ module Drs
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
+    config.assets.css_compressor = :yui
+    config.assets.js_compressor = :yui
   end
 end

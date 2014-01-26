@@ -30,6 +30,8 @@ gem 'cancan'
 gem 'paper_trail', '~> 3.0.0'
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+gem 'yui-compressor'
+
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
 
 group :production do

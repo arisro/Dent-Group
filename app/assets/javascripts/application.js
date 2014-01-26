@@ -27,7 +27,7 @@
 //= require app
 //= require jobs
 //= require users
-//= require bootstrap-datetimepicker
+//= require bootstrap-datetimepicker.js
 //= require ckeditor/override
 //= require ckeditor/init
 //= require jquery.dd

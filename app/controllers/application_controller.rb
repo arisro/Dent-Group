@@ -46,9 +46,9 @@ class ApplicationController < ActionController::Base
 			redirect_to root_url unless current_user.is? :admin
 		end
 
-		def user_for_paper_trail
-			user_signed_in? ? current_user : User.find(1)
-		end
+		# def user_for_paper_trail
+		# 	user_signed_in? ? current_user : User.find(1)
+		# end
 
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.for(:sign_up) do |u|
