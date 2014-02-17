@@ -27,7 +27,12 @@
 //= require app
 //= require jobs
 //= require users
+//= require dashboard
 //= require bootstrap-datetimepicker.js
 //= require ckeditor/override
 //= require ckeditor/init
 //= require jquery.dd
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require websocket_rails/main
+//= require chat

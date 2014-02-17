@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140123004547) do
+ActiveRecord::Schema.define(version: 20140204222116) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -27,6 +27,21 @@ ActiveRecord::Schema.define(version: 20140123004547) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "activities", force: true do |t|
+    t.integer  "subject_id"
+    t.string   "subject_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "country",      limit: 3, null: false
+    t.string   "name",                   null: false
+  end
+
+  add_index "activities", ["subject_id", "subject_type"], name: "index_activities_on_subject_id_and_subject_type", using: :btree
+  add_index "activities", ["subject_id"], name: "index_activities_on_subject_id", using: :btree
+  add_index "activities", ["subject_type"], name: "index_activities_on_subject_type", using: :btree
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "bad_customer_comments", force: true do |t|
     t.integer  "bad_customer_id"
@@ -114,6 +129,29 @@ ActiveRecord::Schema.define(version: 20140123004547) do
     t.string   "contact_email"
   end
 
+  create_table "pictures_statuses", force: true do |t|
+    t.integer "picture_id", null: false
+    t.integer "status_id",  null: false
+  end
+
+  create_table "status_comments", force: true do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "status_id",                  null: false
+    t.text     "message",                    null: false
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statuses", force: true do |t|
+    t.integer  "user_id",                              null: false
+    t.text     "message",                              null: false
+    t.boolean  "deleted",              default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "country",    limit: 3,                 null: false
+  end
+
   create_table "supplier_comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "supplier_id"
@@ -138,6 +176,15 @@ ActiveRecord::Schema.define(version: 20140123004547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "website_country", limit: 3
+  end
+
+  create_table "uploads", force: true do |t|
+    t.string   "uploaded_file_file_name"
+    t.string   "uploaded_file_content_type"
+    t.integer  "uploaded_file_file_size"
+    t.datetime "uploaded_file_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -166,6 +213,11 @@ ActiveRecord::Schema.define(version: 20140123004547) do
     t.datetime "paid_until"
     t.integer  "roles_mask",                       default: 1,    null: false
     t.string   "language",               limit: 5, default: "en", null: false
+    t.string   "country"
+    t.string   "city"
+    t.string   "phone"
+    t.string   "skype"
+    t.string   "yahoo"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

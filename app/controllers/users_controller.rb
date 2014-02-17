@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
   before_filter :deny_not_paid
 
+  def feed
+    if user_signed_in?
+      @status = Status.new
+      @status_comment = StatusComment.new
+      @activities = current_user.activities(10, get_country)
+      @upload = Upload.new
+    else
+      render file: 'dashboard/lp'
+    end
+  end
+
   def index
     redirect_to root_path
   end

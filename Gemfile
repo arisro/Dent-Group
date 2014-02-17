@@ -9,7 +9,7 @@ gem 'bootstrap-sass'
 gem 'sass-rails', '~> 4.0.0'
 gem 'angularjs-rails', '1.2.0.rc2'
 gem 'jquery-rails'
-gem 'fancybox2-rails', '~> 0.2.4'
+gem 'fancybox2-rails', git: 'git@github.com:fbonomi/fancybox2-rails.git'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bourbon'
@@ -22,6 +22,8 @@ gem 'remotipart', '~> 1.2'
 gem 'fastimage'
 gem "mini_magick"
 
+gem 'websocket-rails'
+
 gem 'roar-rails',     '~> 0.1.4'
 gem 'roar',           '~> 0.12.0'
 
@@ -29,6 +31,8 @@ gem 'devise'
 gem 'cancan'
 gem 'paper_trail', '~> 3.0.0'
 gem 'activeadmin', github: 'gregbell/active_admin'
+
+gem 'jquery-fileupload-rails', github: 'jake3030/jquery-fileupload-rails'
 
 gem 'yui-compressor'
 

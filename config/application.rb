@@ -28,7 +28,7 @@ module Drs
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
-    config.assets.css_compressor = :yui
-    config.assets.js_compressor = :yui
+    # config.assets.css_compressor = :yui
+    # config.assets.js_compressor = :yui
   end
 end

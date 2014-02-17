@@ -1,0 +1,41 @@
+<% status_user = subject.user %>
+
+<div class="feed-item feed-item-status">
+	<%= link_to image_tag("/profile_pictures/thumbs/#{status_user.profile_picture}", class: 'feed-item-user-icon'), status_user %>
+	<div class="feed-item-container">
+		<h5><%= link_to status_user.full_name, status_user %></h5>
+		<div class="feed-item-content">
+			<%= subject.message %>
+		</div>
+		<div class="feed-item-images">
+			<% subject.uploads.each do |upl| %>
+				<div class="feed-item-image-container" id="upload-<%= upl.id %>">
+					<a class="feed-item-image-link" rel="group<%= subject.id %>" href="<%= upl.uploaded_file.url(:large) %>"><%= image_tag(upl.uploaded_file.url(:small), class: 'feed-item-image-thumb') %></a>
+					<a href="#" class="feed-item-image-delete glyphicon glyphicon-remove" ng-click="removeUpload(<%= upl.id %>)"></a>
+				</div>
+			<% end %>
+		</div>
+		<span class="timestamp"><%= time_ago_in_words(subject.created_at) %> ago</span>
+		<%= simple_form_for([subject, @status_comment], html: { role: "form", class: 'feed-comment-form' }) do |f| %>
+
+			<ul class="feed-item-status-comments-list">
+				<% subject.status_comments.each do |comment| %>
+					<li>
+						<%= link_to image_tag("/profile_pictures/thumbs/#{comment.user.profile_picture}", class: 'feed-item-comment-user-icon'), comment.user %>
+						<div class="feed-item-comment-content">
+							<h5><%= link_to comment.user.full_name, comment.user %></h5>
+							<div class="feed-item-comment-body"><%= comment.message %></div>
+							<span class="timestamp"><%= time_ago_in_words(comment.created_at) %> ago </span>
+						</div>
+						<%= link_to "Delete", status_status_comment_path(subject, comment), method: :delete, :confirm => "Are you sure you want to delete this comment?", class: "btn btn-danger btn-xs btn-remove-comment" %>
+					</li>
+				<% end %>
+				<li>
+					<%= image_tag("/profile_pictures/thumbs/#{current_user.profile_picture}", class: 'feed-item-comment-user-icon') %>
+					<%= f.input :message, :required => true, as: :string, label: false, input_html: { placeholder: "Write a comment...", class: 'comment_input form-control' } %>
+				</li>
+			</ul>	
+		<% end %>
+		<%= link_to "Delete", status_path(subject), method: :delete, :confirm => "Are you sure you want to delete this status?", class: "btn btn-danger btn-xs btn-remove-status" %>
+	</div>
+</div>

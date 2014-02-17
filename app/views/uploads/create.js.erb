@@ -1,0 +1,10 @@
+<% if @upload.new_record? %>
+  alert('Failed');
+<% else 
+	cname = @upload.uploaded_file_file_name.gsub(/[^a-zA-Z0-9]/, '')
+%>
+  if ($('.images-list .<%= cname %>').length > 0) {
+    $('.images-list .<%= cname %>').html("<%=j render partial: 'uploads/upload', locals: { upload: @upload } %>");
+    $("#postStatusForm").append($("<input/>").attr("type", "hidden").attr("name", "images[]").val(<%= @upload.id %>));
+  }
+<% end %>

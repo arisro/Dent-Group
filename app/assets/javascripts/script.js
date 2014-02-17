@@ -30,6 +30,15 @@ $(document).ready(function(e) {
 		}, 500);
 	});
 
+	// search box width animation
+	$('#menu-search-box input').focus(function() {
+		$(this).attr('data-default', $(this).parent().width());
+		$(this).parent().animate({ width: 180 }, 'slow');
+	}).blur(function() {
+		var w = $(this).attr('data-default');
+		$(this).parent().animate({ width: w }, 'slow');
+	});
+
 	// CHAT TOGGLE
 	$("#chat-toggle-link").on('click', function(e) {
 		e.preventDefault();

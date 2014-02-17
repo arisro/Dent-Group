@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title><%= content_for?(:title) ? yield(:title) : "Dental Group" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Dent Group" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Drs" %>">
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -13,72 +13,73 @@
 
     <%= csrf_meta_tags %>
   </head>
-  <body class="def">
+  <body class="def" ng-app="Drs">
     <header>
       <%= render 'layouts/header' %>
     </header>
 
     <div class="main-container<%= " unpaid" unless current_user.is_paid? %>">
       <% if current_user.is_paid? %>
-        <div class="sidebar sidebar-left sidebar-chat">
-          <div class="search-box">
-            <div class="chat-toggle">
-                <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
-            </div>
-            <input class='form-control' type="text" placeholder="Search" />
-          </div>
-          <hr />
-          <div class="chat-box">
-            <ul class="chat-list">
-              <% @online_users.each do |user| %>
-              <li class="chat-user-item">
-                <a class="chat-link" href="<%= user_path(user) %>" title="Click to chat">
-                  <%= image_tag "/profile_pictures/#{user.get_profile_picture}", class: "chat-item-image" %>
-                  <span class="chat-user-name"><%= user.full_name %></span>
-                  <br/>
-                  <span class="chat-user-specialization"><%= user.specialization %></span>
-                </a>
-              </li>
-              <% end %>
-            </ul>
-          </div>
-        </div>
+        <%= render 'layouts/chat' %>
       <% end %>
-      <div class="main-content">
+      <div class="main-content <%= "main-content-full" unless current_user.is_paid? %>">
        <%= render 'layouts/messages' %>
-       <%= yield %>
-      </div>
-      <div class="sidebar sidebar-right">
-        <button type="button" class="close" aria-hidden="true">&times;</button>
-        <div class="activity-box">
-          <ul class="activity-list">
-            <li class="activity-item">
-              <a class="activity-link" href="#" title="Something really amazing just happened.">
-                <div class="activity-body">
-                  <span class="title">Succcessful operation</span>
-                  <h2>Something really amazing just happened.</h2>
-                </div>
-                <span class="activity-metadata">
-                  <span class="activity-timestamp">10 minutes ago</span>
-                </span>
-              </a>
-            </li>
-            <li class="activity-item activity-item-last">
-              <a class="activity-link" href="#" title="This guys is hiring a technician">
-                <div class="activity-body">
-                  <span class="title">Looking for technician</span>
-                  <h2>This guys is hiring a technician</h2>
-                </div>
-                <span class="activity-metadata">
-                  <span class="activity-timestamp">1 hour ago</span>
-                </span>
-              </a>
-            </li>
-          </ul>
+
+       <% unless current_user.is_paid? %>
+          <div class="alert alert-warning subscription-alert">
+            You are on a limited account. To gain full access you need to subscribe to our services. You can find more informations <%= link_to 'here', subscriptions_path %>.
+          </div>
+        <% end %>
+       
+        <%= yield %>
+
+        <% if current_user.is_paid? %>
+          <div class="recommendations box">
+            <p class="rec-title">Recommended items</p>
+            <hr />
+            Recommended stuff
+            
+
+            <p class="rec-title rec-ads">Ads</p>
+            <hr />
+            Reclame
+          </div>
+        <% end %>
       </div>
 
       <% if current_user.is_paid? %>
-        <div class="box chat-box-bot">
+        <div class="sidebar sidebar-right">
+          <button type="button" class="close" aria-hidden="true">&times;</button>
+          <div class="activity-box">
+            <ul class="activity-list">
+              <li class="activity-item">
+                <a class="activity-link" href="#" title="Something really amazing just happened.">
+                  <div class="activity-body">
+                    <span class="title">Succcessful operation</span>
+                    <h2>Something really amazing just happened.</h2>
+                  </div>
+                  <span class="activity-metadata">
+                    <span class="activity-timestamp">10 minutes ago</span>
+                  </span>
+                </a>
+              </li>
+              <li class="activity-item activity-item-last">
+                <a class="activity-link" href="#" title="This guys is hiring a technician">
+                  <div class="activity-body">
+                    <span class="title">Looking for technician</span>
+                    <h2>This guys is hiring a technician</h2>
+                  </div>
+                  <span class="activity-metadata">
+                    <span class="activity-timestamp">1 hour ago</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+        </div>
+      <% end %>
+
+      <% if current_user.is_paid? %>
+         <div class="box chat-box-bot" >
           <a href="#" id="aShowChat">
             <i class="glyphicon glyphicon-user"></i> Chat
           </a>

@@ -1,0 +1,5 @@
+<div class="news-item">
+	<a href="<%= news_path(news_thumb) %>"><h4><%= news_thumb.title %></h4></a>
+	<span class="news-item-time"><%= time_ago_in_words(news_thumb.published_at) %> ago</i></span>
+	<p class="news-item-summary"><%= news_thumb.summary %></p>
+</div>

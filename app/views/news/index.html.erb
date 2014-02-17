@@ -1,18 +1,51 @@
-<div class="box news-list-box">
-	<h1>News</h1>
+<%
+	column1, column2, column3 = [], [], []
 
-	<%= link_to 'Add news', new_news_path %>
-	<br/>
+	@news.each_with_index do |news, index|
+		column1.push(news) if (index % @columns == 0)
+		column2.push(news) if (index % @columns == 1)
+		column3.push(news) if (index % @columns == 2)
+	end
+%>
 
-	<%= paginate @news %>
+<%= link_to 'Add news', new_news_path %>
+<br/>
 
-	<ul class="news-list">
-		<% @news.each do |news| %>
-			<li class="news-item">
-				<a href="<%= news_path(news) %>"><h4><%= news.title %></h4></a>
-				<span class="news-item-time"><%= time_ago_in_words(news.published_at) %> ago</i></span>
-				<p class="news-item-summary"><%= news.summary %></p>
-			</li>
+<div class="news-list-box">
+<% if @columns == 3 %>
+	<div class="box news-box news-box-3">
+		<% column1.each do |news| %>
+			<%= render partial: "news_thumb", object: news %>
 		<% end %>
-	</ul>
+	</div>
+	<% if column2.length > 1 %>
+	<div class="box news-box news-box-3">
+		<% column2.each do |news| %>
+			<%= render partial: "news_thumb", object: news %>
+		<% end %>
+	</div>
+	<% end %>
+
+	<% if column3.length > 2 %>
+	<div class="box news-box news-box-3">
+		<% column3.each do |news| %>
+			<%= render partial: "news_thumb", object: news %>
+		<% end %>
+	</div>
+	<% end %>
+<% else %>
+	<div class="box news-box news-box-2">
+		<% column1.each do |news| %>
+			<%= render partial: "news_thumb", object: news %>
+		<% end %>
+	</div>
+
+	<% if column2.length > 1 %>
+	<div class="box news-box news-box-2">
+		<% column2.each do |news| %>
+			<%= render partial: "news_thumb", object: news %>
+		<% end %>
+	</div>
+	<% end %>
+<% end %>
 </div>

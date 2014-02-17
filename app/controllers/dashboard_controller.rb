@@ -3,7 +3,11 @@ class DashboardController < ApplicationController
 	before_filter :deny_not_paid
 
 	def index
-		
+		if user_signed_in?
+			# some kind of homepage
+		else
+			render file: 'dashboard/lp'
+		end
 	end
 
 	def change_language

@@ -12,16 +12,24 @@
 
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav row" id="main-top-left-menu">
-					<li class="menu-item <%= put_active_menu('news') %>"><a id="menu-link-3" href="<%= news_index_path %>" title="News"><span class="icon icon-briefcase"></span> <span class="text"><%= t('news')%></span></a></li>
-					<li class="menu-item <%= put_active_menu('about') %>"><a id="menu-link-3" href="<%= about_path %>" title="About"><span class="icon icon-briefcase"></span> <span class="text"><%= t('about')%></span></a></li>
-					
 					<% if current_user.is_paid? %>
+						<li class="menu-item <%= put_active_menu('homepage') %>"><a id="menu-link-3" href="<%= root_path %>" title="<%= t('homepage') %>"><span class="icon icon-briefcase"></span> <span class="text"><%= t('homepage')%></span></a></li>
+					<% else %>
+						<li class="menu-item <%= put_active_menu('about') %>"><a id="menu-link-3" href="<%= about_path %>" title="<%= t('about') %>"><span class="icon icon-briefcase"></span> <span class="text"><%= t('about')%></span></a></li>
+					<% end %>
+
+					<li class="menu-item <%= put_active_menu('news') %>"><a id="menu-link-3" href="<%= news_index_path %>" title="News"><span class="icon icon-briefcase"></span> <span class="text"><%= t('news')%></span></a></li>
+
+					<% if current_user.is_paid? %>
+						<li class="menu-item <%= put_active_menu('my_profile') %>"><a id="menu-link-3" href="<%= feed_path %>" title="<%= t('my_profile') %>"><span class="icon icon-briefcase"></span> <span class="text"><%= t('my_profile')%></span></a></li>
+
 						<li class="menu-item <%= put_active_menu('offers') %>">
 							<a id="menu-link-3" href="<%= offers_path %>" title="Offers"><span class="icon icon-briefcase"></span> <span class="text"><%= t('offers')%></span></a>
 							<div class="dropdown">
 								<ul>
-									<li><<%= link_to 'Selling', offers_selling_path %></a></li>
-									<li class="last"><%= link_to 'Buying', offers_buying_path %></li>
+									<li><<%= link_to t('selling'), offers_selling_path %></a></li>
+									<li><%= link_to t('buying'), offers_buying_path %></li>
+									<li class="last"><%= link_to t('rentals'), offers_rentals_path %></li>
 								</ul>
 							</div>
 						</li>
@@ -63,7 +71,8 @@
 		</div>
 	</div>
 </nav>
-
+<% if current_user.is_paid? %>
 <div id="menu-search-box">
-	<input class='form-control' type="text" placeholder="Search for anything" />
+	<input class='form-control' type="text" placeholder="Search" />
 </div>
+<% end %>

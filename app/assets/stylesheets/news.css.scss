@@ -1,4 +1,19 @@
 .news-list-box {
+	.news-box {
+		float: left;
+		margin-right: 5px;
+
+		&.news-box-3 {
+			width: 33%;
+		}
+		&.news-box-2 {
+			width: 49.5%;
+		}
+	}
+	.news-box:last-child {
+		margin-right: 0px;
+	}
+
 	.news-list {
 		list-style: none;
 		padding-left: 0;
@@ -15,25 +30,5 @@
 				color: #999;
 			}
 		}
-	}
-}
-
-.news-box {
-	.news-title {
-		float: left;
-		margin-bottom: 10px;
-	}
-	.news-links {
-		float: right;
-		padding-top: 30px;
-		margin-right: 5px;
-	}
-	hr {
-		clear: both;
-		margin: 10px 0;
-	}
-	.timestamp {
-		font: 14px/16px "PTSerif",Georgia,serif;
-		color: #999;
 	}
 }

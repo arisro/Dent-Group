@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
 
+  has_many :statuses
+
   ROLES = %w[visitor user moderator admin]
 
   has_paper_trail
@@ -33,6 +35,11 @@ class User < ActiveRecord::Base
     true
   end
 
+  def activities(limit, country)
+    Activity.where("user_id = 0 or user_id = #{ self.id } ").where(country: country).order('created_at DESC').limit(limit)
+  end
+
+  # CAN CAN
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end

@@ -1,6 +1,7 @@
 class NewsController < ApplicationController	
 	def index
 		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id").page(params[:page]).per(10)
+		@columns = 3
 	end
 
 	def new

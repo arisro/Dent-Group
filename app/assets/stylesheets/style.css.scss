@@ -45,6 +45,11 @@ body {
 	text-align: justify;
 }
 
+#loginForm {
+	color: #fff;
+	margin-top: 8px;
+}
+
 .navbar {
 	background-color: #333;
 	border-bottom: 0 none;
@@ -315,9 +320,40 @@ ul.nav {
 }
 
 #slide-2 {
-	background-color: #1abc9c;
-	color: #e4e6e5;
-	padding-top: 90px;
+	color: #303030;
+	padding-top: 30px;
+	padding-bottom: 20px;
+
+	i {
+		font-size: 80px;
+	}
+
+	.title-row {
+		font-size: 45px;
+		padding-bottom: 50px;
+	}
+
+	.subtitle-row {
+		font-size: 35px;
+		padding-bottom: 40px;
+		padding-top: 40px;
+	}
+
+	.content-row {
+		padding-top: 45px;
+	}
+
+	.line-row .hr {
+		background-color: #303030;
+		height: 5px;
+		margin: 0 auto;
+		width: 33%;
+	}
+
+	.logo {
+		height: 80px;
+		margin-top: 3px;
+	}
 }
 
 #lp {
@@ -649,7 +685,7 @@ ul.nav {
 	position: absolute;
 	right: 10px;
 	top: 8px;
-	width: 180px;
+	width: 100px;
 }
 
 
@@ -745,7 +781,14 @@ body {
 	float: left;
 	width: 100%;
 	min-width: 400px;
+	position: relative;
+	padding-right: 210px;
+
+	&.main-content-full {
+		padding-right: 0px;
+	}
 }
+
 
 .main-container {
 	margin-top: 50px;
@@ -897,6 +940,9 @@ body.def {
 .subscription-alert {
 	margin-top: 10px;
 	font-weight: bold;
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 16px;
 }
 
 .sidebar-chat {
@@ -970,3 +1016,32 @@ body.def {
 		text-decoration: none;
 	}
 }
+
+.timestamp {
+	font: 12px "PTSerif",Georgia,serif;
+	color: #999;
+}
+
+.recommendations {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 200px;
+	font-size: 12px;
+
+	.rec-title {
+		font-size: 16px;
+		margin-bottom: 0px;
+	}
+	hr {
+		margin: 0 0 6px 0;
+		border-top: 1px solid #ccc;
+	}
+	.rec-ads {
+		margin-top: 30px;
+	}
+}
+
+// .fancybox-nav {
+// 	background: transparent url(blank.gif);
+// }

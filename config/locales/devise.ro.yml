@@ -41,7 +41,7 @@ ro:
       update_needs_confirmation: "Ți-ai actualizat contul cu succes, dar va trebui sa îți confirmi adresa de email."
       updated: "Ți-ai actualizat contul cu succes."
     sessions:
-      users:
+      user:
         signed_in: ""
         signed_out: ""
     unlocks:

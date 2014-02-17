@@ -14,6 +14,14 @@
           <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], label: 'Language' %>
 
           <br/>
+
+          <%= f.input :country, label: 'Country' %>
+          <%= f.input :city, label: 'City' %>
+          <%= f.input :phone, label: 'Phone' %>
+          <%= f.input :skype, label: 'Skype' %>
+          <%= f.input :yahoo, label: 'Yahoo! ID' %>
+
+          <br/>
           <%= f.input :password, :required => false, label: 'New password' %>
           <%= f.input :confirm_password, :required => false, label: 'Confirm password' %>
           <br/>

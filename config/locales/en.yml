@@ -39,6 +39,11 @@ en:
   last_name: "Last name"
   signup_names_error: "Please type in your first and last names"
   signup_email_error: "Please type a valid e-mail address"
+  homepage: "Homepage"
+  my_profile: "My profile"
+  selling: "Selling"
+  buying: "Buying"
+  rentals: "Rentals"
 
   activerecord:
     errors:

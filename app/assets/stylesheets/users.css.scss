@@ -38,3 +38,42 @@
 		background: 1px solid #000;
 	}
 }
+
+#fileupload {
+	display: none;
+}
+
+.profile-feed-form {
+	#but-add-image {
+		float: left;
+		margin-top: 2px;
+	}
+	.images-container {
+		float: left;
+		margin-left: 10px;
+
+		.images-list {
+			list-style: none;
+			padding: 0;
+			overflow: auto;
+			margin: 0;
+
+			li {
+				float: left;
+				margin-right: 2px;
+				> div {
+					width: 40px;
+					height: 40px;
+					border: 1px solid #000;
+
+					img {
+						max-width: 38px;
+						max-height: 38px;
+						display: block;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+	}
+}

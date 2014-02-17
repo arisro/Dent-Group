@@ -1,4 +1,29 @@
 $ ->
+	$('#upload_uploaded_file').attr('name','upload[uploaded_file]')
+	$('#fileupload').fileupload
+		dataType: 'script'
+		autoUpload: true
+		add: (e, data) ->
+			types = /(\.|\/)(gif|jpe?g|png)$/i
+			file = data.files[0]
+			file.cname = file.name.replace(/[^a-zA-Z0-9]/g, '')
+			if types.test(file.type) || types.test(file.name)
+				data.context = $(tmpl("template-upload", file))
+				$('.images-list').append(data.context)
+				data.submit()
+			else
+				alert("#{file.name} is not a gif, jpg or png image file")
+				# progress: (e, data) ->
+				# 	if data.context
+				# 		progress = parseInt(data.loaded / data.total * 100, 10)
+				# 		data.context.find('.bar').css('width', progress + '%')
+
+	$('#but-add-image').on 'click', (e) ->
+		e.preventDefault()
+		$('#input_files').trigger 'click'
+
+	$('a.feed-item-image-link').fancybox()
+
 	clearJcrop = ->
 		if $('#picUrl').data('Jcrop')? then $('#picUrl').data('Jcrop').destroy()
 		$("#picUrl").attr 'src', ''
