@@ -16,9 +16,10 @@
 	<div class="box news-box news-box-3">
 		<% column1.each do |news| %>
 			<%= render partial: "news_thumb", object: news %>
+			<hr />
 		<% end %>
 	</div>
-	<% if column2.length > 1 %>
+	<% if column2.length > 0 %>
 	<div class="box news-box news-box-3">
 		<% column2.each do |news| %>
 			<%= render partial: "news_thumb", object: news %>
@@ -26,7 +27,7 @@
 	</div>
 	<% end %>
 
-	<% if column3.length > 2 %>
+	<% if column3.length > 0 %>
 	<div class="box news-box news-box-3">
 		<% column3.each do |news| %>
 			<%= render partial: "news_thumb", object: news %>
@@ -40,7 +41,7 @@
 		<% end %>
 	</div>
 
-	<% if column2.length > 1 %>
+	<% if column2.length > 0 %>
 	<div class="box news-box news-box-2">
 		<% column2.each do |news| %>
 			<%= render partial: "news_thumb", object: news %>

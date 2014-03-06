@@ -3,7 +3,8 @@ jQuery ->
 	
 $(document).ready ->
 	setTimeout ->
-		window.chatController.sendMessage(null)
+		console.log 'chat'
+		# window.chatController.sendMessage(null)
 	, 2000
 
 window.Chat = {}
