@@ -18,6 +18,7 @@ class DashboardController < ApplicationController
 
 	private
 		def dashboard_layout
-			params[:action] == 'index' && current_user.nil? ? 'landingpage' : nil
+			# params[:action] == 'index' && current_user.nil? ? 'landingpage' : nil
+			params[:action] == 'index' && current_user.nil? ? 'landingpage2' : nil
 		end
 end

@@ -31,6 +31,7 @@ mod.controller "UsersController", [
 			Session.create({user: $scope.user, authenticity_token: $('.signin input[name="authenticity_token"]').val() }, ->
 				$scope.window.location.href = "/"
 			,(response) ->
-				$scope.login_error = response.data.error
+				if $("#qtip-loginError:visible").length == 0
+					$('.signin').qtip('show')
 			)
 ]

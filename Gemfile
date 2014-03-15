@@ -5,6 +5,8 @@ gem 'mysql2'
 gem 'unicorn'
 
 gem 'bootstrap-sass'
+gem "font-awesome-rails"
+gem 'jquery-qtip2-rails'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'angularjs-rails', '1.2.0.rc2'

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" ng-app="Drs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <title>Welcome to Dent Group</title>
+    <meta name="description" content="Dent Group">
+
+    <%= stylesheet_link_tag "landingpage2", media: "all", "data-turbolinks-track" => true %>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body id="lp2">
+    <section id="home" class="full-screen">
+      <div class="image-caption">
+        <div class="inner">
+          <h2 class="bigtext strtoupper nomargin">Let's work together</h2>
+          <a class="btn btn-primary red nofill scrollTo" href="#about"><i class="fa fa-play"></i> ABOUT DENT GROUP</a>
+        </div>
+      </div>
+
+      <div class="fullscreen-img"></div>
+
+      <div class="signup collapse" id="signupContainer" ng-controller="UsersController">
+        <p><%= t('sign_up') %></p>
+        <%= simple_form_for(:user, html: { id: "signupForm", role: "form", 'ng-submit' => 'signUp()'}, url: '' ) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :fname, :required => false, label: false, placeholder: t('first_name'), input_html: { class: "form-control", 'ng-model' => "newUser.fname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.fname}" } %>
+            <%= f.input :lname, :required => false, label: false, placeholder: t('last_name'), input_html: { class: "form-control", 'ng-model' => "newUser.lname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.lname}" } %>
+            <div class="errors-container" ng-show="register_errors.fname || register_errors.lname">
+              <p class="text-danger"><%= t('signup_names_error') %></p>
+            </div>
+
+            <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
+            <div class="errors-container" ng-show="register_errors.email">
+              <p class="text-danger">E-mail address {{register_errors.email[0]}}</p>
+            </div>
+
+            <%= f.input :password, :required => false, label: false, placeholder: t('password'), input_html: { class: "form-control", 'ng-model' => "newUser.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.password}" } %>
+            <div class="errors-container" ng-show="register_errors.password">
+              <p class="text-danger" ng-repeat="err in register_errors.password">{{err}}</p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, t('sign_up'), class: "btn btn-success btn-lg" %>
+          </div>
+        <% end %>
+        <button id="signupClose" data-toggle="collapse" data-target="#signupContainer">
+          &#10006;
+        </button>
+      </div>
+    </section>
+
+    <header id="header">
+      <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand scrollTo" href="#home">
+              <img src="/assets/logo1.png" alt="Logo" />
+            </a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <div class="signin" ng-controller="UsersController">
+                   <%= simple_form_for(:user, url: '', html: { id: "signinForm", role: "form" } ) do |f| %>
+                    <div class="form-inputs">
+                      <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "user.email" }, wrapper_html: { class: 'form-group' } %>
+                      <%= f.input :password, :required => false, label: false, placeholder: t('password'), input_html: { class: "form-control", 'ng-model' => "user.password" }, wrapper_html: { class: 'form-group' } %>
+                      <%= f.button :submit, t('sign_in'), class: "btn btn-primary btn-xs", 'ng-click' => 'signIn()' %>
+                      <button class="btn btn-primary btn-red btn-xs scrollTo" href="#home" data-toggle="collapse" data-target="#signupContainer">Create account</button>
+                    </div>
+                    <div class="login-additional">
+                      <% if devise_mapping.rememberable? %>
+                        <div class="checkbox-inline remember-me">
+                          <label>
+                            <input type="checkbox" value="" ng-model="user.remember_me">
+                            <%= t('remember_me') %>
+                          </label>
+                        </div>
+                      <% end %>
+                        <div class="forgot-password"><a href="#"><%= t('forgot_password') %></a></div>
+                    </div>
+                  <% end %>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="row title-row">
+          <div class="col-12 font-thin"><%= image_tag('logo2.png', alt: "logo", title: "Dent Group", class: "logo") %> <span class="font-semibold">connects</span> you with your colleagues from <span class="font-semibold">everywhere around the world.</span></div>
+        </div><!-- /row -->
+        <div class="row line-row">
+          <div class="hr">&nbsp;</div>
+        </div><!-- /row -->
+        <div class="row subtitle-row">
+          <div class="col-12 font-thin">This is what <span class="font-semibold">we can offer you</span></div>
+        </div><!-- /row -->
+        <div class="row content-row">
+          <div class="col-12 col-lg-3 col-sm-6">
+            <p><i class="fa fa-globe"></i></p>
+            <h2 class="font-semibold">Connect</h2>
+            <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+          </div><!-- /col12 -->
+          <div class="col-12 col-lg-3 col-sm-6">
+            <p><i class="fa fa-share-square-o"></i></p>
+            <h2 class="font-semibold">Share</h2>
+            <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+          </div><!-- /col12 -->
+          <div class="col-12 col-lg-3 col-sm-6">
+            <p><i class="fa fa-users"></i></p>
+            <h2 class="font-semibold">Discuss</h2>
+            <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+          </div><!-- /col12 -->
+          <div class="col-12 col-lg-3 col-sm-6">
+            <p><i class="fa fa-pencil-square-o"></i></p>
+            <h2 class="font-semibold">Something else</h2>
+            <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <a href="#toTop" class="fa fa-arrow-up toTop"></a>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 copyright">
+            Dent Group<br />
+            2014 &copy; All Rights Reserved.
+          </div>
+
+          <div class="col-md-6 text-right">
+            <a href="http://www.facebook.com" class="social fa fa-facebook"></a>
+            <a href="#" class="social fa fa-twitter"></a>
+            <a href="#" class="social fa fa-google-plus"></a>
+          </div>
+        </div>
+      </div>
+
+
+    <%= render 'layouts/analytics' %>
+    <%= javascript_include_tag "landingpage2", "data-turbolinks-track" => true %>
+  </body>
+</html>
