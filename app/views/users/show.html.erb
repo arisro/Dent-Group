@@ -4,5 +4,13 @@
 	</div>
 	<div class="profile-feed-container">
 		<h1>Profile - <%= @user.full_name %></h1>
+
+		<section>
+			<%= render 'shared/followers_stats' %>
+		</section>
+
+		<div>
+			<%= render 'follow_form' if signed_in? %>
+		</div>
 	</div>
 </div>

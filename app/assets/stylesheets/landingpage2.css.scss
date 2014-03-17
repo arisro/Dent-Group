@@ -5,6 +5,7 @@
  *= require bootstrap
  *= require font-awesome
  *= require jquery.qtip.css
+ *= require flags
  */
 
  /* reset */
@@ -609,7 +610,7 @@ section .btn {
 		font-size:375%;
 		line-height:95%;
 		text-transform:uppercase;
-		text-shadow:none;
+		text-shadow: 1px 1px 1px #333;
 		color:#3A6AC2;
 		display:block;
 	}
@@ -787,6 +788,11 @@ footer a.toTop {
 	border-color: #C51818;
 }
 /* end login form */
+body.lang-ro {
+	#signinForm {
+		width: 560px;
+	}
+}
 
 /* signup form */
 .signup {
@@ -851,6 +857,12 @@ footer a.toTop {
 	}
 }
 /* end signup form */
+
+.language-picker {
+	top: 25px;
+	left: -40px;
+	position: absolute;
+}
 
 
 /** Responsive

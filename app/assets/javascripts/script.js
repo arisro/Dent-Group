@@ -178,10 +178,7 @@ function menu_focus( element, i ) {
 	
 	var icon = $(element).find('.icon');
 	
-	var left_pos = icon.offset().left - $('.nav').offset().left
-	if ($("#lp").length > 0) {
-		left_pos += $(".logo img").width();
-	}
+	var left_pos = icon.offset().left - $('.nav').offset().left + 10;
 	var el_width = icon.width() + $(element).find('.text').width() + 10;
 	
 	$('.active-menu').stop(false, false).animate(
@@ -199,10 +196,7 @@ jQuery(document).ready(function ($) {
 		var element = $("ul.nav li.active:first");
 		var dataslide = $(element).attr('data-slide');
 		var icon = $(element).find('.icon');	
-		var left_pos = icon.offset().left - $('.nav').offset().left;
-		if ($("#lp").length > 0) {
-			left_pos += $(".logo img").width();
-		}
+		var left_pos = icon.offset().left - $('.nav').offset().left + 10;
 		var el_width = icon.width() + $(element).find('.text').width() + 10;
 		$('.active-menu').stop(false, false).animate(
 			{
@@ -282,10 +276,7 @@ jQuery(document).ready(function ($) {
 		function(e) {
 			var icon = $(this).find('.icon');
 			
-			var left_pos = icon.offset().left - $('.nav').offset().left;
-			if ($("#lp").length > 0) {
-				left_pos += $(".logo img").width();
-			}
+			var left_pos = icon.offset().left - $('.nav').offset().left + 10;
 			var el_width = icon.width() + $(this).find('.text').width() + 10;
 			
 			var hover_bar = $('<div class="active-menu special-active-menu"></div>')

@@ -11,7 +11,7 @@
 
     <%= csrf_meta_tags %>
   </head>
-  <body id="lp2">
+  <body id="lp2" class="lang-<%=  I18n.locale %>">
     <section id="home" class="full-screen">
       <div class="image-caption">
         <div class="inner">
@@ -56,6 +56,10 @@
     <header id="header">
       <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
+          <div class='language-picker'>
+            <%= link_to '', change_language_path(language: 'en'), class: 'flag gb', title: 'English' %>
+            <%= link_to '', change_language_path(language: 'ro'), class: 'flag ro', title: 'Română' %>
+          </div>
           <div class="navbar-header">
             <a class="navbar-brand scrollTo" href="#home">
               <img src="/assets/logo1.png" alt="Logo" />
@@ -97,29 +101,29 @@
       <div class="container">
         <div class="row title-row">
           <div class="col-12 font-thin"><%= image_tag('logo2.png', alt: "logo", title: "Dent Group", class: "logo") %> <span class="font-semibold">connects</span> you with your colleagues from <span class="font-semibold">everywhere around the world.</span></div>
-        </div><!-- /row -->
+        </div>
         <div class="row line-row">
           <div class="hr">&nbsp;</div>
-        </div><!-- /row -->
+        </div>
         <div class="row subtitle-row">
           <div class="col-12 font-thin">This is what <span class="font-semibold">we can offer you</span></div>
-        </div><!-- /row -->
+        </div>
         <div class="row content-row">
           <div class="col-12 col-lg-3 col-sm-6">
             <p><i class="fa fa-globe"></i></p>
             <h2 class="font-semibold">Connect</h2>
             <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-          </div><!-- /col12 -->
+          </div>
           <div class="col-12 col-lg-3 col-sm-6">
             <p><i class="fa fa-share-square-o"></i></p>
             <h2 class="font-semibold">Share</h2>
             <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-          </div><!-- /col12 -->
+          </div>
           <div class="col-12 col-lg-3 col-sm-6">
             <p><i class="fa fa-users"></i></p>
             <h2 class="font-semibold">Discuss</h2>
             <h4 class="font-thin">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h4>
-          </div><!-- /col12 -->
+          </div>
           <div class="col-12 col-lg-3 col-sm-6">
             <p><i class="fa fa-pencil-square-o"></i></p>
             <h2 class="font-semibold">Something else</h2>

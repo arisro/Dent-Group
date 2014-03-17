@@ -12,6 +12,7 @@
 		<p class="profile-info-name"><%= current_user.full_name %></p>
 		<p class="profile-info-specialization"><%= current_user.specialization %></p>
 		<p class="profile-info-location"><%= current_user.city %>, <%= current_user.country %></p>
+		<%= render 'shared/followers_stats' %>
 	</div>
 	<div class="profile-feed-container" ng-controller="FeedController">
 		<div class="profile-feed-form box">

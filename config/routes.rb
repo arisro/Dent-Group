@@ -32,7 +32,11 @@ Drs::Application.routes.draw do
       resources :status_comments, only: [:create, :destroy]
     end
 
-    resources :users, only: [:show, :index]
+    resources :users, only: [:show, :index] do
+      member do
+        get :following, :followers
+      end
+    end
     get 'feed', to: 'users#feed' 
 
     get 'about', to: 'static_pages#about'
@@ -40,6 +44,8 @@ Drs::Application.routes.draw do
 
     get 'language/:language', to: 'dashboard#change_language', as: :change_language, language: /en|ro/, defaults: { language: 'en' }
   end
+
+  resources :relationships, only: [:create, :destroy]
 
   resources :uploads
 end

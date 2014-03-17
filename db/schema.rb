@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204222116) do
+ActiveRecord::Schema.define(version: 20140317195515) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -129,10 +129,16 @@ ActiveRecord::Schema.define(version: 20140204222116) do
     t.string   "contact_email"
   end
 
-  create_table "pictures_statuses", force: true do |t|
-    t.integer "picture_id", null: false
-    t.integer "status_id",  null: false
+  create_table "relationships", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "status_comments", force: true do |t|
     t.integer  "user_id",                    null: false
@@ -150,6 +156,11 @@ ActiveRecord::Schema.define(version: 20140204222116) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "country",    limit: 3,                 null: false
+  end
+
+  create_table "statuses_uploads", force: true do |t|
+    t.integer "upload_id"
+    t.integer "status_id", null: false
   end
 
   create_table "supplier_comments", force: true do |t|

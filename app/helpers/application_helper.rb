@@ -31,4 +31,8 @@ module ApplicationHelper
 
 		current_menu == where ? 'active' : ''
 	end
+
+	def current_user?(user)
+		user.id == current_user.id
+	end
 end
