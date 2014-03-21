@@ -42,7 +42,11 @@ class User < ActiveRecord::Base
   end
 
   def activities(limit, country)
-    Activity.where("user_id = 0 or user_id = #{ self.id } ").where(country: country).order('created_at DESC').limit(limit)
+    Activity.where("from_user_id = #{self.id} OR from_user_id in (?)", followed_users.pluck(:id).join(",")).where(country: country).order('created_at DESC').limit(limit)
+  end
+
+  def feed(limit, country)
+    Activity.where(from_user_id: followed_users.pluck(:id)).where(country: country).order('created_at DESC').limit(limit)
   end
 
   # CAN CAN

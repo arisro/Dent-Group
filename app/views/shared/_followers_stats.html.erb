@@ -1,15 +1,21 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <a href="<%= following_user_path(@user) %>">
-    <strong id="following" class="stat">
-      <%= @user.followed_users.count %>
-    </strong>
-    following
-  </a>
-  <a href="<%= followers_user_path(@user) %>">
-    <strong id="followers" class="stat">
-      <%= @user.followers.count %>
-    </strong>
-    followers
-  </a>
+	<% if current_user?(@user) %>
+		<a href="<%= following_user_path(@user) %>">
+			<strong id="following" class="stat">
+				<%= @user.followed_users.count %>
+			</strong>
+			following
+		</a>
+	<% end %>
+	
+	<% if @user.followers.count > 0 %>
+	<a href="<%= followers_user_path(@user) %>">
+		<strong id="followers" class="stat">
+			<%= @user.followers.count %>
+		</strong>
+		<%= 'follower'.pluralize(@user.followers.count) %>
+	</a>
+	<% end %>
 </div>
+<%= render 'users/follow_form' %>

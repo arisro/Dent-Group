@@ -1,22 +1,13 @@
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1><%= @user.full_name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-    </section>
-    <section>
-      <%= render 'shared/followers_stats' %>
-      <% if @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
-            <%= link_to image_tag("/profile_pictures/#{user.get_profile_picture}", class: 'profile-picture'), user %>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
-  </aside>
-  <div class="span8">
-    <h3><%= @title %></h3>
+<div class="profile-container">
+  <div class="profile-info box">
+    <%= link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: 'profile-picture'), @user %>
+    <p class="profile-info-name"><%= @user.full_name %></p>
+    <p class="profile-info-specialization"><%= @user.specialization %></p>
+    <p class="profile-info-location"><%= location_for(@user) %></p>
+    <%= render 'shared/followers_stats' %>
+  </div>
+  <div class="profile-feed-container profile-followers-container box">
+    <h2><%= @title %></h2>
     <% if @users.any? %>
       <ul class="users">
         <%= render @users %>

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
 	protected
 		def get_online_users
-			@online_users = User.all.limit(10)
+			# @online_users = User.all.limit(10)
 		end
 
 		def deny_not_paid
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		def default_url_options(options={})
-			session[:current_country].nil? ? { country: 'en' } : { country: session[:current_country] } 
+			session[:current_country].nil? ? { country: 'int' } : { country: session[:current_country] } 
 		end
 
 		def not_found

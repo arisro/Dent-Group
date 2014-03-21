@@ -8,7 +8,7 @@ $(document).ready(function(e) {
 		var _url = '/' + $(this).val();
 		if (/\/(int|ro|de)/.test(window.location.href)) {
 			_url = window.location.href.replace(/\/(int|ro|de)/, '/' + $(this).val());
-			_url = _url.replace(/\/\d+$/, '');
+			// _url = _url.replace(/\/\d+$/, '');
 		}
 		window.location.href = _url;
 	});

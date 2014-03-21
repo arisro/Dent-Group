@@ -60,7 +60,7 @@
 					}
 					.feed-item-images {
 						clear: both;
-						overflow: auto;
+						overflow: hidden;
 
 						img {
 							max-width: 100px;
@@ -145,6 +145,17 @@
 			.btn-primary {
 				float: right;
 			}
+		}
+	}
+}
+
+.profile-followers-container {
+	ul {
+		list-style-type: none;
+		padding: 0;
+		li {
+			float: left;
+			margin-right: 4px;
 		}
 	}
 }

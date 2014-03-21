@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def feed
     if user_signed_in?
+      session[:return_to] = request.original_url
+
+      @user = current_user
       @status = Status.new
       @status_comment = StatusComment.new
       @activities = current_user.activities(10, get_country)
@@ -17,7 +20,14 @@ class UsersController < ApplicationController
   end
   
 	def show
+    session[:return_to] = request.original_url
+    
 		@user = User.find(params[:id])
+    @activities = @user.activities(10, get_country)
+    @status_comment = StatusComment.new
+    @no_forms = true
+
+    render 'feed'
 	end
 
 	def upload_profile_picture

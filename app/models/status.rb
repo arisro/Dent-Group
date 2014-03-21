@@ -19,7 +19,7 @@ class Status < ActiveRecord::Base
 				subject: self,
 				name: 'status_posted',
 				country: country,
-				user_id: 0
+				from_user_id: user.id
 			)
 		end
 

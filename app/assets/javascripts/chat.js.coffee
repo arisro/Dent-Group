@@ -20,7 +20,7 @@ class Chat.Controller
 
 	bindEvents: =>
 		@channel.bind 'chat_new_message', @newMessage
-		# @dispatcher.bind 'users_list', @updateUsersList
+		@dispatcher.bind 'chat_user_list', @updateUsersList
 
 	newMessage: (message) =>
 		alert('new message')
@@ -29,11 +29,16 @@ class Chat.Controller
 		# @shiftMessageQueue() if @messageQueue.length > 15
 		# @appendMessage message
 
+	updateUsersList: (users) =>
+		console.log('users list:')
+		console.log users
+		$("#chatContainer").scope().updateUsersList(users)
+
 	sendMessage: (event) =>
 		# event.preventDefault()
 		alert('send message')
 		# message = $('#message').val()
-		@dispatcher.trigger 'chat_new_message', {to_user_id: @uid, msg_body: 'test message'}
+		@dispatcher.trigger 'chat_new_message', {to_user_id: 2, msg_body: 'test message'}
 		# $('#message').val('')
 
 	createUser: =>

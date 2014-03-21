@@ -1,20 +1,23 @@
-<%= simple_form_for @upload, html: { multipart: true, id: "fileupload" } do |f| %>
-  <%= f.file_field :uploaded_file, multiple: true, name: 'upload[uploaded_file]', id: "input_files" %>
-<% end %>
+<% if @no_forms.nil? %>
+	<%= simple_form_for @upload, html: { multipart: true, id: "fileupload" } do |f| %>
+	  <%= f.file_field :uploaded_file, multiple: true, name: 'upload[uploaded_file]', id: "input_files" %>
+	<% end %>
 
-<script id="template-upload" type="text/x-tmpl">
-	<li><div class="upload {%=o.cname%}"></div></li>
-</script>
+	<script id="template-upload" type="text/x-tmpl">
+		<li><div class="upload {%=o.cname%}"></div></li>
+	</script>
+<% end %>
 
 <div class="profile-container">
 	<div class="profile-info box">
-		<%= link_to image_tag("/profile_pictures/#{current_user.profile_picture}", class: 'profile-picture'), current_user %>
-		<p class="profile-info-name"><%= current_user.full_name %></p>
-		<p class="profile-info-specialization"><%= current_user.specialization %></p>
-		<p class="profile-info-location"><%= current_user.city %>, <%= current_user.country %></p>
+		<%= link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: 'profile-picture'), @user %>
+		<p class="profile-info-name"><%= @user.full_name %></p>
+		<p class="profile-info-specialization"><%= @user.specialization %></p>
+		<p class="profile-info-location"><%= location_for(@user) %></p>
 		<%= render 'shared/followers_stats' %>
 	</div>
 	<div class="profile-feed-container" ng-controller="FeedController">
+		<% if @no_forms.nil? %>
 		<div class="profile-feed-form box">
 			<%= simple_form_for(@status, html: { role: "form", id: 'postStatusForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
@@ -25,8 +28,8 @@
 					<ul class="images-list"></ul>
 				</div>
 			<% end %>
-
 		</div>
+		<% end %>
 		<div class="profile-feed-list box">
 			<% @activities.each do |activity| %>
 				<%= render "activities/#{activity.name}", subject: activity.subject %>

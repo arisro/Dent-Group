@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317195515) do
+ActiveRecord::Schema.define(version: 20140320230050) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -31,17 +31,19 @@ ActiveRecord::Schema.define(version: 20140317195515) do
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
     t.string   "subject_type"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "country",      limit: 3, null: false
     t.string   "name",                   null: false
+    t.integer  "from_user_id",           null: false
+    t.integer  "to_user_id"
   end
 
+  add_index "activities", ["from_user_id"], name: "index_activities_on_from_user_id", using: :btree
   add_index "activities", ["subject_id", "subject_type"], name: "index_activities_on_subject_id_and_subject_type", using: :btree
   add_index "activities", ["subject_id"], name: "index_activities_on_subject_id", using: :btree
   add_index "activities", ["subject_type"], name: "index_activities_on_subject_type", using: :btree
-  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+  add_index "activities", ["to_user_id"], name: "index_activities_on_to_user_id", using: :btree
 
   create_table "bad_customer_comments", force: true do |t|
     t.integer  "bad_customer_id"

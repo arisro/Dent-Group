@@ -7,7 +7,7 @@
 			<%= f.input :title, :required => true, label: 'Title' %>
 			<%= f.input :summary, :required => true, label: 'Summary' %>
 			<%= f.input :body, :required => true, label: 'Content', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
-			<%= f.input :published_at, :as => :date_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control'} %>
+			<%= f.input :published_at, :as => :datetime_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control'} %>
 		</div>
 
 		<br/>

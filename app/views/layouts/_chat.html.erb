@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-left sidebar-chat">
+<div class="sidebar sidebar-left sidebar-chat" id="chatContainer" ng-controller="ChatController">
   <div class="search-box">
     <div class="chat-toggle">
         <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
@@ -10,17 +10,16 @@
     <div id="chatbox" data-uid="<%= current_user.id %>" data-key="<%= Digest::MD5.hexdigest("#{current_user.id}saltlol") %>">
 
     </div>
+    {{zzz}}
     <ul class="chat-list">
-      <% @online_users.each do |user| %>
-      <li class="chat-user-item">
-        <a class="chat-link" href="<%= user_path(user) %>" title="Click to chat">
-          <%= image_tag "/profile_pictures/#{user.get_profile_picture}", class: "chat-item-image" %>
-          <span class="chat-user-name"><%= user.full_name %></span>
+      <li class="chat-user-item" ng-repeat="user in users">
+        <a class="chat-link" href="#{{user.user_id}}" title="Click to chat">
+          <img src="" class="chat-item-image" />
+          <span class="chat-user-name">{{user.user_name}}</span>
           <br/>
-          <span class="chat-user-specialization"><%= user.specialization %></span>
+          <span class="chat-user-specialization">{{user.specialization}}</span>
         </a>
       </li>
-      <% end %>
     </ul>
   </div>
 </div>

@@ -5,7 +5,8 @@ class StatusCommentsController < ApplicationController
 		@comment.status_id = params[:status_id]
 
 		if @comment.save
-			redirect_to root_path
+			prev_url = session.delete(:return_to) || user_path(@comment.status.user.id)
+			redirect_to prev_url
 		else
 			render 'dashboard/index'
 		end
