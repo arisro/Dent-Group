@@ -43,12 +43,12 @@ $(document).ready(function(e) {
 	$("#chat-toggle-link").on('click', function(e) {
 		e.preventDefault();
 		$('.main-container').stop().animate({"padding-left": '10'}, 750,'easeOutQuart');
-		$(".chat-box-bot").fadeIn('slow');
+		$("#aShowChat").parent().fadeIn('slow');
 	});
 	$("#aShowChat").on('click', function(e) {
 		e.preventDefault();
 		$('.main-container').stop().animate({"padding-left": '210'}, 750,'easeOutQuart');
-		$(".chat-box-bot").fadeOut('fast');
+		$("#aShowChat").parent().fadeOut('fast');
 	});
 
 	$("#menu-search-box input").on('keyup', function(e) {

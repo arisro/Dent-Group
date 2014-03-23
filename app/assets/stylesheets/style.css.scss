@@ -653,17 +653,6 @@ ul.nav {
 		text-decoration: none;
 	}
 
-	.chat-toggle {
-		float: right;
-		margin-top: 10px;
-		margin-left: 10px;
-		
-		#chat-toggle-link {
-			font-size: 16px;
-			color: #fff;
-		}
-	}
-
 	.country-select {
 		float: left;
 		margin-right: 10px;
@@ -937,78 +926,6 @@ body.def {
 	margin-bottom: 10px;
 	text-align: center;
 	font-size: 16px;
-}
-
-.sidebar-chat {
-	line-height: normal;
-	.search-box {
-		clear: both;
-		overflow: hidden;
-
-		.chat-toggle {
-			float: left;
-			font-size: 24px;
-			color: #000;
-			margin-right: 5px;
-			margin-top: 4px;
-
-			a {
-				color: #000;
-			}
-		}
-		input {
-			float: left;
-			width: 150px;
-		}
-	}
-	.chat-box {
-		.chat-link {
-			text-decoration: none;
-			display: block;
-			position: relative;
-			overflow: auto;
-
-			img {
-				width: 40px;
-				float: left;
-				margin-right: 3px;
-			}
-
-			.chat-user-specialization {
-				bottom: 0px;
-				position: absolute;
-				color: #666;
-				font-style: italic;
-				font-size: 12px;
-			}
-		}
-		.chat-list {
-			list-style: none;
-			padding-left: 0;
-
-			.chat-user-item {
-				clear: both;
-				margin-bottom: 2px;
-			}
-		}
-	}
-}
-.chat-box-bot {
-	line-height: 1;
-	width: 150px;
-	position: fixed;
-	bottom: 0px;
-	left: 20px;
-	border: 1px solid #888;
-	border-bottom: none;
-	padding: 5px 10px;
-
-	a {
-		color: #000;
-		display: block;
-		widtH: 100%;
-		text-decoration: none;
-	}
 }
 
 .timestamp {

@@ -3,7 +3,7 @@ jQuery ->
 	
 $(document).ready ->
 	setTimeout ->
-		console.log 'chat'
+		console.log ''
 		# window.chatController.sendMessage(null)
 	, 2000
 
@@ -22,24 +22,15 @@ class Chat.Controller
 		@channel.bind 'chat_new_message', @newMessage
 		@dispatcher.bind 'chat_user_list', @updateUsersList
 
-	newMessage: (message) =>
-		alert('new message')
-		console.log(message)
-		# @messageQueue.push message
-		# @shiftMessageQueue() if @messageQueue.length > 15
-		# @appendMessage message
+	newMessage: (event) =>
+		$("#chatContainer").scope().receiveMessage(event.from, event.message)
 
 	updateUsersList: (users) =>
-		console.log('users list:')
-		console.log users
-		$("#chatContainer").scope().updateUsersList(users)
+		$("#chatContainer").scope().$apply ->
+			$("#chatContainer").scope().updateUsersList(users)
 
-	sendMessage: (event) =>
-		# event.preventDefault()
-		alert('send message')
-		# message = $('#message').val()
-		@dispatcher.trigger 'chat_new_message', {to_user_id: 2, msg_body: 'test message'}
-		# $('#message').val('')
+	sendMessage: (uid, message) =>
+		@dispatcher.trigger 'chat_new_message', {to_user_id: uid, msg_body: message}
 
 	createUser: =>
 	    @dispatcher.trigger 'chat_new_user', { user_id: @uid, key: @key }

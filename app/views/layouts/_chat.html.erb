@@ -7,17 +7,59 @@
   </div>
   <hr />
   <div class="chat-box">
-    <div id="chatbox" data-uid="<%= current_user.id %>" data-key="<%= Digest::MD5.hexdigest("#{current_user.id}saltlol") %>">
-
+    <div id="chatbox" data-uid="<%= current_user.id %>" data-profile-picture="<%= current_user.get_profile_picture %>" data-user-name="<%= current_user.full_name %>" data-key="<%= Digest::MD5.hexdigest("#{current_user.id}saltlol") %>">
     </div>
-    {{zzz}}
+
     <ul class="chat-list">
-      <li class="chat-user-item" ng-repeat="user in users">
-        <a class="chat-link" href="#{{user.user_id}}" title="Click to chat">
-          <img src="" class="chat-item-image" />
+      <li class="chat-user-item" ng-repeat="user in users | filter: {user_id: '!'+uid }">
+        <a class="chat-link" href="#" ng-click="showWindow(user.user_id)" title="Click to chat">
+          <img ng-src="/profile_pictures/thumbs2/{{user.profile_picture}}" class="chat-item-image" />
           <span class="chat-user-name">{{user.user_name}}</span>
           <br/>
           <span class="chat-user-specialization">{{user.specialization}}</span>
+        </a>
+      </li>
+    </ul>
+    <div data-chat-window></div>
+  </div>
+
+   <div class="chat-box-bot">
+    <div class="chat-toggle box">
+      <a href="#" id="aShowChat">
+        <i class="glyphicon glyphicon-user"></i> Chat
+      </a>
+    </div>
+    <ul>
+      <li class="chat-user-item box" ng-class="{'chat-open': win.window.visible, 'chat-close': !win.window.visible}" ng-repeat="win in openWindows">
+        <div class='chat-window' ng-show="win.window.visible">
+          <div class='chat-window-title-bar'>
+            <div class="chat-window-title-bar-actions rfloat">
+              <a href="#" class="glyphicon glyphicon-remove" ng-click="win.window.visible = false"></a>
+            </div>
+            <div class="chat-window-title-label clearfix">
+              <i class="glyphicon glyphicon-user"></i> {{win.user.user_name}}
+            </div>
+          </div>
+          <div class="chat-window-body">
+            <table>
+              <tr><td>
+                <div class="messages">
+                  <div class="chat-message clearfix" ng-class="{msgfrom: msg.user.user_id != 0, msgto: msg.user.user_id == 0}" ng-repeat="msg in win.window.messages">
+                    <div class="message-pic">
+                      <a href="/users/{{msg.user.user_id}}"><img ng-src="/profile_pictures/thumbs2/{{msg.user.profile_picture}}" /></a>
+                    </div>
+                    <div class="message-body">
+                      {{msg.text}}
+                    </div>
+                  </div>
+                </div>
+              </tr></td>
+            </table>
+          </div>
+          <textarea ng-enter="sendMessage($index)" ng-model="win.window.message"></textarea>
+        </div>
+        <a href="#" ng-click="toggleWindow(win.user.user_id)" ng-hide="win.window.visible">
+          <i class="glyphicon glyphicon-user"></i> {{win.user.user_name}}
         </a>
       </li>
     </ul>
