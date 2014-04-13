@@ -8,17 +8,11 @@ class ApplicationController < ActionController::Base
 	before_filter :configure_permitted_parameters, if: :devise_controller?
 	before_filter :get_online_users
 
-	rescue_from CanCan::AccessDenied do |exception|
-		redirect_to root_url, :alert => exception.message
-	end
+	@page_title = "Home lol"
 
 	protected
 		def get_online_users
 			# @online_users = User.all.limit(10)
-		end
-
-		def deny_not_paid
-			redirect_to about_url if user_signed_in? && !current_user.is_paid?
 		end
 
 		def set_locale

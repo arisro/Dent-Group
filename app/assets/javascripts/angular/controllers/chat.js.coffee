@@ -60,7 +60,6 @@ mod.controller "ChatController", [
 						}
 
 			if !window_found
-				console.log 'opening window :/'
 				$scope.$apply ->
 					$scope.showWindow(user.user_id)
 					for win in $scope.openWindows

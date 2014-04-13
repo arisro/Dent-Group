@@ -8,77 +8,30 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Drs" %>">
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
     <%= csrf_meta_tags %>
   </head>
   <body class="def" ng-app="Drs">
-    <header>
-      <%= render 'layouts/header' %>
-    </header>
+    <%= render 'layouts/header' %>
 
-    <div class="main-container<%= " unpaid" unless current_user.is_paid? %>">
-      <% if current_user.is_paid? %>
-        <%= render 'layouts/chat' %>
-      <% end %>
-      <div class="main-content <%= "main-content-full" unless current_user.is_paid? %>">
-       <%= render 'layouts/messages' %>
-
-       <% unless current_user.is_paid? %>
-          <div class="alert alert-warning subscription-alert">
-            You are on a limited account. To gain full access you need to subscribe to our services. You can find more informations <%= link_to 'here', subscriptions_path %>.
+      <div class="container">
+          <div class="main-content">
+            <%= render 'layouts/messages' %>
+            <%= yield %>
           </div>
-        <% end %>
-       
-        <%= yield %>
-
-        <% if current_user.is_paid? %>
-          <div class="recommendations box">
-            <p class="rec-title">Recommended items</p>
-            <hr />
-            Recommended stuff
-            
-
-            <p class="rec-title rec-ads">Ads</p>
-            <hr />
-            Reclame
-          </div>
-        <% end %>
-      </div>
-
-      <% if current_user.is_paid? %>
-        <div class="sidebar sidebar-right">
-          <button type="button" class="close" aria-hidden="true">&times;</button>
-          <div class="activity-box">
-            <ul class="activity-list">
-              <li class="activity-item">
-                <a class="activity-link" href="#" title="Something really amazing just happened.">
-                  <div class="activity-body">
-                    <span class="title">Succcessful operation</span>
-                    <h2>Something really amazing just happened.</h2>
-                  </div>
-                  <span class="activity-metadata">
-                    <span class="activity-timestamp">10 minutes ago</span>
-                  </span>
-                </a>
-              </li>
-              <li class="activity-item activity-item-last">
-                <a class="activity-link" href="#" title="This guys is hiring a technician">
-                  <div class="activity-body">
-                    <span class="title">Looking for technician</span>
-                    <h2>This guys is hiring a technician</h2>
-                  </div>
-                  <span class="activity-metadata">
-                    <span class="activity-timestamp">1 hour ago</span>
-                  </span>
-                </a>
-              </li>
-            </ul>
+          <%= render 'layouts/chat' %>
         </div>
-      <% end %>
+      </div>
     </div>
     
     <%= render 'layouts/analytics' %>
+
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
 </html>

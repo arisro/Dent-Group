@@ -1,6 +1,4 @@
-class BadCustomerCommentsController < ApplicationController
-	before_filter :deny_not_paid
-	
+class BadCustomerCommentsController < ApplicationController	
 	def create
 		@comment = BadCustomerComment.new(comment_params)
 		@comment.user_id = current_user.id

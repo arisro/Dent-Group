@@ -1,3 +1,5 @@
+<% content_for :page_location, "Offers" %>
+
 <div class="box offers-box">
 	<h1>Edit offer - <%= @offer.title %></h1>
 	<%= simple_form_for(@offer, html: { role: "form", id: 'addOfferForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>

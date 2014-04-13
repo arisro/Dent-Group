@@ -1,6 +1,4 @@
 class SuppliersController < ApplicationController
-	before_filter :deny_not_paid
-
 	def index
 		@suppliers = Supplier.where(deleted: false, website_country: get_country).order("id").page(params[:page]).per(10)
 	end

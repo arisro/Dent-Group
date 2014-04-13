@@ -3,7 +3,7 @@ $(document).ready(function(e) {
 		e.stopPropagation();
 	});
 
-	$("#countrySelect").msDropdown();
+	$('.selectpicker').selectpicker({showContent: true, width: '160px'});
 	$("#countrySelect").on('change', function(e) {
 		var _url = '/' + $(this).val();
 		if (/\/(int|ro|de)/.test(window.location.href)) {
@@ -191,30 +191,6 @@ function menu_focus( element, i ) {
 	);
 }
 
-jQuery(document).ready(function ($) {
-	setTimeout(function() {
-		var element = $("ul.nav li.active:first");
-		var dataslide = $(element).attr('data-slide');
-		var icon = $(element).find('.icon');	
-		var left_pos = icon.offset().left - $('.nav').offset().left + 10;
-		var el_width = icon.width() + $(element).find('.text').width() + 10;
-		$('.active-menu').stop(false, false).animate(
-			{
-				left: left_pos,
-				width: el_width
-			},
-			1500,
-			'easeInOutQuart'
-		);
-
-		// if (dataslide == 1 || dataslide == 3) {
-		// 	$(".logo img").attr("src", $(".logo img").attr("src").replace("logo1","logo2"));
-		// } else {
-		// 	$(".logo img").attr("src", $(".logo img").attr("src").replace("logo2","logo1"));
-		// }
-	}, 300);
-});
-
 /*************
 * = Parallax *
 *************/
@@ -235,16 +211,6 @@ jQuery(document).ready(function ($) {
 			htmlbody.stop(false, false).animate({
 				scrollTop: offset_top
 			}, 1500, 'easeInOutQuart');
-
-			if (dataslide == 1 || dataslide == 3) {
-				$(".logo img").fadeOut(750, function() {
-					$(this).attr("src", $(this).attr("src").replace("logo1","logo2")).fadeIn(750);
-				});
-			} else {
-				$(".logo img").fadeOut(750, function() {
-					$(this).attr("src", $(this).attr("src").replace("logo2","logo1")).fadeIn(750);
-				});
-			}
 		}
 	}
 	

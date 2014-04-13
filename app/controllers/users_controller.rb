@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :deny_not_paid
-
   def feed
     if user_signed_in?
       session[:return_to] = request.original_url

@@ -39,13 +39,11 @@ Drs::Application.routes.draw do
     end
     get 'feed', to: 'users#feed' 
 
-    get 'about', to: 'static_pages#about'
-    get 'subscriptions', to: 'static_pages#subscriptions'
-
     get 'language/:language', to: 'dashboard#change_language', as: :change_language, language: /en|ro/, defaults: { language: 'en' }
+
+    resources :homepage_messages
   end
 
   resources :relationships, only: [:create, :destroy]
-
   resources :uploads
 end

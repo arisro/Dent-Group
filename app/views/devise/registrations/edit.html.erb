@@ -1,39 +1,45 @@
-<div class="box">
-  <h1>Update your profile</h1>
-  <div>
-    <div class="form-container span6 offset3">
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, role: "form", id: 'updateProfieForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
-        <%= f.error_notification %>
+<% content_for :page_location, "Edit profile" %>
 
-        <div class="form-inputs">
-          <%= f.input :fname, :required => true, label: 'First name' %>
-          <%= f.input :lname, :required => true, label: 'Last name' %>
-          <%= f.input :email, :required => true, label: 'E-mail' %>
-          <%= f.input :specialization, :required => true, label: 'Specialization' %>
+<div class="row">
+  <div class="col-sm-8 col-md-6">
+    <h3 class="hl">Edit profile <small><%= current_user.full_name %></small></h3>
+    <p class="text-muted">Please fill out the form below to update your profile.</p>
+    <hr>
+    <h4 class="hl bottom-15">General Information</h4>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, role: "form", id: 'updateProfieForm' } ) do |f| %>
+      <%= f.error_notification %>
 
-          <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], label: 'Language' %>
+      <%= f.input :fname, :required => true, label: 'First name' %>
+      <%= f.input :lname, :required => true, label: 'Last name' %>
+      <%= f.input :email, :required => true, label: 'E-mail' %>
+      <%= f.input :specialization, :required => true, label: 'Specialization' %>
+      <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], label: 'Language' %>
+      <%= f.input :country, label: 'Country' %>
+      <%= f.input :city, label: 'City' %>
 
-          <br/>
+      <h4 class="hl bottom-15">Contact info</h4>
+      <hr>
+      <%= f.input :phone, label: 'Phone' %>
+      <%= f.input :skype, label: 'Skype' %>
+      <%= f.input :yahoo, label: 'Yahoo! ID' %>
 
-          <%= f.input :country, label: 'Country' %>
-          <%= f.input :city, label: 'City' %>
-          <%= f.input :phone, label: 'Phone' %>
-          <%= f.input :skype, label: 'Skype' %>
-          <%= f.input :yahoo, label: 'Yahoo! ID' %>
+      <%= f.button :submit, "Save", class: "btn btn-primary btn-dark" %>
+    <% end %>
 
-          <br/>
-          <%= f.input :password, :required => false, label: 'New password' %>
-          <%= f.input :confirm_password, :required => false, label: 'Confirm password' %>
-          <br/>
+    <h4 class="hl bottom-15">Change password</h4>
+    <hr>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, role: "form", id: 'updateProfieForm' } ) do |f| %>
+      <%= f.error_notification %>
+      
+      <%= f.input :current_password, :required => true, label: 'Current password', wrapper_html: { class: resource.errors.messages.has_key?(:current_password) ? 'has-error' : '' } %>
+      <%= f.input :password, :required => false, label: 'New password' %>
+      <%= f.input :confirm_password, :required => false, label: 'Confirm password' %>
 
-          <%= f.input :current_password, :required => true, label: 'Current password', wrapper_html: { class: resource.errors.messages.has_key?(:current_password) ? 'has-error' : '' } %>
-          <br/>
-          <%= f.button :submit, "Update", class: "btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>  
+      <%= f.button :submit, "Change password", class: "btn btn-primary btn-dark" %>
+    <% end %>
   </div>
-  <div class="pic-container">
+
+  <div class="col-sm-4 col-md-3">
     <p class="mlabel">Profile picture</p>
     <a id="bUploader" href="#dUploader"><%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", id: 'iCurrentProfilePic' %></a>
     <div>
@@ -41,6 +47,7 @@
     </div>
   </div>
 </div>
+
 <div style="display:none">
   <div id="dUploader">
     <h2>Change your profile picture</h2>

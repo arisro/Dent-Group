@@ -1,6 +1,4 @@
 class SupplierCommentsController < ApplicationController
-	before_filter :deny_not_paid
-	
 	def create
 		@comment = SupplierComment.new(comment_params)
 		@comment.user_id = current_user.id

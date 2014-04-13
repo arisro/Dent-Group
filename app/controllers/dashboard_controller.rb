@@ -1,10 +1,9 @@
 class DashboardController < ApplicationController
 	layout :dashboard_layout
-	before_filter :deny_not_paid
-
+	
 	def index
 		if user_signed_in?
-			# some kind of homepage
+			@message = HomepageMessage.where( website_country: get_country ).first
 		else
 			render file: 'dashboard/lp'
 		end

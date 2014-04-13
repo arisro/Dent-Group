@@ -9,13 +9,21 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap
+ *= require bootstrap-select
  *= require bootstrap-datetimepicker
  *= require jquery.fileupload-ui
  *= require fancybox
  *= require font-awesome
+
+ *= require animate
+ *= require elements
+ *= require custom
+
+ *= require style2
+
  *= require bad_customers
  *= require dashboard
- *= require dd
  *= require flags
  *= require jobs
  *= require jquery.Jcrop
@@ -23,7 +31,6 @@
  *= require offers
  *= require static_pages
  *= require status_comments
- *= require style
  *= require suppliers
  *= require users
  *= require chat

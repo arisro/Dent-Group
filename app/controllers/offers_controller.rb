@@ -1,6 +1,4 @@
 class OffersController < ApplicationController
-	before_filter :deny_not_paid
-	
 	def index
 		type_conditions = {}
 		type_conditions[:type] = params[:type] unless params[:type].nil?

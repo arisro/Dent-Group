@@ -107,9 +107,9 @@ h3 {
 	line-height: 30px;
 }
 
-h4 {
-	font-size:24px;
-	line-height: 24px;
+#lp2 h4 {
+	font-size: 16px;
+	line-height: 16px;
 }
 
 h5 {
@@ -652,13 +652,13 @@ section .btn {
     font-size: 80px; }
   .title-row {
     font-size: 45px;
-    padding-bottom: 50px; }
+    padding-bottom: 20px; }
   .subtitle-row {
     font-size: 35px;
     padding-bottom: 40px;
-    padding-top: 40px; }
+    padding-top: 20px; }
   .content-row {
-    padding-top: 45px; }
+    padding-top: 30px; }
   .line-row .hr {
     background-color: #303030;
     height: 5px;
@@ -989,6 +989,27 @@ body.lang-ro {
 	
 	.newsletter-subscribe {
 		padding-right:15px !important;
+	}
+}
+
+.tts {
+	display: none;
+}
+.tooltip {
+	.tooltip-inner {
+		max-width: 350px;
+		text-align: left;
+		background-color: rgba(0,0,0,0.9);
+		p {
+			line-height: 18px;
+			margin: 0;
+		}
+		.red {
+			color: red;
+		}
+		.bold {
+			font-weight: bold;
+		}
 	}
 }
 

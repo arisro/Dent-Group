@@ -1,3 +1,5 @@
+<% content_for :page_location, "My profile" %>
+
 <% if @no_forms.nil? %>
 	<%= simple_form_for @upload, html: { multipart: true, id: "fileupload" } do |f| %>
 	  <%= f.file_field :uploaded_file, multiple: true, name: 'upload[uploaded_file]', id: "input_files" %>
@@ -8,21 +10,22 @@
 	</script>
 <% end %>
 
-<div class="profile-container">
-	<div class="profile-info box">
+<div class="profile-container row">
+	<div class="profile-info col-sm-2">
 		<%= link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: 'profile-picture'), @user %>
 		<p class="profile-info-name"><%= @user.full_name %></p>
 		<p class="profile-info-specialization"><%= @user.specialization %></p>
 		<p class="profile-info-location"><%= location_for(@user) %></p>
+		<br/>
 		<%= render 'shared/followers_stats' %>
 	</div>
-	<div class="profile-feed-container" ng-controller="FeedController">
+	<div class="profile-feed-container col-sm-7" ng-controller="FeedController">
 		<% if @no_forms.nil? %>
-		<div class="profile-feed-form box">
+		<div class="profile-feed-form row">
 			<%= simple_form_for(@status, html: { role: "form", id: 'postStatusForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
 				<%= f.input :message, :required => true, label: false, input_html: { placeholder: "Post something..." } %>
-				<%= f.button :submit, "Post", class: "btn btn-primary" %>
+				<%= f.button :submit, "Post", class: "btn btn-primary btn-dark" %>
 				<%= link_to "Add image", '#', class: "btn btn-warning", id: "but-add-image" %>
 				<div class="images-container">
 					<ul class="images-list"></ul>
@@ -30,7 +33,7 @@
 			<% end %>
 		</div>
 		<% end %>
-		<div class="profile-feed-list box">
+		<div class="profile-feed-list row">
 			<% @activities.each do |activity| %>
 				<%= render "activities/#{activity.name}", subject: activity.subject %>
 			<% end %>

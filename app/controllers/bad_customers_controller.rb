@@ -1,6 +1,4 @@
-class BadCustomersController < ApplicationController
-	before_filter :deny_not_paid
-	
+class BadCustomersController < ApplicationController	
 	def index
 		@customers = BadCustomer.where(deleted: false, website_country: get_country).order("id").page(params[:page]).per(10)
 	end

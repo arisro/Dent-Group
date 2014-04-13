@@ -2,17 +2,15 @@
 	position: relative;
 
 	.profile-info {
-		float: left;
-		width: 200px;
-		padding-top: 10px;
-		margin-right: 5px;
-		padding-top: 10px;
-		padding-bottom: 50px;
-
+		> a:hover .profile-picture {
+			border-color: #ccc;
+		}
 		.profile-picture {
-			width: 110px;
+			width: 130px;
 			margin-bottom: 5px;
-			margin-left: 25px;
+
+			padding: 10px;
+			border: 1px solid #eee;
 		}
 		p {
 			margin-bottom: 0px;
@@ -29,11 +27,13 @@
 		}
 	}
 	.profile-feed-container {
-		margin-right: 205px;
 		.profile-feed-list {
 			margin-top: 5px;
 
 			.feed-item {
+				margin-bottom: 10px;
+				padding: 10px;
+
 				&> a img {
 					width: 50px;
 					float: left;
@@ -105,16 +105,18 @@
 
 								.feed-item-comment-user-icon {
 									float: left;
-									width: 32px;
+									width: 40px;
 									margin-right: 10px;
 								}
 
 								.feed-item-comment-content {
 									margin-left: 42px;
-									h5 {
-										font-size: 12px;
-										margin: 0;
+									.feed-item-comment-body {
+										color: #000;
 									}
+								}
+								.comment_input {
+									width: 70%;
 								}
 							}
 						}
@@ -124,14 +126,8 @@
 						}
 					}
 					.btn-remove-status {
-						position: absolute;
-						top: 0;
-						right: 0;
 					}
 					.btn-remove-comment {
-						position: absolute;
-						top: 5px;
-						right: 5px;
 					}
 				}
 			}

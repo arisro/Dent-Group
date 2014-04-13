@@ -24,4 +24,8 @@ class RegistrationsController < Devise::RegistrationsController
 			user.email != params[:user][:email] ||
 			params[:user][:password].present?
 		end
+
+		def after_update_path_for(resource)
+			user_path(resource)
+		end
 end

@@ -38,6 +38,12 @@ $(document).ready(function() {
 		jQuery(".full-screen, .full-screen ul, .full-screen li").height(_screenHeight);
 	}
 
+	$('.ttconnect').attr('title', $("#ttconnect").html());
+	$('.ttdiscuss').attr('title', $("#ttdiscuss").html());
+	$('.ttshare').attr('title', $("#ttshare").html());
+	$('.ttmore').attr('title', $("#ttmore").html());
+	$('.tt').tooltip({html: true });
+
 	if(jQuery("#home").length > 0) {
 		window.isOnTop 		= true;
 		window.homeHeight 	= jQuery("#home").height() - window.navHeight;

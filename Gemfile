@@ -5,6 +5,7 @@ gem 'mysql2'
 gem 'unicorn'
 
 gem 'bootstrap-sass'
+gem 'bootstrap-select-rails', git: 'https://github.com/Slashek/bootstrap-select-rails.git'
 gem "font-awesome-rails"
 gem 'jquery-qtip2-rails'
 
@@ -30,7 +31,7 @@ gem 'roar-rails',     '~> 0.1.4'
 gem 'roar',           '~> 0.12.0'
 
 gem 'devise'
-gem 'cancan'
+gem 'pundit'
 gem 'paper_trail', '~> 3.0.0'
 gem 'activeadmin', github: 'gregbell/active_admin'
 
@@ -74,4 +75,5 @@ group :development, :test do
   gem 'rails_layout'
   
   gem 'debugger'
+  gem 'quiet_assets'
 end

@@ -1,78 +1,85 @@
-<div class="navbar navbar-fixed-top">
-	<div class="container-logo">
-		<div class="logo">
-			<%= link_to image_tag('logo1.png', alt: "logo", title: "Dent Group"), root_path %>
-		</div>
-		<div class="container">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <div class="logo">
+     	<%= link_to image_tag('logo.png', alt: "logo", title: "Dent Group"), root_path %></a>
+     </div>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="<%= put_active_menu('homepage') %>"><a href="<%= root_path %>">Home</a></li>
+        <li class="<%= put_active_menu('news') %>"><a href="<%= news_index_path %>">News</a></li>
+        <li class="<%= put_active_menu('my_profile') %>"><a href="<%= feed_path %>">My profile</a></li>
+        <li class="dropdown <%= put_active_menu('offers') %>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Offers <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+	            <li><%= link_to t('selling'), offers_selling_path %></a></li>
+				<li><%= link_to t('buying'), offers_buying_path %></li>
+				<li class="last"><%= link_to t('rentals'), offers_rentals_path %></li>
+            </ul>
+        </li>
+        <li class="<%= put_active_menu('jobs') %>"><a href="<%= jobs_path %>">Jobs</a></li>
+        <li class="<%= put_active_menu('suppliers') %>"><a href="<%= suppliers_path %>">Suppliers</a></li>
+      </ul>
 
-			<div class="nav-collapse collapse navbar-responsive-collapse">
-				<ul class="nav row" id="main-top-left-menu">
-					<% if current_user.is_paid? %>
-						<li class="menu-item <%= put_active_menu('homepage') %>"><a id="menu-link-3" href="<%= root_path %>" title="<%= t('homepage') %>"><span class="icon icon-briefcase"></span> <span class="text"><%= t('homepage')%></span></a></li>
-					<% else %>
-						<li class="menu-item <%= put_active_menu('about') %>"><a id="menu-link-3" href="<%= about_path %>" title="<%= t('about') %>"><span class="icon icon-briefcase"></span> <span class="text"><%= t('about')%></span></a></li>
-					<% end %>
-
-					<li class="menu-item <%= put_active_menu('news') %>"><a id="menu-link-3" href="<%= news_index_path %>" title="News"><span class="icon icon-briefcase"></span> <span class="text"><%= t('news')%></span></a></li>
-
-					<% if current_user.is_paid? %>
-						<li class="menu-item <%= put_active_menu('my_profile') %>"><a id="menu-link-3" href="<%= feed_path %>" title="<%= t('my_profile') %>"><span class="icon icon-briefcase"></span> <span class="text"><%= t('my_profile')%></span></a></li>
-
-						<li class="menu-item <%= put_active_menu('offers') %>">
-							<a id="menu-link-3" href="<%= offers_path %>" title="Offers"><span class="icon icon-briefcase"></span> <span class="text"><%= t('offers')%></span></a>
-							<div class="dropdown">
-								<ul>
-									<li><<%= link_to t('selling'), offers_selling_path %></a></li>
-									<li><%= link_to t('buying'), offers_buying_path %></li>
-									<li class="last"><%= link_to t('rentals'), offers_rentals_path %></li>
-								</ul>
-							</div>
-						</li>
-						<li class="menu-item <%= put_active_menu('jobs') %>"><a id="menu-link-6" href="<%= jobs_path %>" title="Next Section"><span class="icon icon-envelope"></span> <span class="text"><%= t('jobs')%></span></a></li>
-						<li class="menu-item <%= put_active_menu('suppliers') %>"><a id="menu-link-6" href="<%= suppliers_path %>" title="Suppliers"><span class="icon icon-envelope"></span><span class="text"><%= t('suppliers')%></span></a></li>
-					<% end %>
-					<li id="menu-additional">
-						<div class="country-select">
-							<select name="countries" id="countrySelect" style="width:300px;">
-								<option value='int' data-image="/assets/msdropdown/icons/blank.gif" data-imagecss="flag int" data-title="International" <%= "selected" if current_country == 'int'%>>International</option>
-								<option value='ro' data-image="/assets/msdropdown/icons/blank.gif" data-imagecss="flag ro" data-title="Romania" <%= "selected" if current_country == 'ro'%>>Romania</option>
-								<option value='de' data-image="/assets//msdropdown/icons/blank.gif" data-imagecss="flag de" data-title="Germany" <%= "selected" if current_country == 'de'%>>Germany</option>
-							</select>
-						</div>
-						<div class="dropdown">
-					        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-					        	<div class="dropdown-pic">
-						        	<%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", class: 'menu-profile-icon' %>
-						        </div>
-					        	<div class="dropdown-name">
-					        		<p class="dropdown-name-full"><%= current_user.fname %></p>
-					        		<% unless current_user.specialization.nil? %>
-					        			<p class="dropdown-name-specialization"><%= current_user.specialization %></p>
-					        		<% end %>
-					        	</div>
-					        </a>
-					        <ul class="dropdown-menu">
-					          <li><%= link_to t('edit_profile'), edit_user_registration_path %></li>
-					          <li class="divider"></li>
-					          <li><%= link_to t('sign_out'), destroy_user_session_path, method: :delete %></li>
-					        </ul>
-					    </div>
-	      			</li>
-				</ul>
-				<div class="row">
-					<div class="col-sm-2 active-menu"></div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="country-select">
+            <select name="countries" id="countrySelect" class="selectpicker">
+              <option value='int' data-content="<div class='flag int' /> International" <%= "selected" if current_country == 'int'%>>International</option>
+              <option value='ro' data-content="<div class='flag ro' /> Romania" <%= "selected" if current_country == 'ro'%>>Romania</option>
+              <option value='de' data-content="<div class='flag de' /> Germany" <%= "selected" if current_country == 'de'%>>Germany</option>
+            </select>
+          </div>
+        </li>
+      	<li class="dropdown dropdown-profile">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<div class="dropdown-pic">
+				<%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", class: 'menu-profile-icon' %>
 				</div>
-			</div>
-		</div>
-	</div>
-</nav>
-<% if current_user.is_paid? %>
-<div id="menu-search-box">
-	<input class='form-control' type="text" placeholder="Search" />
+				<div class="dropdown-name">
+					<p class="dropdown-name-full"><%= current_user.fname %></p>
+					<% unless current_user.specialization.nil? %>
+						<p class="dropdown-name-specialization"><%= current_user.specialization %></p>
+					<% end %>
+				</div>
+				<div class="clearfix"></div>
+			</a>
+	     <ul class="dropdown-menu">
+				<li><%= link_to t('edit_profile'), edit_user_registration_path %></li>
+				<li class="divider"></li>
+				<li><%= link_to t('sign_out'), destroy_user_session_path, method: :delete %></li>
+	        </ul>
+        </li>
+
+        <li id="search">
+          <a href="#" id="search-btn"><i class="fa fa-search" id="search-icon"></i> Search</a>
+          <div class="search-box hidden" id="search-box">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
-<% end %>
+
+<div class="wrapper">
+	<div class="section-header">
+		<div class="container">
+  		<div class="row">
+  		  <div class="col-sm-12">
+  		    <h1 class="animated slideInLeft"><span><%= content_for?(:page_location) ? yield(:page_location) : "Home" %></span></h1>
+  		  </div>
+  		</div>
+	 </div>
+  </div>

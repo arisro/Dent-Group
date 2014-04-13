@@ -13,12 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-select
 //= require fancybox
 //= require html5shiv
 //= require jquery.easing.1.3
 //= require jquery.Jcrop
 //= require jquery.remotipart
 //= require script
+
+//= require custom
+//= require scrolltopcontrol
+
 //= require angular
 //= require angular-animate
 //= require angular-route

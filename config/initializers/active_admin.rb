@@ -17,7 +17,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  # config.site_title_image = "logo1.png"
+  # config.site_title_image = "logo.png"
 
   # == Default Namespace
   #
@@ -66,7 +66,7 @@ ActiveAdmin.setup do |config|
   # config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
   # You can customize your CanCan Ability class name here.
-  config.cancan_ability_class = "Ability"
+  # config.cancan_ability_class = "Ability"
 
   # You can specify a method to be called on unauthorized access.
   # This is necessary in order to prevent a redirect loop which happens

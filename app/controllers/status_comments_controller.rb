@@ -14,7 +14,7 @@ class StatusCommentsController < ApplicationController
 
 	def destroy
 		StatusComment.find(params[:id]).update_attributes(deleted: true)
-		redirect_to root_path
+		redirect_to feed_path
 	end
 
 	private

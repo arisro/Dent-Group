@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320230050) do
+ActiveRecord::Schema.define(version: 20140412171021) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -33,10 +33,11 @@ ActiveRecord::Schema.define(version: 20140320230050) do
     t.string   "subject_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country",      limit: 3, null: false
-    t.string   "name",                   null: false
-    t.integer  "from_user_id",           null: false
+    t.string   "country",      limit: 3,             null: false
+    t.string   "name",                               null: false
+    t.integer  "from_user_id",                       null: false
     t.integer  "to_user_id"
+    t.integer  "thumbs_up",              default: 0, null: false
   end
 
   add_index "activities", ["from_user_id"], name: "index_activities_on_from_user_id", using: :btree
@@ -81,6 +82,18 @@ ActiveRecord::Schema.define(version: 20140320230050) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "homepage_messages", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "views",                     default: 0
+    t.integer  "user_id"
+    t.datetime "published_at"
+    t.boolean  "deleted",                   default: false, null: false
+    t.string   "website_country", limit: 3
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "jobs", force: true do |t|
     t.integer  "user_id"
