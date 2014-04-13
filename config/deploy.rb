@@ -65,6 +65,19 @@ namespace :deploy do
       run "#{try_sudo} /etc/init.d/unicorn_#{application} #{command}"
     end
   end
+
+  namespace :assets do
+    task :precompile, :roles => :web, :except => { :no_release => true } do 
+      run_locally("rm -rf public/assets/*") 
+      run_locally("bundle exec rake assets:precompile") 
+      servers = find_servers_for_task(current_task) 
+      port = 443
+      port_option = port ? " -e 'ssh -p #{port}' " : '' 
+      servers.each do |server| 
+        run_locally("rsync --recursive --times --rsh=ssh --compress #{port_option} --progress public/assets #{user}@#{server}:#{shared_path}") 
+     end 
+    end
+  end
 end
 
 after 'deploy:finalize_update', 'deploy:migrate'
