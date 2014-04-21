@@ -1,0 +1,15 @@
+<% if @comments.count > 0 %>
+	$("#feed-item-<%= @status.id %> li:first").after("<%= escape_javascript(render :partial => 'shared/feed_status_comments', :locals => { :comments => @comments, :subject => @status }) %>");
+	$("#feed-item-<%= @status.id %> .load-previous-comments").attr('href', '<%= status_status_comments_path(status_id: @status.id, from: @comments.last.id) %>');
+
+	var total = $("#feed-item-<%= @status.id %> .feed-item-status-comments-list").data('total');
+	var showing = $("#feed-item-<%= @status.id %> .feed-item-status-comments-list").data('showing');
+	var new_showing = showing+<%= @comments.count %>;
+	$("#feed-item-<%= @status.id %> .feed-item-status-comments-list").data('showing', new_showing);
+
+	$("#feed-item-<%= @status.id %> .comments-counter").text('('+new_showing+' of '+total+')');
+
+	if (new_showing >= total) {
+		$("#feed-item-<%= @status.id %> li:first").remove();
+	}
+<% end %>

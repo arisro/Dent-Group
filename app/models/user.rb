@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
+  searchkick
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable
@@ -32,6 +34,14 @@ class User < ActiveRecord::Base
     paid_until > Time.now unless paid_until.nil?
   end
 
+  # searchkick stuff
+  def should_index?
+    true
+  end
+  def search_data
+    as_json only: [:fname, :lname, :specialization, :country, :city]
+  end
+
 	def admin_permalink
 		admin_user_path(self)
 	end
@@ -41,12 +51,12 @@ class User < ActiveRecord::Base
     true
   end
 
-  def activities(limit, country)
-    Activity.where("from_user_id = #{self.id} OR from_user_id in (?)", followed_users.pluck(:id).join(",")).where(country: country).order('created_at DESC').limit(limit)
+  def activities(country)
+    Activity.where("from_user_id = #{self.id}").where(country: country).order('created_at DESC')
   end
 
-  def feed(limit, country)
-    Activity.where(from_user_id: followed_users.pluck(:id)).where(country: country).order('created_at DESC').limit(limit)
+  def feed(country)
+    Activity.where("from_user_id = #{self.id} OR from_user_id in (?)", followed_users.pluck(:id).join(",")).where(country: country).order('created_at DESC')
   end
 
   # CAN CAN

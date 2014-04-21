@@ -17,4 +17,16 @@ mod.controller "FeedController", [
 				,(response) ->
 					$scope.login_error = response.data.error
 				)
+
+		$scope.scroll = { busy: false, items: [], after: 0 }
+
+		$ ->
+			$('a.load-more-posts').on 'inview', (e, visible) ->
+				return unless visible
+				$('a.load-more-posts').addClass('hidden')
+				$('#loadMoreContainer > span').removeClass('hidden')
+				$.getScript $(this).attr('href')
+
+			$('a.load-previous-comments').on 'click', (e) ->
+				
 ]

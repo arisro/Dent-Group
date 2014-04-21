@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
 	before_filter :configure_permitted_parameters, if: :devise_controller?
 	before_filter :get_online_users
 
-	@page_title = "Home lol"
-
 	protected
 		def get_online_users
 			# @online_users = User.all.limit(10)
@@ -38,6 +36,10 @@ class ApplicationController < ActionController::Base
 
 		def authenticate_admin_user!
 			redirect_to root_url unless current_user.is? :admin
+		end
+
+		def authorize_paid_user
+			redirect_to root_url unless user_signed_in? && current_user.is_paid?
 		end
 
 		# def user_for_paper_trail

@@ -131,6 +131,10 @@
 					}
 				}
 			}
+			#loadMoreContainer {
+				text-align: center;
+				padding: 6px 0;
+			}
 		}
 		.profile-feed-form {
 			padding-top: 15px;
@@ -153,5 +157,19 @@
 			float: left;
 			margin-right: 4px;
 		}
+	}
+}
+
+.search-results-container {
+	.search-label {
+		float: left;
+		margin-top: 25px;
+		margin-right: 5px;
+	}
+	.profile-picture {
+		width: 32px;
+		float: left;
+		margin-top: 15px;
+		margin-right: 4px;
 	}
 }

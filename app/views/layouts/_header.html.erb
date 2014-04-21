@@ -60,12 +60,14 @@
         <li id="search">
           <a href="#" id="search-btn"><i class="fa fa-search" id="search-icon"></i> Search</a>
           <div class="search-box hidden" id="search-box">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-            </div>
+            <form action="<%= search_path %>" method="GET">
+              <div class="input-group">
+                <input type="text" class="form-control" name="query" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+              </div>
+            </form>
           </div>
         </li>
       </ul>

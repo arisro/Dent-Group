@@ -3,11 +3,13 @@ mod.controller "UsersController", [
 	'$scope'
 	'User'
 	'Session'
+	'Password'
 	'$resource'
 	'$log'
 	'$window'
-	($scope, User, Session, $resource, $log, $window) ->
+	($scope, User, Session, Password, $resource, $log, $window) ->
 		$scope.newUser = { }
+		$scope.forgotPassword = {}
 		json = {"Accept": "application/json"}
 		$scope.window = $window
 
@@ -33,5 +35,35 @@ mod.controller "UsersController", [
 			,(response) ->
 				if $("#qtip-loginError:visible").length == 0
 					$('.signin').qtip('show')
+			)
+
+		$scope.pay = ->
+			User.pay({}, ->
+				$scope.window.location.href = "/"
+			,(response) ->
+				console.log response.data.errors
+			)
+
+		$scope.cancel = ->
+			$scope.newUser.currentStep = 1
+
+		$scope.sendResetPassword = ->
+			Password.create({user: { email: $(".signin #user_email").val() } }, ->
+				alert "Password reset instructions sent!"
+			,(response) ->
+				console.log response.data.errors
+			)
+
+		$scope.changePasswordReset = ->
+			console.log $scope.forgotPassword
+			Password.update({user: $scope.forgotPassword }, ->
+				$scope.window.location.href = "/"
+			,(response) ->
+				$scope.reset_pass_errors = response.data
+			)
+
+		$scope.cancelResetPassword = ->
+			User.cancel_reset({}, (->), (response) ->
+				console.log response.data.errors
 			)
 ]

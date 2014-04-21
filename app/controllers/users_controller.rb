@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :authorize_paid_user, except: [:set_payed, :cancel_reset_password]
+
+  ACTIVITIES_PER_PAGE = 5
+
   def feed
     if user_signed_in?
       session[:return_to] = request.original_url
@@ -6,10 +10,20 @@ class UsersController < ApplicationController
       @user = current_user
       @status = Status.new
       @status_comment = StatusComment.new
-      @activities = current_user.activities(10, get_country)
+      @activities = current_user.feed(get_country).page(params[:page]).per(ACTIVITIES_PER_PAGE)
       @upload = Upload.new
     else
       render file: 'dashboard/lp'
+    end
+  end
+
+  def activity
+    @user = User.find(params[:id])
+    @activities = @user.feed(get_country).page(params[:page]).per(ACTIVITIES_PER_PAGE)
+    @status_comment = StatusComment.new
+
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -21,7 +35,7 @@ class UsersController < ApplicationController
     session[:return_to] = request.original_url
     
 		@user = User.find(params[:id])
-    @activities = @user.activities(10, get_country)
+    @activities = @user.activities(get_country).page(params[:page]).per(ACTIVITIES_PER_PAGE)
     @status_comment = StatusComment.new
     @no_forms = true
 
@@ -88,5 +102,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.page params[:page]
     render 'show_follow'
+  end
+
+  def set_payed
+    unless user_signed_in?
+      render json: { status: :unprocessable_entity}
+    else
+      current_user.paid_until = Time.now() + 30.days
+      current_user.save
+      render json: { status: :ok}
+    end
+  end
+
+  def cancel_reset_password
+    session.delete(:reset_password_token)
+    render json: { status: :ok}
   end
 end

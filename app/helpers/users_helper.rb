@@ -4,7 +4,7 @@ module UsersHelper
 	end
 	def location_for(user)
 		location = user.city
-		if !location.empty? && !user.country.empty?
+		if !location.blank? && !user.country.blank?
 			location = "#{location}, #{user.country}"
 		end
 		return location

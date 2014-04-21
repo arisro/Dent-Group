@@ -4,7 +4,7 @@ $ ->
 		dataType: 'script'
 		autoUpload: true
 		add: (e, data) ->
-			types = /(\.|\/)(gif|jpe?g|png)$/i
+			types = /(\.|\/)(jpe?g|png)$/i
 			file = data.files[0]
 			file.cname = file.name.replace(/[^a-zA-Z0-9]/g, '')
 			if types.test(file.type) || types.test(file.name)
@@ -12,11 +12,7 @@ $ ->
 				$('.images-list').append(data.context)
 				data.submit()
 			else
-				alert("#{file.name} is not a gif, jpg or png image file")
-				# progress: (e, data) ->
-				# 	if data.context
-				# 		progress = parseInt(data.loaded / data.total * 100, 10)
-				# 		data.context.find('.bar').css('width', progress + '%')
+				alert("#{file.name} is not a jpg or png image file")
 
 	$('#but-add-image').on 'click', (e) ->
 		e.preventDefault()
@@ -36,15 +32,7 @@ $ ->
 		$('#user_pic_croph').val(0)
 		$('#user_pic_name').val('')
 
-	$("#bUploader").fancybox {
-		scrolling: 'no'
-		autoScale: true
-		autoDimensions: true
-		afterClose: ->
-			clearJcrop()
-	}
-
-	$("#dUploader").on 'uploadComplete', (event, filename, width, height) ->
+	$("#upload-pic").on 'uploadComplete', (event, filename, width, height) ->
 		$("#picUrl").attr 'src', '/temp_profile_pictures/' + filename
 		$('#user_pic_name').val(filename)
 

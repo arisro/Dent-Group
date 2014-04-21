@@ -25,6 +25,8 @@ gem 'remotipart', '~> 1.2'
 gem 'fastimage'
 gem "mini_magick"
 
+gem "searchkick"
+
 gem 'websocket-rails'
 
 gem 'roar-rails',     '~> 0.1.4'

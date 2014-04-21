@@ -1,0 +1,33 @@
+<% content_for :page_location, "Search results" %>
+
+<div class="row search-results-container">
+	<div class="row">
+		<div class="col-sm-8">
+			<div class="">
+				<form action="<%= search_path %>" method="GET">
+			      <div class="input-group">
+			        <input type="text" class="form-control" name="query" placeholder="Search" value="<%= @query %>">
+			        <span class="input-group-btn">
+			          <button class="btn btn-default" type="submit">Go!</button>
+			        </span>
+			      </div>
+			    </form>
+			</div>
+			<br/>
+			<p>Search results for <strong><i><%= @query %></i></strong> (<%= @total_results %>):</p>
+
+			<%= paginate @results %>
+			<div class="search-results">
+				<% @results.each do |res| %>
+					<div class="search-result-item clearfix">
+					<%= render :partial => "dashboard/search/#{res['_type']}_item", locals: { object: res[:object] } %>
+					</div>
+				<% end %>
+			</div>
+			<%= paginate @results %>
+		</div>
+		<div class="col-sm-4">
+			<p>Free space</p>
+		</div>
+	</div>
+</div>

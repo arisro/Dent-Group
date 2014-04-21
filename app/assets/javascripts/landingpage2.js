@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap
 //= require html5shiv
 //= require angular

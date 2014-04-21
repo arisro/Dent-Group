@@ -22,7 +22,7 @@
 	}
 }
 
-#dUploader {
+#upload-pic {
 	h2 {
 		margin-top: 5px;
 	}
@@ -35,7 +35,11 @@
 	}
 	#jcrop {
 		margin-top: 10px;
+		margin-bottom: 10px;
 		background: 1px solid #000;
+		.jcrop-keymgr {
+			display: none !important;
+		}
 	}
 }
 

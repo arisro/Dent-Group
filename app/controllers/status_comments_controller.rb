@@ -17,6 +17,15 @@ class StatusCommentsController < ApplicationController
 		redirect_to feed_path
 	end
 
+	def index
+		@status = Status.find(params[:status_id])
+	    @comments = @status.status_comments.where("id < ?", params[:from]).limit(StatusComment::COMMENTS_PER_PAGE)
+
+	    respond_to do |format|
+	      format.js
+	    end
+	end
+
 	private
 		def comment_params
 			params.require(:status_comment).permit(:message)

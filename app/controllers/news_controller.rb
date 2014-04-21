@@ -1,4 +1,6 @@
-class NewsController < ApplicationController	
+class NewsController < ApplicationController
+	before_filter :authorize_paid_user
+
 	def index
 		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(10)
 		@columns = 3
@@ -38,7 +40,7 @@ class NewsController < ApplicationController
 	end
 
 	def show
-		@news = News.where(deleted: false, id: params[:id], website_country: get_country).first
+		@news = News.where(deleted: false, id: params[:id]).first
 		not_found if @news.nil?
 		@news.increment!(:views)
 	end

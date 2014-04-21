@@ -39,32 +39,43 @@
     <% end %>
   </div>
 
-  <div class="col-sm-4 col-md-3">
-    <p class="mlabel">Profile picture</p>
-    <a id="bUploader" href="#dUploader"><%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", id: 'iCurrentProfilePic' %></a>
-    <div>
-      <span>Click to change</span>
-    </div>
-  </div>
-</div>
-
-<div style="display:none">
-  <div id="dUploader">
-    <h2>Change your profile picture</h2>
-    <%= simple_form_for(:temp_image, url: user_upload_profile_picture_path, :html => { :multipart => true, id: "fProfilePicture" }, :remote => true) do |f| %>
-      <input type="file" name="profile_picture" id="tiInput" />
-      <a href="#" class="btn btn-primary" id="fPicker">Choose a picture</a>
-      <a href="#" class="btn btn-warning" id="fPickerCancel">Cancel</a>
-      <a href="#" class="btn btn-success" id="fPickerDone">Save</a>
-      <br/>
-      <div id="jcrop">
-        <img id="picUrl" src="" />
-        <input type="hidden" id="user_pic_name" value="" />
-        <input type="hidden" id="user_pic_cropx" value="0" />
-        <input type="hidden" id="user_pic_cropy" value="0" />
-        <input type="hidden" id="user_pic_cropw" value="0" />
-        <input type="hidden" id="user_pic_croph" value="0" />
+  <div class="pull-left">
+    <div class="thumbnail">
+      <div class="avatar">
+        <a id="bUploader" href="#" data-toggle="modal" data-target="#upload-pic" class="thumbnail"><%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", id: 'iCurrentProfilePic' %></a>
+        <div class="avatar-bubble">
+          <a href="#" data-toggle="modal" data-target="#upload-pic"><i class="fa fa-plus"></i> Change</a>
+        </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+    <div class="modal fade" id="upload-pic" tabindex="-1" role="dialog" aria-labelledby="upload-pic-title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="upload-avatar-title">Change profile picture</h4>
+          </div>
+          <div class="modal-body">
+            <p>Please choose a file to upload. JPG, PNG only.</p>
+            <%= simple_form_for(:temp_image, url: user_upload_profile_picture_path, :html => { :multipart => true, id: "fProfilePicture" }, :remote => true) do |f| %>
+                <input type="file" name="profile_picture" id="tiInput" />
+
+                <div id="jcrop">
+                  <img id="picUrl" src="" />
+                  <input type="hidden" id="user_pic_name" value="" />
+                  <input type="hidden" id="user_pic_cropx" value="0" />
+                  <input type="hidden" id="user_pic_cropy" value="0" />
+                  <input type="hidden" id="user_pic_cropw" value="0" />
+                  <input type="hidden" id="user_pic_croph" value="0" />
+                </div>
+
+                <a href="#" class="btn btn-primary" id="fPicker">Choose a picture</a>
+                <button type="button" id="fPickerDone" class="btn btn-green" data-dismiss="modal">Upload</button>
+                <button type="button" id="fPickerCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div>
 </div>

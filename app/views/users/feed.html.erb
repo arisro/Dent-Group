@@ -34,9 +34,12 @@
 		</div>
 		<% end %>
 		<div class="profile-feed-list row">
-			<% @activities.each do |activity| %>
-				<%= render "activities/#{activity.name}", subject: activity.subject %>
-			<% end %>
+			<%= render :partial => 'shared/feed_activities', :locals => { :activities => @activities } %>
+
+			<div class="box <%= 'hidden' unless @activities.next_page %>" id="loadMoreContainer">
+				<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
+				<%= link_to 'Load more', activity_user_path(id: @user.id, :page => @activities.next_page), :class => 'load-more-posts', :remote => true if @activities.next_page %>
+			</div>
 		</div>
 	</div>
 </div>

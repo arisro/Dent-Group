@@ -4,8 +4,11 @@ Drs::Application.routes.draw do
   
   post 'user/upload_profile_picture', to: "users#upload_profile_picture"
   post 'user/save_profile_picture', to: "users#save_profile_picture"
+
+  put 'user/pay', to: "users#set_payed"
+  put 'user/cancel_reset', to: "users#cancel_reset_password"
   
-  devise_for :user, controllers: { registrations: "registrations" }
+  devise_for :user, controllers: { registrations: "registrations", passwords: "passwords" }
   as :user do
     post "/sessions" => "sessions#create"
     delete "/sessions" => "sessions#destroy"
@@ -23,18 +26,20 @@ Drs::Application.routes.draw do
     get 'offers/selling', to: 'offers#index', type: 1
     get 'offers/rentals', to: 'offers#index', type: 3
     resources :offers
+
+    get 'search', to: 'dashboard#search'
   
     resources :suppliers do
       resources :supplier_comments, only: [:create, :destroy]
     end
 
     resources :statuses, only: [:create, :destroy] do
-      resources :status_comments, only: [:create, :destroy]
+      resources :status_comments, only: [:index, :create, :destroy]
     end
 
     resources :users, only: [:show, :index] do
       member do
-        get :following, :followers
+        get :following, :followers, :activity
       end
     end
     get 'feed', to: 'users#feed' 

@@ -806,7 +806,7 @@ body.lang-ro {
 	right: 150px;
 	display: none;
 
-	> p {
+	> div > p {
 		font-size: 25px;
 		text-align: center;
 	}
@@ -857,6 +857,67 @@ body.lang-ro {
 	}
 }
 /* end signup form */
+
+/* forgot password form */
+.forgot-password-cont {
+	position: absolute;
+	background-color:rgba(255,255,255,0.7);
+	box-shadow: 3px 3px 10px #333;
+	padding: 15px 10px;
+	height: auto;
+	width: 250px;
+	top: 100px;
+	right: 125px;
+
+	> p {
+		font-size: 25px;
+		text-align: center;
+	}
+
+	#forgotPasswordForm {
+		input[type='submit'] {
+			padding: 5px 30px;
+			margin-top: 10px;
+		}
+		.btn-warning {
+			margin-top: 10px;
+		}
+		.user_email {
+			width: 100%;
+		}
+		.form-actions {
+			text-align: center;
+		}
+		#user_lname, #user_fname {
+			width: 100%;
+		}
+		div.user_fname,
+		div.user_lname {
+			width: 48%;
+			float: left;
+		}
+		div.input {
+			margin: 3px 0;
+		}
+		div.user_fname {
+			margin-right: 4%;
+		}
+		div.user_email {
+			clear: both;
+		}
+		.errors-container {
+			clear: both;
+		}
+		p.text-danger {
+			font-size: 12px;
+			text-align: left;
+			padding-left: 6px;
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+/* end forgot password form */
 
 .language-picker {
 	top: 25px;

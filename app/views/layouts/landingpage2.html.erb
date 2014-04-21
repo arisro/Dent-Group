@@ -7,6 +7,9 @@
     <title>Welcome to Dent Group</title>
     <meta name="description" content="Dent Group">
 
+    <link rel="apple-touch-icon-precomposed" href="/favicon-152.png">
+    <link rel="icon" href="/favicon-152.png" sizes="152x152">
+
     <%= stylesheet_link_tag "landingpage2", media: "all", "data-turbolinks-track" => true %>
 
     <%= csrf_meta_tags %>
@@ -22,31 +25,66 @@
 
       <div class="fullscreen-img"></div>
 
-      <div class="signup collapse" id="signupContainer" ng-controller="UsersController">
-        <p><%= t('sign_up') %></p>
-        <%= simple_form_for(:user, html: { id: "signupForm", role: "form", 'ng-submit' => 'signUp()'}, url: '' ) do |f| %>
-          <div class="form-inputs">
-            <%= f.input :fname, :required => false, label: false, placeholder: t('first_name'), input_html: { class: "form-control", 'ng-model' => "newUser.fname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.fname}" } %>
-            <%= f.input :lname, :required => false, label: false, placeholder: t('last_name'), input_html: { class: "form-control", 'ng-model' => "newUser.lname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.lname}" } %>
-            <div class="errors-container" ng-show="register_errors.fname || register_errors.lname">
-              <p class="text-danger"><%= t('signup_names_error') %></p>
+      <% if !session[:reset_password_token].nil? %>
+        <div class="forgot-password-cont collapse in" id="forgotPasswordContainer" ng-controller="UsersController" ng-init="forgotPassword.reset_password_token='<%= session[:reset_password_token] %>';">
+          <p>Change password</p>
+          <%= simple_form_for(:user, html: { id: "forgotPasswordForm", role: "form" , 'ng-submit' => 'changePasswordReset()' }, url: '' ) do |f| %>
+
+            <div class="form-inputs">
+              <%= f.input :password, :label => false, :required => true, :autofocus => true, placeholder: "New password", input_html: { 'ng-model' => 'forgotPassword.password' }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': reset_pass_errors.password}" } %>
+              <%= f.input :password_confirmation, label: false, :placeholder => "Confirm your new password", :required => true, input_html: { 'ng-model' => 'forgotPassword.password_confirmation' }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': reset_pass_errors.password_confirmation}" } %>
+
+              <div class="errors-container" ng-show="reset_pass_errors.password || reset_pass_errors.password_confirmation">
+                <p class="text-danger" ng-repeat="err in reset_pass_errors.password">{{err}}</p>
+                <p class="text-danger" ng-repeat="err in reset_pass_errors.password_confirmation">{{err}}</p>
+              </div>
             </div>
 
-            <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
-            <div class="errors-container" ng-show="register_errors.email">
-              <p class="text-danger">E-mail address {{register_errors.email[0]}}</p>
+            <div class="form-actions">
+              <%= f.button :submit, 'Save', class: "btn btn-success btn-lg" %>
+              <a class="btn btn-warning" data-toggle="collapse" data-target="#forgotPasswordContainer" ng-click="cancelResetPassword()">Cancel</a>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div class="signup collapse" ng-class="{'in': newUser.currentStep == 2}" id="signupContainer" ng-controller="UsersController">
+        <input type="hidden" ng-init="newUser.currentStep=<%= current_user.nil? ? 1: 2 %>;" value="<%= current_user.nil? ? 1 : 2 %>" />
+        <div id="reg-step-1" ng-show="newUser.currentStep == 1">
+          <p><%= t('sign_up') %></p>
+          <%= simple_form_for(:user, html: { id: "signupForm", role: "form", 'ng-submit' => 'signUp()'}, url: '' ) do |f| %>
+            <div class="form-inputs">
+              <%= f.input :fname, :required => false, label: false, placeholder: t('first_name'), input_html: { class: "form-control", 'ng-model' => "newUser.fname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.fname}" } %>
+              <%= f.input :lname, :required => false, label: false, placeholder: t('last_name'), input_html: { class: "form-control", 'ng-model' => "newUser.lname" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.lname}" } %>
+              <div class="errors-container" ng-show="register_errors.fname || register_errors.lname">
+                <p class="text-danger"><%= t('signup_names_error') %></p>
+              </div>
+
+              <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
+              <div class="errors-container" ng-show="register_errors.email">
+                <p class="text-danger">E-mail address {{register_errors.email[0]}}</p>
+              </div>
+
+              <%= f.input :password, :required => false, label: false, placeholder: t('password'), input_html: { class: "form-control", 'ng-model' => "newUser.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.password}" } %>
+              <div class="errors-container" ng-show="register_errors.password">
+                <p class="text-danger" ng-repeat="err in register_errors.password">{{err}}</p>
+              </div>
             </div>
 
-            <%= f.input :password, :required => false, label: false, placeholder: t('password'), input_html: { class: "form-control", 'ng-model' => "newUser.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.password}" } %>
-            <div class="errors-container" ng-show="register_errors.password">
-              <p class="text-danger" ng-repeat="err in register_errors.password">{{err}}</p>
+            <div class="form-actions">
+              <%= f.button :submit, t('sign_up'), class: "btn btn-success btn-lg" %>
             </div>
-          </div>
+          <% end %>
+        </div>
+        <div id="reg-step-2" ng-show="newUser.currentStep == 2">
+          <p>Payment info</p>
+          The first month is free and you will get full access. This is the reason for which we need to control the users that can get into this community, but asking for payment info.
 
-          <div class="form-actions">
-            <%= f.button :submit, t('sign_up'), class: "btn btn-success btn-lg" %>
-          </div>
-        <% end %>
+          <center>
+            <button class="btn btn-success" ng-click="pay()">Pay</button>
+            <%= link_to 'Cancel', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+          </center>
+        </div>
         <button id="signupClose" data-toggle="collapse" data-target="#signupContainer">
           &#10006;
         </button>
@@ -86,7 +124,9 @@
                           </label>
                         </div>
                       <% end %>
-                        <div class="forgot-password"><a href="#"><%= t('forgot_password') %></a></div>
+                        <div class="forgot-password">
+                          <a href="#" ng-click="sendResetPassword()"><%= t('forgot_password') %></a>
+                        </div>
                     </div>
                   <% end %>
                 </div>

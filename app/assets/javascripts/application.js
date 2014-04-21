@@ -19,6 +19,7 @@
 //= require jquery.easing.1.3
 //= require jquery.Jcrop
 //= require jquery.remotipart
+//= require jquery.inview.min.js
 //= require script
 
 //= require custom
