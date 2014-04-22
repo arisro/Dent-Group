@@ -1,9 +1,9 @@
 class Supplier < ActiveRecord::Base
+	searchkick
+	
 	belongs_to :user
 
 	has_many :supplier_comments
-
-	# searchkick
 
 	# searchkick stuff
 	def should_index?
