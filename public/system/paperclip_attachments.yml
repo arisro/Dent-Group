@@ -1,0 +1,12 @@
+---
+:Ckeditor::Picture:
+  :data:
+  - :content
+  - :thumb
+:Upload:
+  :uploaded_file:
+  - :large
+  - :medium
+  - :original
+  - :small
+  - :thumb
