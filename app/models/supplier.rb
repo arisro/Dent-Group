@@ -3,7 +3,7 @@ class Supplier < ActiveRecord::Base
 
 	has_many :supplier_comments
 
-	searchkick
+	# searchkick
 
 	# searchkick stuff
 	def should_index?

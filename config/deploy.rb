@@ -16,22 +16,23 @@ before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
 set :rvm_ruby_string, '2.0.0-p353'
 
-server "drs.buzachis-aris.com", :app, :web, :db, :primary => true, {
-  user: 'aris',
-  deploy_to: "/var/www/com.buzachis-aris.drs",
-  rails_env: "development",
-  ssh_options: {
-    port: 443
-  }
-}
-server "www.dent-group.com", :app, :web, :db, :primary => true, {
-  user: 'aris',
-  deploy_to: "/var/www/com.dent-group.www",
-  rails_env: "production",
-  ssh_options: {
-    port: 443
-  }
-}
+set :deploy_to, "/var/www/com.buzachis-aris.drs"
+set :rails_env, "development"
+set :user, 'aris'
+
+# server "drs.buzachis-aris.com", :app, :web, :db, :primary => true, user: 'aris', rails_env: "development"
+
+task :production do
+  server "www.dent-group.com", :app, :web, :db, :primary => true
+  set :deploy_to, "/var/www/com.dent-group.www"
+  set :rails_env, "production"
+end
+
+task :staging do
+  server "drs.buzachis-aris.com", :app, :web, :db, :primary => true
+  set :deploy_to, "/var/www/com.buzachis-aris.drs"
+  set :rails_env, "development"
+end
 
 namespace :deploy do
   task :copy_config_files do
