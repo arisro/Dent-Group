@@ -31,6 +31,15 @@ GIT
     datetimepicker-rails (0.0.8)
 
 GIT
+  remote: git@github.com:arisro/searchkick.git
+  revision: 81492b252b3ac4586739a1bc0a72cb40057cdca0
+  specs:
+    searchkick (0.7.1)
+      activemodel
+      elasticsearch (~> 0.4.11)
+      hashie
+
+GIT
   remote: git@github.com:fbonomi/fancybox2-rails.git
   revision: b93847856acbcf2e5fe7d723c174d46819c7b551
   specs:
@@ -350,10 +359,6 @@ GEM
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    searchkick (0.7.1)
-      activemodel
-      elasticsearch (~> 0.4.11)
-      hashie
     selenium-webdriver (2.39.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -469,7 +474,7 @@ DEPENDENCIES
   rspec-rails (~> 2.14)
   rvm-capistrano
   sass-rails (~> 4.0.0)
-  searchkick
+  searchkick!
   selenium-webdriver
   shoulda-matchers (~> 2.2)
   simple_form (~> 3.0.0)
