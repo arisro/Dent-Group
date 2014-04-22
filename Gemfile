@@ -25,7 +25,7 @@ gem 'remotipart', '~> 1.2'
 gem 'fastimage'
 gem "mini_magick"
 
-gem "searchkick"
+gem "searchkick", git: "git@github.com:arisro/searchkick.git"
 
 gem 'websocket-rails'
 
