@@ -120,13 +120,13 @@ ActiveRecord::Schema.define(version: 20140412171021) do
     t.string   "title"
     t.text     "summary"
     t.text     "body"
+    t.integer  "views",                     default: 0
     t.integer  "user_id"
     t.datetime "published_at"
-    t.integer  "deleted",                   default: 0, null: false
+    t.boolean  "deleted",                   default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "website_country", limit: 3
-    t.integer  "views",                     default: 0, null: false
   end
 
   create_table "offers", force: true do |t|
@@ -142,6 +142,11 @@ ActiveRecord::Schema.define(version: 20140412171021) do
     t.text     "summary"
     t.string   "contact_phone"
     t.string   "contact_email"
+  end
+
+  create_table "pictures_statuses", force: true do |t|
+    t.integer "picture_id", null: false
+    t.integer "status_id",  null: false
   end
 
   create_table "relationships", force: true do |t|
@@ -174,8 +179,8 @@ ActiveRecord::Schema.define(version: 20140412171021) do
   end
 
   create_table "statuses_uploads", force: true do |t|
-    t.integer "upload_id"
     t.integer "status_id", null: false
+    t.integer "upload_id", null: false
   end
 
   create_table "supplier_comments", force: true do |t|
@@ -237,8 +242,8 @@ ActiveRecord::Schema.define(version: 20140412171021) do
     t.string   "profile_picture"
     t.string   "specialization"
     t.datetime "paid_until"
-    t.integer  "roles_mask",                       default: 1,    null: false
-    t.string   "language",               limit: 5, default: "en", null: false
+    t.integer  "roles_mask",                       default: 1
+    t.string   "language",               limit: 5, default: "en"
     t.string   "country"
     t.string   "city"
     t.string   "phone"

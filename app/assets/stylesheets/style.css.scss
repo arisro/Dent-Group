@@ -1,8 +1,8 @@
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
 
-@font-face{font-family:'AdelleSansWeb';src:url('/assets/AdelleSansWeb/AdelleSansBasic_Bold.eot?#iefix') format('embedded-opentype'),url('/assets/AdelleSansWeb/AdelleSansBasic_Bold.woff') format('woff'),url('/assets/AdelleSansWeb/AdelleSansBasic_Bold.ttf') format('truetype');font-weight:700}
-@font-face{font-family:'PTSerif';src:url('/assets/PTSerif/PTF55F-webfont.eot');src:url('/assets/PTSerif/PTF55F-webfont.eot?#iefix') format('embedded-opentype'),url('/assets/PTSerif/PTF55F-webfont.woff') format('woff'),url('/assets/PTSerif/PTF55F-webfont.ttf') format('truetype'),url('/assets/PTSerif/PTF55F-webfont.svg#PTSerifRegular') format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'AdelleSansWeb';src:asset-url('AdelleSansWeb/AdelleSansBasic_Bold.eot?#iefix') format('embedded-opentype'),asset-url('AdelleSansWeb/AdelleSansBasic_Bold.woff') format('woff'),asset-url('AdelleSansWeb/AdelleSansBasic_Bold.ttf') format('truetype');font-weight:700}
+@font-face{font-family:'PTSerif';src:asset-url('PTSerif/PTF55F-webfont.eot');src:asset-url('PTSerif/PTF55F-webfont.eot?#iefix') format('embedded-opentype'),asset-url('PTSerif/PTF55F-webfont.woff') format('woff'),asset-url('PTSerif/PTF55F-webfont.ttf') format('truetype'),asset-url('PTSerif/PTF55F-webfont.svg#PTSerifRegular') format('svg');font-weight:normal;font-style:normal}
 
 .font-thin {
 	font-family: "Titillium Web", sans-serif;

@@ -1,5 +1,5 @@
 Drs::Application.routes.draw do
-  ActiveAdmin.routes(self)
+  # ActiveAdmin.routes(self)
   mount Ckeditor::Engine => '/ckeditor'
   
   post 'user/upload_profile_picture', to: "users#upload_profile_picture"

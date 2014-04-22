@@ -22,6 +22,9 @@
 //= require jquery.inview.min.js
 //= require script
 
+//= require ckeditor/override
+//= require ckeditor/init
+
 //= require custom
 //= require scrolltopcontrol
 
@@ -35,8 +38,6 @@
 //= require users
 //= require dashboard
 //= require bootstrap-datetimepicker.js
-//= require ckeditor/override
-//= require ckeditor/init
 //= require jquery.dd
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl

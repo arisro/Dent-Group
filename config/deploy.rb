@@ -40,7 +40,7 @@ namespace :deploy do
     put File.read("config/initializers/secret_token.rb.dist"), "#{shared_path}/config/secret_token.rb"
     
     put File.read("config/unicorn_init.sh"), "#{shared_path}/config/unicorn_init.sh"
-    run "#{try_sudo} chmod +x #{shared_path}/config/unicorn_init.sh && #{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+    run "#{try_sudo} chmod +x #{shared_path}/config/unicorn_init.sh && #{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn_init.sh /etc/init.d/unicorn_#{application}_#{rails_env}"
   end
   after "deploy:setup", "deploy:copy_config_files"
   
@@ -72,14 +72,14 @@ namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      run "#{try_sudo} /etc/init.d/unicorn_#{application} #{command}"
+      run "#{try_sudo} /etc/init.d/unicorn_#{application}_#{rails_env} #{command}"
     end
   end
 
   namespace :assets do
     task :precompile, :roles => :web, :except => { :no_release => true } do 
       run_locally("rm -rf public/assets/*") 
-      run_locally("bundle exec rake assets:precompile") 
+      run_locally("RAILS_ENV=#{rails_env} bundle exec rake assets:precompile --trace") 
       servers = find_servers_for_task(current_task) 
       port = 443
       port_option = port ? " -e 'ssh -p #{port}' " : '' 

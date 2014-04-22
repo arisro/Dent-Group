@@ -1,16 +1,16 @@
-ActiveAdmin.setup do |config|
+# ActiveAdmin.setup do |config|
 
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Dent Group"
+  # config.site_title = "Dent Group"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  config.site_title_link = "/admin"
+  # config.site_title_link = "/admin"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
@@ -55,7 +55,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
-  config.authentication_method = :authenticate_admin_user!
+  # config.authentication_method = :authenticate_admin_user!
 
   # == User Authorization
   #
@@ -73,7 +73,7 @@ ActiveAdmin.setup do |config|
   # because, by default, user gets redirected to Dashboard. If user
   # doesn't have access to Dashboard, he'll end up in a redirect loop.
   # Method provided here should be defined in application_controller.rb.
-  config.on_unauthorized_access = :access_denied
+  # config.on_unauthorized_access = :access_denied
 
   # == Current User
   #
@@ -131,7 +131,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  config.batch_actions = true
+  # config.batch_actions = true
 
 
   # == Controller Filters
@@ -232,9 +232,9 @@ ActiveAdmin.setup do |config|
   #
   # config.filters = true
 
-  config.current_user_method = :current_user
-  config.logout_link_path = :destroy_user_session_path
-  config.logout_link_method = :delete
+#   config.current_user_method = :current_user
+#   config.logout_link_path = :destroy_user_session_path
+#   config.logout_link_method = :delete
 
 
-end
+# end
