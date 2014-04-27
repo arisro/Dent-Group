@@ -98,7 +98,8 @@ namespace :deploy do
       port_option = port ? " -e 'ssh -p #{port}' " : '' 
       servers.each do |server| 
         run_locally("rsync --recursive --times --rsh=ssh --compress #{port_option} --progress public/assets #{user}@#{server}:#{shared_path}") 
-     end 
+      end 
+      run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/assets/*.json"
     end
   end
 end

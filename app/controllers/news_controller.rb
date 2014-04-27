@@ -2,7 +2,7 @@ class NewsController < ApplicationController
 	before_filter :authorize_paid_user
 
 	def index
-		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(3)
+		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(9)
 		@columns = 3
 
 		respond_to do |format|
