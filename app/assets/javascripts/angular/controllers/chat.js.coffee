@@ -14,6 +14,11 @@ mod.controller "ChatController", [
 		$scope.users = []
 		$scope.uid = $("#chatbox").data("uid")
 
+		$(document).ready ->
+			setTimeout ->
+				$(".chat-box-bot").removeClass('hidden')
+			, 1000
+
 		$scope.updateUsersList = (users) ->
 			$scope.users = users
 
