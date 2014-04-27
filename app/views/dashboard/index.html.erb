@@ -2,21 +2,23 @@
 
 <a href="<%= homepage_messages_path %>">Manage messages</a><br/><br/>
 
+<% @messages.each do |message| %>
 <div class="row">
 	<div class="col-sm-12">
-		<% unless @message.nil? %>
-			<h2 class="hl top-zero"><%= @message.title %></h2>
+		<% unless message.nil? %>
+			<h2 class="hl top-zero"><%= message.title %></h2>
 			<ul class="text-muted list-inline">
 				<li><i class="fa fa-user"></i> <a href="#">Administrator</a></li>
-				<li><i class="fa fa-calendar"></i> <%= @message.published_at.to_formatted_s(:news) %></li>
-				<li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(@message), class: "text-muted" %></li>
+				<li><i class="fa fa-calendar"></i> <%= message.published_at.to_formatted_s(:news) %></li>
+				<li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(message), class: "text-muted" %></li>
 			</ul>
 			<hr/>
 			<p class="blog-text">
-				<%= raw(@message.body) %>
+				<%= raw(message.body) %>
 			</p>
 		<% else %>
 			No message.
 		<% end %>
 	</div>
 </div>
+<% end %>

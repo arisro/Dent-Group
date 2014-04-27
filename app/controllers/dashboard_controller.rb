@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 	
 	def index
 		if user_signed_in? && current_user.is_paid?
-			@message = HomepageMessage.where( website_country: get_country ).first
+			@messages = HomepageMessage.where( website_country: get_country ).limit(10)
 		else
 			render file: 'dashboard/lp'
 		end
