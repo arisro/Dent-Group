@@ -1,14 +1,7 @@
 <% content_for :page_location, "Homepage messages" %>
 
 <div class="row">
-	<div class="col-sm-8">
-		<h4><%= @message.title %></h4>
-		<ul class="text-muted list-inline">
-			<li><i class="fa fa-user"></i> <a href="#">Administrator</a></li>
-			<li><i class="fa fa-calendar"></i> <%= @message.published_at.to_formatted_s(:news) %></li>
-			<li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(@message), class: "text-muted" %></li>
-		</ul>
-		<hr>
+	<div class="col-sm-12">
 		<p class="blog-text">
 			<%= raw(@message.body) %>
 		</p>
