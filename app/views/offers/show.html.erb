@@ -1,34 +1,36 @@
 <% content_for :page_location, "Offers" %>
 
-<div class="box offer-box">
-	<div class="offer-title">
-		<h1><%= @offer.title %></h1>
-	</div>
-	<div class="offer-links">
-		<%= link_to 'Edit', edit_offer_path(@offer), class: 'btn btn-primary btn-sm' %>
-	</div>
+<div class="row">
+	<div class="col-sm-12 offer-box">
+		<h2 class="hl top-zero"><%= @offer.title %></h2>
+		<hr/>
 
-	<hr/>
+		<div class="offer-links">
+			<%= link_to 'Edit', edit_offer_path(@offer), class: 'btn btn-primary btn-sm' %>
+		</div>
 
-	<div class="offer-info">
-		<ul>
-			<li>Type: <span><%= ['', 'Selling', 'Buying', 'Rental'][@offer.type] %></span></li>
-			<li>Contact e-mail: <span><%= @offer.contact_email %></span></li>
-			<li>Contact phone: <span><%= @offer.contact_phone %></span></li>
-		</ul>
-		<ul>
-			<li>Views: <span><%= @offer.views %></span></li>
-			<li>Posted by: <span><%= link_to @offer.user.full_name, user_path(@offer.user) %></span></li>
-		</ul>
-	</div>
+		<hr/>
 
-	<hr/>
+		<div class="offer-info">
+			<ul>
+				<li>Type: <span><%= ['', 'Selling', 'Buying', 'Rental'][@offer.type] %></span></li>
+				<li>Contact e-mail: <span><%= @offer.contact_email %></span></li>
+				<li>Contact phone: <span><%= @offer.contact_phone %></span></li>
+			</ul>
+			<ul>
+				<li>Views: <span><%= @offer.views %></span></li>
+				<li>Posted by: <span><%= link_to @offer.user.full_name, user_path(@offer.user) %></span></li>
+			</ul>
+		</div>
 
-	<div class="offer-summary">
-		<%= @offer.summary %>
-	</div>
+		<hr/>
 
-	<div class="offer-description">
-		<%= raw(@offer.body) %>
+		<div class="offer-summary">
+			<%= @offer.summary %>
+		</div>
+
+		<div class="offer-description">
+			<%= raw(@offer.body) %>
+		</div>
 	</div>
 </div>

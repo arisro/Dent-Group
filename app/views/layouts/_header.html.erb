@@ -19,8 +19,10 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Offers <b class="caret"></b></a>
             <ul class="dropdown-menu">
 	            <li><%= link_to t('selling'), offers_selling_path %></a></li>
-				<li><%= link_to t('buying'), offers_buying_path %></li>
-				<li class="last"><%= link_to t('rentals'), offers_rentals_path %></li>
+				      <li><%= link_to t('buying'), offers_buying_path %></li>
+				      <li><%= link_to t('rentals'), offers_rentals_path %></li>
+              <li class="divider"></li>
+              <li class="last"><%= link_to 'Blacklist', bad_customers_path %></li>
             </ul>
         </li>
         <li class="<%= put_active_menu('jobs') %>"><a href="<%= jobs_path %>">Jobs</a></li>

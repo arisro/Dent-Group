@@ -1,16 +1,21 @@
-<div class="box news-box">
-	<h1>Add news</h1>
-	<%= simple_form_for(@news, url: news_index_path, html: { role: "form", id: 'addNewsForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
+<div class="row">
+	<div class="col-sm-12 news-box">
+		<h2 class="hl top-zero">Add news</h2>
+		<hr/>
 
-		<%= f.error_notification %>
-		<div class="form-inputs">
-			<%= f.input :title, :required => true, label: 'Title' %>
-			<%= f.input :summary, :required => true, label: 'Summary' %>
-			<%= f.input :body, :required => true, label: 'Content', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
-			<%= f.input :published_at, :as => :datetime_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control'} %>
-		</div>
+		<%= simple_form_for(@news, url: news_index_path, html: { role: "form", id: 'addNewsForm', multipart: true }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
-		<br/>
-        <%= f.button :submit, "Post", class: "btn btn-primary" %>
-	<% end %>
+			<%= f.error_notification %>
+			<div class="form-inputs">
+				<%= f.input :title, :required => true, label: 'Title' %>
+				<%= f.input :summary, :required => true, label: 'Summary' %>
+				<%= f.input :image, as: :file, :required => true, label: 'Image' %>
+				<%= f.input :body, :required => true, label: 'Content', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
+				<%= f.input :published_at, :as => :datetime_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control'} %>
+			</div>
+
+			<br/>
+	        <%= f.button :submit, "Post", class: "btn btn-green" %>
+		<% end %>
+	</div>
 </div>

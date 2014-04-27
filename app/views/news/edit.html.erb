@@ -1,18 +1,23 @@
-<div class="box news-box">
-	<h1>Edit news - <%= @news.title %></h1>
-	<%= simple_form_for(@news, html: { role: "form", id: 'addNewsForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
+<div class="row">
+	<div class="col-sm-12 news-box">
+		<h2 class="hl top-zero">Edit news - <%= @news.title %></h2>
+		<hr/>
 
-		<%= f.error_notification %>
-		<div class="form-inputs">
-			<%= f.input :title, :required => true, label: 'Title' %>
-			<%= f.input :summary, :required => true, label: 'Summary' %>
-			<%= f.input :body, :required => true, label: 'Content', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
-			<%= f.input :published_at, :as => :date_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control'} %>
-		</div>
+		<%= simple_form_for(@news, html: { role: "form", id: 'addNewsForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
-		<br/>
-        <%= f.button :submit, "Update", class: "btn btn-primary" %>
-        <%= link_to "Cancel", news_path(@news), class: "btn btn-warning" %>
-        <%= link_to "Delete", news_path(@news), method: :delete, :confirm => "Are you sure you want to delete this news?", class: "btn btn-danger" %>
-	<% end %>
+			<%= f.error_notification %>
+			<div class="form-inputs">
+				<%= f.input :title, :required => true, label: 'Title' %>
+				<%= f.input :summary, :required => true, label: 'Summary' %>
+				<%= f.input :image, as: :file, :required => true, label: 'Image' %>
+				<%= f.input :body, :required => true, label: 'Content', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
+				<%= f.input :published_at, :as => :date_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control'} %>
+			</div>
+
+			<br/>
+	        <%= f.button :submit, "Update", class: "btn btn-green" %>
+	        <%= link_to "Cancel", news_path(@news), class: "btn btn-warning" %>
+	        <%= link_to "Delete", news_path(@news), method: :delete, :confirm => "Are you sure you want to delete this news?", class: "btn btn-danger" %>
+		<% end %>
+	</div>
 </div>

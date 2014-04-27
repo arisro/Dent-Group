@@ -16,7 +16,9 @@ Drs::Application.routes.draw do
 
   scope '(:country)', country: /int|ro|de/ do
     root 'dashboard#index'
-    resources :news
+    resources :news do
+      resources :news_comments, only: [:create, :destroy]
+    end
     resources :jobs
     resources :bad_customers do
       resources :bad_customer_comments, only: [:create, :destroy]

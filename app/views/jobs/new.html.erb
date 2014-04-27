@@ -1,26 +1,30 @@
 <% content_for :page_location, "Jobs" %>
 
-<div class="box jobs-box">
-	<h1>Add new job</h1>
-	<%= simple_form_for(@job, url: jobs_path, html: { role: "form", id: 'addJobForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
+<div class="row">
+	<div class="col-sm-12 jobs-box">
+		<h2 class="hl top-zero">Add new job</h2>
+		<hr/>
 
-		<%= f.error_notification %>
-		<div class="form-inputs">
-			<%= f.input :company_name, :required => true, label: 'Company name' %>
-			<%= f.input :title, :required => true, label: 'Job title' %>
-			<%= f.input :description, :required => true, label: 'Description', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
-			<%= f.input :country, :required => true, label: 'Country' %>
-			<%= f.input :city, :required => true, label: 'City' %>
+		<%= simple_form_for(@job, url: jobs_path, html: { role: "form", id: 'addJobForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
-			<%= f.input :type, collection: [['Full time',1],['Part time',2]], label: 'Type', include_blank: false %>
-			<%= f.input :count, :required => true, label: 'Count' %>
-			<%= f.input :offer, :required => false, label: 'Wage offer' %>
-			<%= f.input :valid_until, :as => :date_picker, :required => true, label: 'Valid until', :input_html => {:class => 'col-span-3 form-control'} %>
-			<%= f.input :contact_email, :required => false, label: 'Contact e-mail' %>
-			<%= f.input :contact_phone, :required => false, label: 'Contact phone' %>
-		</div>
+			<%= f.error_notification %>
+			<div class="form-inputs">
+				<%= f.input :company_name, :required => true, label: 'Company name' %>
+				<%= f.input :title, :required => true, label: 'Job title' %>
+				<%= f.input :description, :required => true, label: 'Description', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
+				<%= f.input :country, :required => true, label: 'Country' %>
+				<%= f.input :city, :required => true, label: 'City' %>
 
-		<br/>
-        <%= f.button :submit, "Post", class: "btn btn-primary" %>
-	<% end %>
+				<%= f.input :type, collection: [['Full time',1],['Part time',2]], label: 'Type', include_blank: false %>
+				<%= f.input :count, :required => true, label: 'Count' %>
+				<%= f.input :offer, :required => false, label: 'Wage offer' %>
+				<%= f.input :valid_until, :as => :date_picker, :required => true, label: 'Valid until', :input_html => {:class => 'col-span-3 form-control'} %>
+				<%= f.input :contact_email, :required => false, label: 'Contact e-mail' %>
+				<%= f.input :contact_phone, :required => false, label: 'Contact phone' %>
+			</div>
+
+			<br/>
+	        <%= f.button :submit, "Post", class: "btn btn-green" %>
+		<% end %>
+	</div>
 </div>

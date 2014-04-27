@@ -1,24 +1,29 @@
-<div class="box customers-box">
-	<h1>Problem customers</h1>
+<% content_for :page_location, "Blacklist" %>
 
-	<%= link_to 'Add new job offer', new_bad_customer_path %>
-	<br/>
+<div class="row">
+	<div class="col-sm-12 customers-box">
+		<h2 class="hl top-zero">Problem customers</h2>
+		<hr/>
 
-	<%= paginate @customers %>
+		<%= link_to 'Add new job offer', new_bad_customer_path %>
+		<br/>
 
-	<ul class="customers-list">
-		<% @customers.each do |customer| %>
-			<li class="customer-item">
-				<h4>
-					<%= link_to "#{customer.name} (#{customer.cnp})", bad_customer_path(customer) %>
-					<% if customer.comments_count > 0 %>
-						<span>(<%= pluralize(customer.comments_count, 'comment')%>)</span>
-					<% end %>
-				</h4>
-				<p class="customer-item-reason"><%= customer.message %></p>
-				<span class="customer-item-time">Reported on <i><%= customer.created_at.to_formatted_s(:date) %></i> by <%= link_to customer.user.full_name, user_path(customer.user) %></span>
-				<hr/>
-			</li>
-		<% end %>
-	</ul>
+		<%= paginate @customers %>
+
+		<ul class="customers-list">
+			<% @customers.each do |customer| %>
+				<li class="customer-item">
+					<h4>
+						<%= link_to "#{customer.name} (#{customer.cnp})", bad_customer_path(customer) %>
+						<% if customer.comments_count > 0 %>
+							<span>(<%= pluralize(customer.comments_count, 'comment')%>)</span>
+						<% end %>
+					</h4>
+					<p class="customer-item-reason"><%= customer.message %></p>
+					<span class="customer-item-time">Reported on <i><%= customer.created_at.to_formatted_s(:date) %></i> by <%= link_to customer.user.full_name, user_path(customer.user) %></span>
+					<hr/>
+				</li>
+			<% end %>
+		</ul>
+	</div>
 </div>

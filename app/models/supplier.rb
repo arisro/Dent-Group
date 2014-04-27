@@ -10,7 +10,7 @@ class Supplier < ActiveRecord::Base
 		!deleted?
   	end
 	def search_data
-		as_json only: [:name, :description, :website, :country, :city, :address]
+		as_json only: [:name, :description, :website, :country, :city, :address, :website_country]
 	end
 
 	def comments_count

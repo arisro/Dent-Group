@@ -1,19 +1,23 @@
 <% content_for :page_location, "Suppliers" %>
 
-<div class="box suppliers-box">
-	<h1>Suppliers</h1>
-	<%= link_to 'Add new supplier', new_supplier_path %>
-	<br/>
+<div class="row">
+	<div class="col-sm-12 suppliers-box">
+		<h2 class="hl top-zero">Suppliers</h2>
+		<hr/>
 
-	<%= paginate @suppliers %>
-	
-	<ul class="suppliers-list">
-		<% @suppliers.each do |supplier| %>
-			<li class="supplier-item">
-				<a href="<%= supplier_path(@country,supplier) %>"><h4><%= supplier.name %></h4></a>
-				<p class="supplier-item-location"><span class="supplier-item-location"><%= supplier.name %></span> in <span class="supplier-item-location"><%= "#{supplier.city}, #{supplier.country}" %></span></p>
-				<span class="supplier-item-time">Posted on <i><%= supplier.created_at.to_formatted_s(:date) %></i> by <%= link_to supplier.user.full_name, user_path(supplier.user) %></span>
-			</li>
-		<% end %>
-	</ul>
+		<%= link_to 'Add new supplier', new_supplier_path %>
+		<br/>
+
+		<%= paginate @suppliers %>
+		
+		<ul class="suppliers-list">
+			<% @suppliers.each do |supplier| %>
+				<li class="supplier-item">
+					<a href="<%= supplier_path(@country,supplier) %>"><h4><%= supplier.name %></h4></a>
+					<p class="supplier-item-location"><span class="supplier-item-location"><%= supplier.name %></span> in <span class="supplier-item-location"><%= "#{supplier.city}, #{supplier.country}" %></span></p>
+					<span class="supplier-item-time">Posted on <i><%= supplier.created_at.to_formatted_s(:date) %></i> by <%= link_to supplier.user.full_name, user_path(supplier.user) %></span>
+				</li>
+			<% end %>
+		</ul>
+	</div>
 </div>

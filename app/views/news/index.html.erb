@@ -13,12 +13,11 @@
 <%= link_to 'Add news', new_news_path %>
 <br/>
 
-<div class="news-list-box">
+<div class="news-list-box clearfix">
 <% if @columns == 3 %>
 	<div class="box news-box news-box-3">
 		<% column1.each do |news| %>
 			<%= render partial: "news_thumb", object: news %>
-			<hr />
 		<% end %>
 	</div>
 	<% if column2.length > 0 %>
@@ -51,4 +50,8 @@
 	</div>
 	<% end %>
 <% end %>
+</div>
+<div class="box <%= 'hidden' unless @news.next_page %>" id="loadMoreContainer">
+	<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
+	<%= link_to 'Load more', news_index_path(:page => @news.next_page), :class => 'load-more-news', :remote => true if @news.next_page %>
 </div>

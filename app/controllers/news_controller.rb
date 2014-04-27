@@ -2,8 +2,13 @@ class NewsController < ApplicationController
 	before_filter :authorize_paid_user
 
 	def index
-		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(10)
+		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(3)
 		@columns = 3
+
+		respond_to do |format|
+			format.js
+			format.html
+		end
 	end
 
 	def new
@@ -43,6 +48,8 @@ class NewsController < ApplicationController
 		@news = News.where(deleted: false, id: params[:id]).first
 		not_found if @news.nil?
 		@news.increment!(:views)
+		@comments = @news.news_comments.where(deleted: false)
+		@comment = NewsComment.new
 	end
 
 	def destroy
@@ -52,6 +59,6 @@ class NewsController < ApplicationController
 
 	private
 		def news_params
-			params.require(:news).permit(:title, :summary, :body, :published_at)
+			params.require(:news).permit(:title, :summary, :body, :published_at, :image)
 		end
 end

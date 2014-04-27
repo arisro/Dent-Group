@@ -10,6 +10,6 @@ class Offer < ActiveRecord::Base
 		!deleted?
   	end
 	def search_data
-		as_json only: [:title, :body, :summary]
+		as_json only: [:title, :body, :summary, :website_country, :created_at]
 	end
 end
