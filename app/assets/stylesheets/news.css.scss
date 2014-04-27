@@ -2,13 +2,7 @@
 	.news-box {
 		float: left;
 		margin-right: 5px;
-
-		&.news-box-3 {
-			width: 33%;
-		}
-		&.news-box-2 {
-			width: 49.5%;
-		}
+		width: 100%;
 	}
 	.news-box:last-child {
 		margin-right: 0px;
@@ -19,6 +13,9 @@
 		padding-left: 0;
 
 		.news-item {
+			margin-top: 5px;
+
+
 			h4 {
 				margin-bottom: 5px;
 			}
@@ -37,8 +34,19 @@
 	padding: 5px 10px 10px 0;
 }
 
+.news-list {
+	.news-item {
+		margin-bottom: 10px;
+	}
+}
+
 #loadMoreContainer {
 	text-align: center;
 	padding: 6px 0;
 	margin-top: 10px;
+}
+.news-list-container {
+	.col-sm-4 {
+		padding: 5px;
+	}
 }

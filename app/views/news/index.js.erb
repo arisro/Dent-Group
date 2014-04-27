@@ -1,0 +1,21 @@
+<%
+	column1, column2, column3 = [], [], []
+
+	@news.each_with_index do |news, index|
+		column1.push(news) if (index % @columns == 0)
+		column2.push(news) if (index % @columns == 1)
+		column3.push(news) if (index % @columns == 2)
+	end
+%>
+
+$(".news-list-box #col1").append("<%= escape_javascript(render :partial => 'news/news_list', :locals => { :news_list => column1, columns: @columns }) %>");
+$(".news-list-box #col2").append("<%= escape_javascript(render :partial => 'news/news_list', :locals => { :news_list => column2, columns: @columns }) %>");
+$(".news-list-box #col3").append("<%= escape_javascript(render :partial => 'news/news_list', :locals => { :news_list => column3, columns: @columns }) %>");
+
+$('#loadMoreContainer > a').removeClass('hidden')
+$('#loadMoreContainer > span').addClass('hidden')
+$("#loadMoreContainer a").attr('href', '<%= news_index_path(page: @news.next_page) %>');
+
+<% unless @news.next_page %>
+$("#loadMoreContainer").remove();
+<% end %>

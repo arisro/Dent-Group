@@ -12,46 +12,47 @@
 
 <%= link_to 'Add news', new_news_path %>
 <br/>
+<div class="news-list-container news-list" ng-controller="NewsController">
+	<div class="news-list-box row col-sm-12">
+		<% if @columns == 3 %>
+			<div class="col-sm-4">
+				<div id="col1" class="news-box">
+					<%= render :partial => 'news/news_list', :locals => { news_list: column1, columns: @columns } %>
+				</div>
+			</div>
+			<% if column2.length > 0 %>
+			<div class="col-sm-4">
+				<div id="col2" class="news-box">
+					<%= render :partial => 'news/news_list', :locals => { news_list: column2, columns: @columns } %>
+				</div>
+			</div>
+			<% end %>
 
-<div class="news-list-box clearfix">
-<% if @columns == 3 %>
-	<div class="box news-box news-box-3">
-		<% column1.each do |news| %>
-			<%= render partial: "news_thumb", object: news %>
-		<% end %>
-	</div>
-	<% if column2.length > 0 %>
-	<div class="box news-box news-box-3">
-		<% column2.each do |news| %>
-			<%= render partial: "news_thumb", object: news %>
-		<% end %>
-	</div>
-	<% end %>
+			<% if column3.length > 0 %>
+			<div class="col-sm-4">
+				<div id="col3" class="news-box">
+					<%= render :partial => 'news/news_list', :locals => { news_list: column3, columns: @columns } %>
+				</div>
+			</div>
+			<% end %>
+			<% else %>
+			<div class="col-sm-6">
+				<div id="col1" class="news-box">
+					<%= render :partial => 'news/news_list', :locals => { news_list: column1, columns: @columns } %>
+				</div>
+			</div>
 
-	<% if column3.length > 0 %>
-	<div class="box news-box news-box-3">
-		<% column3.each do |news| %>
-			<%= render partial: "news_thumb", object: news %>
+			<% if column2.length > 0 %>
+			<div class="col-sm-6">
+				<div id="col2" class="news-box">
+					<%= render :partial => 'news/news_list', :locals => { news_list: column2, columns: @columns } %>
+				</div>
+			</div>
+			<% end %>
 		<% end %>
 	</div>
-	<% end %>
-<% else %>
-	<div class="box news-box news-box-2">
-		<% column1.each do |news| %>
-			<%= render partial: "news_thumb", object: news %>
-		<% end %>
+	<div class="box col-sm-12 <%= 'hidden' unless @news.next_page %>" id="loadMoreContainer">
+		<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
+		<%= link_to 'Load more', news_index_path(:page => @news.next_page), :class => 'load-more-news', :remote => true if @news.next_page %>
 	</div>
-
-	<% if column2.length > 0 %>
-	<div class="box news-box news-box-2">
-		<% column2.each do |news| %>
-			<%= render partial: "news_thumb", object: news %>
-		<% end %>
-	</div>
-	<% end %>
-<% end %>
-</div>
-<div class="box <%= 'hidden' unless @news.next_page %>" id="loadMoreContainer">
-	<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
-	<%= link_to 'Load more', news_index_path(:page => @news.next_page), :class => 'load-more-news', :remote => true if @news.next_page %>
 </div>

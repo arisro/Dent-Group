@@ -51,6 +51,19 @@ namespace :deploy do
       run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/secret_token.rb #{deploy_to}/releases/#{release_name}/config/initializers/secret_token.rb"
   end
   after "deploy:finalize_update", "deploy:symlink_config_files"
+
+  desc "Symlink uploads"
+  task :symlink_uploads_folders do
+      run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/temp_profile_pictures"
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/uploads/temp_profile_pictures #{deploy_to}/releases/#{release_name}/public"
+
+      run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/profile_pictures"
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/uploads/profile_pictures #{deploy_to}/releases/#{release_name}/public"
+
+      run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/ckeditor_assets"
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/uploads/ckeditor_assets #{deploy_to}/releases/#{release_name}/public"
+  end
+  after "deploy:finalize_update", "deploy:symlink_uploads_folders"
   
   task :custom_bundle_install, roles: :app do
     run "cd #{deploy_to}/releases/#{release_name} && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 bundle install --gemfile #{deploy_to}/releases/#{release_name}/Gemfile --path #{deploy_to}/shared/bundle --deployment --quiet --without development test"
