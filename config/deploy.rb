@@ -62,6 +62,8 @@ namespace :deploy do
 
       run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/ckeditor_assets"
       run "#{try_sudo} ln -nfs #{deploy_to}/shared/uploads/ckeditor_assets #{deploy_to}/releases/#{release_name}/public"
+
+      run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/assets/*.json"
   end
   after "deploy:finalize_update", "deploy:symlink_uploads_folders"
   
@@ -99,7 +101,6 @@ namespace :deploy do
       servers.each do |server| 
         run_locally("rsync --recursive --times --rsh=ssh --compress #{port_option} --progress public/assets #{user}@#{server}:#{shared_path}") 
       end 
-      run "#{try_sudo} rm -Rf #{deploy_to}/releases/#{release_name}/public/assets/*.json"
     end
   end
 end
