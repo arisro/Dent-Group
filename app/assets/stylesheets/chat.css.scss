@@ -1,5 +1,9 @@
 .sidebar-chat {
 	line-height: normal;
+	position: absolute;
+	right: -200px;
+	margin-right: 0px;
+
 	.search-box {
 		clear: both;
 		overflow: hidden;
@@ -185,4 +189,10 @@
 }
 .clearfix {
 	zoom: 1;
+}
+.bar-chat-toggle {
+	text-align: right;
+}
+#aShowChat {
+	text-decoration: none;
 }

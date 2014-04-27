@@ -87,4 +87,7 @@ mod.controller "ChatController", [
 				if win.user.user_id == uid
 					return true
 			return false
+
+		$scope.notMeFilter = (user) ->
+			return user.user_id != $scope.uid;
 ]

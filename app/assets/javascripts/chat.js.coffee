@@ -13,7 +13,6 @@ class Chat.Controller
 	constructor: (url, useWebSockets) ->
 		@uid = $("#chatbox").data("uid")
 		@key = $("#chatbox").data("key")
-
 		@messageQueue = []
 		@dispatcher = new WebSocketRails(url, useWebSockets)
 		@dispatcher.on_open = @createUser

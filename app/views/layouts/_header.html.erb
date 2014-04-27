@@ -80,9 +80,14 @@
 	<div class="section-header">
 		<div class="container">
   		<div class="row">
-  		  <div class="col-sm-12">
+  		  <div class="col-sm-10">
   		    <h1 class="animated slideInLeft"><span><%= content_for?(:page_location) ? yield(:page_location) : "Home" %></span></h1>
   		  </div>
+        <div class="col-sm-2">
+          <div class="bar-chat-toggle">
+            <a href="#" id="aShowChat"><i class="fa fa-comment-o" id="chat-icon"></i> Chat</a>
+          </div>
+        </div>
   		</div>
 	 </div>
   </div>

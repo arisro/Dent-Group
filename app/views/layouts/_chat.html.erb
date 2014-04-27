@@ -1,9 +1,9 @@
-<div class="sidebar sidebar-left sidebar-chat hidden" id="chatContainer" ng-controller="ChatController">
+<div class="sidebar sidebar-right sidebar-chat" id="chatContainer" ng-controller="ChatController">
   <div class="search-box">
-    <div class="chat-toggle">
-        <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
-    </div>
     <input class='form-control' type="text" placeholder="Search" />
+    <div class="chat-toggle">
+        <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+    </div>
   </div>
   <hr />
   <div class="chat-box">
@@ -11,7 +11,7 @@
     </div>
 
     <ul class="chat-list">
-      <li class="chat-user-item" ng-repeat="user in users | filter: {user_id: '!'+uid }">
+      <li class="chat-user-item" ng-repeat="user in users | filter: notMeFilter">
         <a class="chat-link" href="#" ng-click="showWindow(user.user_id)" title="Click to chat">
           <img ng-src="/profile_pictures/thumbs2/{{user.profile_picture}}" class="chat-item-image" />
           <span class="chat-user-name">{{user.user_name}}</span>
@@ -24,11 +24,6 @@
   </div>
 
    <div class="chat-box-bot">
-    <div class="chat-toggle box">
-      <a href="#" id="aShowChat">
-        <i class="glyphicon glyphicon-user"></i> Chat
-      </a>
-    </div>
     <ul>
       <li class="chat-user-item box" ng-class="{'chat-open': win.window.visible, 'chat-close': !win.window.visible}" ng-repeat="win in openWindows">
         <div class='chat-window' ng-show="win.window.visible">

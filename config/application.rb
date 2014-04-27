@@ -24,6 +24,8 @@ module Drs
        DeviseController.respond_to :html, :json
     end
 
+    config.i18n.enforce_available_locales = true
+
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')

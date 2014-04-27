@@ -26,6 +26,7 @@ desc "convert a latin1 database with utf8 data into proper utf8"
     mapping = { :categories_products => true,
                 :schema_migrations => true,
                 :ckeditor_assets => Ckeditor::Asset,
+                :versions => PaperTrail::Version,
                 :statuses_uploads => StatusUpload
               }.with_indifferent_access
     tables = (conn.tables - big).select { |tbl| tbl !~ VIEWS }
