@@ -37,6 +37,8 @@ gem 'pundit'
 gem 'paper_trail', '~> 3.0.0'
 # gem 'activeadmin', github: 'gregbell/active_admin'
 
+gem 'redis-rails'
+
 gem 'jquery-fileupload-rails', github: 'jake3030/jquery-fileupload-rails'
 
 gem 'yui-compressor'

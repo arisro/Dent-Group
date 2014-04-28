@@ -7,6 +7,14 @@ module ApplicationHelper
 		session[:current_country]
 	end
 
+	def chat_url
+		if Rails.env.production?
+
+		else
+			
+		end
+	end
+
 	def put_active_menu(current_menu)
 		where = 'homepage'
 

@@ -1,5 +1,5 @@
 jQuery ->
-	window.chatController = new Chat.Controller('msg.drs.local/websocket', true)
+	window.chatController = new Chat.Controller("<%= Drs::Application.config.chat_service_url %>/websocket", true)
 	
 $(document).ready ->
 	setTimeout ->
