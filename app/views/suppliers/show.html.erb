@@ -14,15 +14,26 @@
 		<hr/>
 
 		<div class="supplier-info">
-			<ul>
-				<li>E-mail: <span><%= @supplier.email %></span></li>
-				<li>Phone: <span><%= @supplier.phone %></span></li>
-				<li>Address: <span><%= @supplier.address %></span></li>
-			</ul>
-			<ul>
-				<li>Views: <span><%= @supplier.views %></span></li>
-				<li>Posted by: <span><%= link_to @supplier.user.full_name, user_path(@supplier.user) %></span></li>
-			</ul>
+			<table>
+				<tbody>
+					<tr>
+						<% unless @supplier.image_file_name.nil? %>
+							<td class="supplier-image" rowspan="4"><%= image_tag @supplier.image.url(:thumb) %></td>
+						<% end %>
+						<td class='supplier-cname' align="left">E-mail:</td><td class='supplier-cvalue'><%= @supplier.email %></td>
+						<td class='supplier-cname' align="left">Views:</td><td class='supplier-cvalue'><%= @supplier.views %></td>
+					</tr>
+					<tr>
+						<td class='supplier-cname' align="left">Phone:</td><td class='supplier-cvalue'><%= @supplier.phone %></td>
+						<td class='supplier-cname' align="left">Posted by:</td><td class='supplier-cvalue'><%= link_to @supplier.user.full_name, user_path(@supplier.user) %></td>
+					</tr>
+					<tr>
+						<td class='supplier-cname' align="left">Address:</td><td class='supplier-cvalue'><%= @supplier.address %></td>
+						<td class='supplier-cname' align="left"></td><td class='supplier-cvalue'></td>
+					</tr>
+					<tr><td colspan="2">&nbsp;</td></tr>
+				</tbody>
+			</table>
 		</div>
 
 		<hr/>

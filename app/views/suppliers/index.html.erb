@@ -13,9 +13,11 @@
 		<div class="suppliers-list row col-sm-12">
 			<% @suppliers.each do |supplier| %>
 				<div class="supplier-item col-sm-6">
+					<% unless supplier.image_file_name.nil? %>
 					<div class="supplier-logo">
 						<%= link_to image_tag(supplier.image.url(:thumb)), supplier %>
 					</div>
+					<% end %>
 					<div class="supplier-details">
 						<a href="<%= supplier_path(@country,supplier) %>"><h4><%= supplier.name %></h4></a>
 						<p class="supplier-item-location"><span class="supplier-item-location"><%= supplier.name %></span> in <span class="supplier-item-location"><%= "#{supplier.city}, #{supplier.country}" %></span></p>

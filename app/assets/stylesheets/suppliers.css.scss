@@ -62,21 +62,26 @@
 	}
 
 	.supplier-info {
-		ul {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			li {
-				display: inline;
-				margin-left: 20px;
+		table {
+			width: 100%;
+			border: 0px none;
+			border-collapse: collapse;
+			font-size: small;
+
+			.supplier-cname {
 				font-weight: bold;
-
-				&:first-child {
-					margin-left: 0px;
-				}
-
-				span {
-					font-weight: normal;
+				padding: 1px 0px;
+				width: 15%;
+			}
+			.supplier-cvalue {
+				width: 35%;
+			}
+			.supplier-image {
+				padding: 5px;
+				text-align:center;
+				img {
+					max-width: 80px;
+					max-height: 80px;
 				}
 			}
 		}
@@ -148,13 +153,14 @@
 
 			.supplier-logo {
 				float: left;
+				margin-right: 10px;
+
 				img {
 					width: 80px;
 				}
 			}
 			.supplier-details {
-				float: left;
-				margin-left: 10px;
+				float: left;				
 			}
 		}
 	}
