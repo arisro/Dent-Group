@@ -23,7 +23,7 @@ set :user, 'aris'
 # server "drs.buzachis-aris.com", :app, :web, :db, :primary => true, user: 'aris', rails_env: "development"
 
 task :production do
-  server "www.dent-group.com", :app, :web, :db, :primary => true
+  server "www.dentgroup.eu", :app, :web, :db, :primary => true
   set :deploy_to, "/var/www/com.dent-group.www"
   set :rails_env, "production"
 end
