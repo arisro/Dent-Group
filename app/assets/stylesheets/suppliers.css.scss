@@ -117,6 +117,7 @@
 
 		h4 {
 			margin-bottom: 0px;
+			margin-top: 0px;
 
 			span {
 				font-size: 12px;
@@ -124,6 +125,8 @@
 		}
 
 		.supplier-item {
+			margin-bottom: 10px;
+
 			a {
 				color: #006AA4;
 				padding: 0;
@@ -135,12 +138,23 @@
 				box-flex: 1;
 			}
 
-			> p {
+			> div > p {
 				margin: 5px 0;
 			}
 
 			&:last-child > hr {
 				display: none;
+			}
+
+			.supplier-logo {
+				float: left;
+				img {
+					width: 80px;
+				}
+			}
+			.supplier-details {
+				float: left;
+				margin-left: 10px;
 			}
 		}
 	}

@@ -54,7 +54,7 @@ class NewsController < ApplicationController
 
 	def destroy
 		@news = News.find(params[:id]).update_attributes(deleted: true)
-		redirect_to news_path
+		redirect_to news_index_path
 	end
 
 	private

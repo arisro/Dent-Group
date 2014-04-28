@@ -1,5 +1,6 @@
 <% content_for :page_location, "Jobs" %>
 
+<% cache ['v1', @job] do %>
 <div class="row">
 	<div class="col-sm-12 job-box">
 		<h2 class="hl top-zero"><%= @job.title %></h2>
@@ -14,18 +15,29 @@
 		<hr/>
 
 		<div class="job-info">
-			<ul>
-				<li>Type: <span><%= ['', 'Full time', 'Part time'][@job.type] %></span></li>
-				<li>Positions opened: <span><%= @job.count %></span></li>
-				<li>Wage offer: <span><%= @job.offer %></span></li>
-				<li>Contact e-mail: <span><%= @job.contact_email %></span></li>
-				<li>Contact phone: <span><%= @job.contact_phone %></span></li>
-			</ul>
-			<ul>
-				<li>Valid until: <span><%= @job.valid_until.to_formatted_s(:date) %></span></li>
-				<li>Views: <span><%= @job.views %></span></li>
-				<li>Posted by: <span><%= link_to @job.user.full_name, user_path(@job.user) %></span></li>
-			</ul>
+			<table>
+				<tbody>
+					<tr>
+						<% unless @job.image_file_name.nil? %>
+							<td class="job-image" rowspan="4"><%= image_tag @job.image.url(:thumb) %></td>
+						<% end %>
+						<td class='job-cname' align="left">Type:</td><td class='job-cvalue'><%= ['', 'Full time', 'Part time'][@job.type] %></td>
+						<td class='job-cname' align="left">Contact e-mail:</td><td class='job-cvalue'><%= @job.contact_email.blank? ? 'nespecificat' : @job.contact_email %></td>
+					</tr>
+					<tr>
+						<td class='job-cname' align="left">Positions opened:</td><td class='job-cvalue'><%= @job.count.blank? ? 'nespecificat' : @job.count %></td>
+						<td class='job-cname' align="left">Contact phone:</td><td class='job-cvalue'><%= @job.contact_phone.blank? ? 'nespecificat' : @job.contact_phone %></td>
+					</tr>
+					<tr>
+						<td class='job-cname' align="left">Wage offer:</td><td class='job-cvalue'><%= @job.offer.blank? ? 'nespecificat' : @job.offer %></td>
+						<td class='job-cname' align="left">Views:</td><td class='job-cvalue'><%= @job.views %></td>
+					</tr>
+					<tr>
+						<td class='job-cname' align="left">Valid until:</td><td class='job-cvalue'><%= @job.valid_until.to_formatted_s(:date) %></td>
+						<td class='job-cname' align="left">Posted by:</td><td class='job-cvalue'><%= link_to @job.user.full_name, user_path(@job.user) %></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 		<hr/>
@@ -35,3 +47,4 @@
 		</div>
 	</div>
 </div>
+<% end %>

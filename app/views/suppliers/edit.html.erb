@@ -13,7 +13,8 @@
 				<%= f.input :email, :required => false, label: 'E-mail' %>
 				<%= f.input :phone, :required => false, label: 'Phone' %>
 				<%= f.input :website, :required => false, label: 'Website' %>
-				<%= f.input :description, :required => true, label: 'Description'  %>
+				<%= f.input :image, as: :file, label: 'Image' %>
+				<%= f.input :description, :required => true, label: 'Description', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
 				<%= f.input :country, :required => true, label: 'Country' %>
 				<%= f.input :city, :required => true, label: 'City' %>
 				<%= f.input :address, :required => false, label: 'Address' %>

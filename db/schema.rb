@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427202900) do
+ActiveRecord::Schema.define(version: 20140428215925) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
@@ -94,11 +94,15 @@ ActiveRecord::Schema.define(version: 20140427202900) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status"
-    t.boolean  "deleted",                   default: false
+    t.boolean  "deleted",                      default: false
     t.integer  "views"
     t.string   "contact_phone"
     t.string   "contact_email"
-    t.string   "website_country", limit: 3
+    t.string   "website_country",    limit: 3
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "news", force: true do |t|
@@ -198,10 +202,14 @@ ActiveRecord::Schema.define(version: 20140427202900) do
     t.string   "city"
     t.text     "address"
     t.integer  "views"
-    t.boolean  "deleted",                   default: false
+    t.boolean  "deleted",                      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "website_country", limit: 3
+    t.string   "website_country",    limit: 3
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "uploads", force: true do |t|

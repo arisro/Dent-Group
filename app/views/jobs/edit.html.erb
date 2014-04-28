@@ -12,12 +12,13 @@
 				<%= f.input :company_name, :required => true, label: 'Company name' %>
 				<%= f.input :title, :required => true, label: 'Job title' %>
 				<%= f.input :description, :required => true, label: 'Description', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
-				<%= f.input :country, :required => true, label: 'Country' %>
+				<%= f.input :image, as: :file, :required => false, label: 'Image' %>
+				<%= f.input :country, :required => true, label: 'Country', include_blank: false %>
 				<%= f.input :city, :required => true, label: 'City' %>
 
 				<%= f.input :type, collection: [['Full time',1],['Part time',2]], label: 'Type', include_blank: false %>
 				<%= f.input :count, label: 'Count' %>
-				<%= f.input :offer, :required => true, label: 'Wage offer' %>
+				<%= f.input :offer, :required => false, label: 'Wage offer' %>
 				<%= f.input :valid_until, :as => :date_picker, :required => true, label: 'Valid until', :input_html => {:class => 'col-span-3 form-control'} %>
 				<%= f.input :contact_email, :required => false, label: 'Contact e-mail' %>
 				<%= f.input :contact_phone, :required => false, label: 'Contact phone' %>

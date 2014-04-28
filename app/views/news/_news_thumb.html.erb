@@ -1,3 +1,4 @@
+<% cache ['v1', 'news_thumb', news_thumb] do %>
 <div class="news-item clearfix box">
 	<a href="<%= news_path(news_thumb) %>"><h4><%= news_thumb.title %></h4></a>
 	<span class="news-item-time timestamp"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(news_thumb.published_at) %></i></span>
@@ -6,3 +7,4 @@
 		<%= news_thumb.summary %>
 	</p>
 </div>
+<% end %>

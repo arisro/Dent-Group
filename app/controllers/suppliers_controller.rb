@@ -50,6 +50,6 @@ class SuppliersController < ApplicationController
 
 	private
 		def supplier_params
-			params.require(:supplier).permit(:name, :description,:email,:phone,:website,:country,:city,:address)
+			params.require(:supplier).permit(:name, :description,:email,:phone,:website,:country,:city,:address,:image)
 		end
 end

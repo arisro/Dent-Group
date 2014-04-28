@@ -42,9 +42,12 @@ form {
 
 		h4 {
 			margin-bottom: 0px;
+			margin-top: 0px;
 		}
 
 		.job-item {
+			margin-bottom: 10px;
+
 			a {
 				color: #006AA4;
 				min-height: 70px;
@@ -85,6 +88,17 @@ form {
 					font-weight: bold;
 				}
 			}
+			.job-image {
+				float: left;
+				margin-right: 5px;
+				img {
+					width: 80px;
+					max-height: 80px;
+				}
+			}
+			.job-details {
+				float: left;
+			}
 		}
 	}
 }
@@ -114,21 +128,26 @@ form {
 		margin-right: 5px;
 	}
 	.job-info {
-		ul {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			li {
-				display: inline;
-				margin-left: 20px;
+		table {
+			width: 100%;
+			border: 0px none;
+			border-collapse: collapse;
+			font-size: small;
+
+			.job-cname {
 				font-weight: bold;
-
-				&:first-child {
-					margin-left: 0px;
-				}
-
-				span {
-					font-weight: normal;
+				padding: 1px 0px;
+				width: 15%;
+			}
+			.job-cvalue {
+				width: 35%;
+			}
+			.job-image {
+				padding: 5px;
+				text-align:center;
+				img {
+					max-width: 80px;
+					max-height: 80px;
 				}
 			}
 		}

@@ -1,5 +1,6 @@
 <% content_for :page_location, "Jobs" %>
 
+<% cache ['v1', @jobs] do %>
 <div class="row">
 	<div class="col-sm-12 jobs-box">
 		<h2 class="hl top-zero">Jobs</h2>
@@ -12,14 +13,20 @@
 		
 		<ul class="jobs-list">
 			<% @jobs.each do |job| %>
-				<li class="job-item">
+				<li class="job-item clearfix">
 					<a href="<%= job_path(job) %>">
-						<h4><%= job.title %></h4>
-						<p class="job-item-company"><span class="job-item-company-name"><%= job.company_name %></span> in <span class="job-item-location"><%= "#{job.city}, #{job.country}" %></span></p>
-						<span class="job-item-time">Posted on <i><%= job.created_at.to_formatted_s(:date) %></i> Valid until <i><%= job.valid_until.to_formatted_s(:date) %></i></span>
+						<% unless job.image_file_name.nil? %>
+							<div class="job-image"><%= image_tag job.image.url(:thumb) %></div>
+						<% end %>
+						<div class="job-details">
+							<h4><%= job.title %></h4>
+							<p class="job-item-company"><span class="job-item-company-name"><%= job.company_name %></span> in <span class="job-item-location"><%= "#{job.city}, #{job.country}" %></span></p>
+							<span class="job-item-time">Posted on <i><%= job.created_at.to_formatted_s(:date) %></i> Valid until <i><%= job.valid_until.to_formatted_s(:date) %></i></span>
+						</div>
 					</a>
 				</li>
 			<% end %>
 		</ul>
 	</div>
 </div>
+<% end %>

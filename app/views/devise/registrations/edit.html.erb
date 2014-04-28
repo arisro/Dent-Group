@@ -13,8 +13,8 @@
       <%= f.input :lname, :required => true, label: 'Last name' %>
       <%= f.input :email, :required => true, label: 'E-mail' %>
       <%= f.input :specialization, :required => true, label: 'Specialization' %>
-      <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], label: 'Language' %>
-      <%= f.input :country, label: 'Country' %>
+      <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], include_blank: false, label: 'Language' %>
+      <%= f.input :country, label: 'Country', include_blank: false %>
       <%= f.input :city, label: 'City' %>
 
       <h4 class="hl bottom-15">Contact info</h4>
