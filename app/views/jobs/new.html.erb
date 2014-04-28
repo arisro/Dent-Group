@@ -16,7 +16,7 @@
 				<%= f.input :city, :required => true, label: 'City' %>
 
 				<%= f.input :type, collection: [['Full time',1],['Part time',2]], label: 'Type', include_blank: false %>
-				<%= f.input :count, :required => true, label: 'Count' %>
+				<%= f.input :count, label: 'Count' %>
 				<%= f.input :offer, :required => false, label: 'Wage offer' %>
 				<%= f.input :valid_until, :as => :date_picker, :required => true, label: 'Valid until', :input_html => {:class => 'col-span-3 form-control'} %>
 				<%= f.input :contact_email, :required => false, label: 'Contact e-mail' %>
