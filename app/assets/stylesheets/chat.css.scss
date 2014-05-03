@@ -81,7 +81,6 @@
 
 			a {
 				color: #000;
-				display: block;
 				widtH: 100%;
 				text-decoration: none;
 			}
@@ -126,11 +125,19 @@
 				}
 				.chat-window-title-bar-actions {
 					margin-left: 20px;
-					margin-top: 2px;
+					overflow: hidden;
+
+					a {
+						margin-left: 4px;
+					}
 				}
 			}
 			.chat-window-body {
 				height: 200px;
+				overflow-x: hidden;
+				overflow-y: auto;
+				position: relative;
+				
 				table {
 					height: 100%;
 					width: 100%;

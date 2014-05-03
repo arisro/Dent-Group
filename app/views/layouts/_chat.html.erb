@@ -1,6 +1,6 @@
 <div class="sidebar sidebar-right sidebar-chat" id="chatContainer" ng-controller="ChatController">
   <div class="search-box">
-    <input class='form-control' type="text" placeholder="Search" />
+    <input id="chatSearchInput" class='form-control' ng-model="searchString" type="text" placeholder="Search" />
     <div class="chat-toggle">
         <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
     </div>
@@ -29,27 +29,31 @@
         <div class='chat-window' ng-show="win.window.visible">
           <div class='chat-window-title-bar'>
             <div class="chat-window-title-bar-actions rfloat">
-              <a href="#" class="glyphicon glyphicon-remove" ng-click="win.window.visible = false"></a>
+              <a href="#" ng-click="ignoreUser(win.user.user_id, $index)" title="Ignore user" ng-show="!win.user.is_ignored"><i class="fa fa-volume-off"></i></a>
+              <a href="#" ng-click="unignoreUser(win.user.user_id, $index)" title="Unignore user" ng-show="win.user.is_ignored"><i class="fa fa-volume-up"></i></a>
+              <a href="#" ng-click="win.window.visible = false"><i class="glyphicon glyphicon-remove"></i></a>
             </div>
             <div class="chat-window-title-label clearfix">
               <i class="glyphicon glyphicon-user"></i> {{win.user.user_name}}
             </div>
           </div>
           <div class="chat-window-body">
-            <table>
-              <tr><td>
-                <div class="messages">
-                  <div class="chat-message clearfix" ng-class="{msgfrom: msg.user.user_id != 0, msgto: msg.user.user_id == 0}" ng-repeat="msg in win.window.messages">
-                    <div class="message-pic">
-                      <a href="/users/{{msg.user.user_id}}"><img ng-src="/profile_pictures/thumbs2/{{msg.user.profile_picture}}" /></a>
-                    </div>
-                    <div class="message-body">
-                      {{msg.text}}
+            <div class="chat-window-body-content">
+              <table>
+                <tr><td>
+                  <div class="messages">
+                    <div class="chat-message clearfix" ng-class="{msgfrom: msg.user.user_id != 0, msgto: msg.user.user_id == 0}" ng-repeat="msg in win.window.messages">
+                      <div class="message-pic">
+                        <a href="/users/{{msg.user.user_id}}"><img ng-src="/profile_pictures/thumbs2/{{msg.user.profile_picture}}" /></a>
+                      </div>
+                      <div class="message-body">
+                        {{msg.text}}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </tr></td>
-            </table>
+                </tr></td>
+              </table>
+            </div>
           </div>
           <textarea ng-enter="sendMessage($index)" ng-model="win.window.message"></textarea>
         </div>

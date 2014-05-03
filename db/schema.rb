@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428215925) do
+ActiveRecord::Schema.define(version: 20140503190259) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20140428215925) do
     t.integer  "views"
     t.string   "website_country", limit: 3
   end
+
+  create_table "chat_ignores", force: true do |t|
+    t.integer "by_user_id", null: false
+    t.integer "on_user_id", null: false
+  end
+
+  add_index "chat_ignores", ["by_user_id", "on_user_id"], name: "index_chat_ignores_on_by_user_id_and_on_user_id", unique: true, using: :btree
+  add_index "chat_ignores", ["by_user_id"], name: "index_chat_ignores_on_by_user_id", using: :btree
+  add_index "chat_ignores", ["on_user_id"], name: "index_chat_ignores_on_on_user_id", using: :btree
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -222,12 +231,12 @@ ActiveRecord::Schema.define(version: 20140428215925) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                            default: "",   null: false
-    t.string   "encrypted_password",               default: "",   null: false
+    t.string   "email",                            default: "",    null: false
+    t.string   "encrypted_password",               default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                    default: 0,    null: false
+    t.integer  "sign_in_count",                    default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -235,7 +244,7 @@ ActiveRecord::Schema.define(version: 20140428215925) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",                  default: 0,    null: false
+    t.integer  "failed_attempts",                  default: 0,     null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at"
@@ -245,13 +254,15 @@ ActiveRecord::Schema.define(version: 20140428215925) do
     t.string   "profile_picture"
     t.string   "specialization"
     t.datetime "paid_until"
-    t.integer  "roles_mask",                       default: 1,    null: false
-    t.string   "language",               limit: 5, default: "en", null: false
+    t.integer  "roles_mask",                       default: 1,     null: false
+    t.string   "language",               limit: 5, default: "en",  null: false
     t.string   "country"
     t.string   "city"
     t.string   "phone"
     t.string   "skype"
     t.string   "yahoo"
+    t.boolean  "is_online",                        default: false
+    t.boolean  "chat_is_invisible",                default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

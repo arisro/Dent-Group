@@ -4,13 +4,20 @@
 	.profile-info {
 		> a:hover .profile-picture {
 			border-color: #ccc;
+			&.profile-picture-online {
+				border-color: #1AB905;
+			}
 		}
+
 		.profile-picture {
 			width: 130px;
 			margin-bottom: 5px;
 
 			padding: 10px;
 			border: 1px solid #eee;
+			&.profile-picture-online {
+				border-color: #77F067;
+			}
 		}
 		p {
 			margin-bottom: 0px;

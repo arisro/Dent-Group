@@ -6,13 +6,8 @@ class ApplicationController < ActionController::Base
 	before_action :set_locale
 	before_action :set_country
 	before_filter :configure_permitted_parameters, if: :devise_controller?
-	before_filter :get_online_users
 
 	protected
-		def get_online_users
-			# @online_users = User.all.limit(10)
-		end
-
 		def set_locale
 			I18n.locale = session[:current_language] if session.has_key?(:current_language)
 			I18n.locale = current_user.language if user_signed_in?

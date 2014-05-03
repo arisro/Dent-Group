@@ -28,6 +28,8 @@ Drs::Application.configure do
   config.assets.debug = true
 
   config.chat_service_url = 'msg.drs.local';
+
+  config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
   
   config.action_mailer.default_url_options = { :host => 'www.drs.local' }
 end

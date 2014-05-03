@@ -93,8 +93,27 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.followed_users.page params[:page]
-    render 'show_follow'
+
+    respond_to do |format|
+      format.html {
+        @users = @user.followed_users.page params[:page]
+        render 'show_follow'
+      }
+      format.json {
+        @users = @user.followed_users.where(is_online: true)
+        @final_users = []
+        @users.each do |user|
+          @final_users.push({
+            user_id: user.id,
+            user_name: user.full_name,
+            specialization: user.specialization,
+            profile_picture: user.get_profile_picture,
+            is_ignored: user.chat_ignored_by?(current_user.id)
+          })
+        end
+        render json: {data: @final_users}
+      }
+    end
   end
 
   def followers

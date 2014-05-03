@@ -10,4 +10,7 @@ mod.factory 'User', ['$resource', ($resource) ->
 		cancel_reset:
 			method: "PUT"
 			url: "/user/cancel_reset"
+		followed:
+			method: "GET"
+			url: "/users/:id/following.json"
 ]

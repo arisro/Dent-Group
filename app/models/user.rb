@@ -15,11 +15,18 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  has_many :chat_ignores, class_name: "ChatIgnore", foreign_key: 'by_user_id'
+  has_many :chat_ignored, class_name: "ChatIgnore", foreign_key: 'on_user_id'
+
   ROLES = %w[visitor user moderator admin]
 
   has_paper_trail
 
   validates :fname, :lname, presence: true
+
+  scope :filter, -> (query) { where("fname like ? OR lname like ?", "%#{query}%", "%#{query}%")}
+  scope :online, -> { where(is_online: true) }
+  scope :chat_visible, -> { where(chat_is_invisible: false) }
 
   def full_name
   	"#{fname} #{lname}"
@@ -49,6 +56,10 @@ class User < ActiveRecord::Base
   # login after registration
   def active_for_authentication?
     true
+  end
+
+  def chat_ignored_by?(user_id)
+    !!chat_ignored.find_by(by_user_id: user_id)
   end
 
   def activities(country)

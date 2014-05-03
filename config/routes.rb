@@ -44,7 +44,7 @@ Drs::Application.routes.draw do
         get :following, :followers, :activity
       end
     end
-    get 'feed', to: 'users#feed' 
+    get 'feed', to: 'users#feed'
 
     get 'language/:language', to: 'dashboard#change_language', as: :change_language, language: /en|ro/, defaults: { language: 'en' }
 
@@ -53,4 +53,12 @@ Drs::Application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   resources :uploads
+
+  get "chat/online", to: "chat#get_online_users"
+  get "chat/get_user/:id", to: "chat#get_user"
+  get "chat/options", to: "chat#edit_options"
+  put "chat/options", to: "chat#edit_options"
+
+  resources :chat_ignores, only: [:index, :create, :destroy]
+  
 end

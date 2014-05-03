@@ -13,6 +13,13 @@ $(document).ready(function(e) {
 		window.location.href = _url;
 	});
 
+	// open chat buttons
+	$(".btn-chat").click(function(e) {
+		e.preventDefault();
+		var scope = angular.element($("#chatContainer")).scope();
+		scope.$apply(scope.openWindow($(this).data('uid')));
+	});
+
 	// menu dropdowns
 	var dropdownHideTimer = null;
 	$(".dropdown").parents(".menu-item").on("mouseover", function(e) {
@@ -56,7 +63,9 @@ $(document).ready(function(e) {
 			if (marginNeeded < 0) {
 				$('.main-content').stop().animate({"margin-right": -marginNeeded}, 750,'easeOutQuart');
 			}
-			$(".sidebar-chat").stop().animate({"right": 0}, 750, 'easeOutQuart');
+			$(".sidebar-chat").stop().animate({"right": 0}, 750, 'easeOutQuart', function() {
+				$("#chatSearchInput").focus();
+			});
 			isChatVisible = true;
 		} else {
 			$('.main-content').stop().animate({"margin-right": 0}, 750,'easeOutQuart');

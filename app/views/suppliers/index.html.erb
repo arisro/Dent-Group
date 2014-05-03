@@ -11,20 +11,40 @@
 		<%= paginate @suppliers %>
 		
 		<div class="suppliers-list row col-sm-12">
-			<% @suppliers.each do |supplier| %>
-				<div class="supplier-item col-sm-6">
-					<% unless supplier.image_file_name.nil? %>
-					<div class="supplier-logo">
-						<%= link_to image_tag(supplier.image.url(:thumb)), supplier %>
+			<div class="col-sm-6">
+				<% @suppliers.each_with_index do |supplier, i| %>
+					<% next if i.odd? %>
+					<div class="supplier-item clearfix">
+						<% unless supplier.image_file_name.nil? %>
+						<div class="supplier-logo">
+							<%= link_to image_tag(supplier.image.url(:thumb)), supplier %>
+						</div>
+						<% end %>
+						<div class="supplier-details">
+							<a href="<%= supplier_path(@country,supplier) %>"><h4><%= supplier.name %></h4></a>
+							<p class="supplier-item-location"><span class="supplier-item-location"><%= supplier.name %></span> in <span class="supplier-item-location"><%= "#{supplier.city}, #{supplier.country}" %></span></p>
+							<span class="supplier-item-time">Posted on <i><%= supplier.created_at.to_formatted_s(:date) %></i> by <%= link_to supplier.user.full_name, user_path(supplier.user) %></span>
+						</div>
 					</div>
-					<% end %>
-					<div class="supplier-details">
-						<a href="<%= supplier_path(@country,supplier) %>"><h4><%= supplier.name %></h4></a>
-						<p class="supplier-item-location"><span class="supplier-item-location"><%= supplier.name %></span> in <span class="supplier-item-location"><%= "#{supplier.city}, #{supplier.country}" %></span></p>
-						<span class="supplier-item-time">Posted on <i><%= supplier.created_at.to_formatted_s(:date) %></i> by <%= link_to supplier.user.full_name, user_path(supplier.user) %></span>
+				<% end %>
+			</div>
+			<div class="col-sm-6">
+				<% @suppliers.each_with_index do |supplier, i| %>
+					<% next if i.even? %>
+					<div class="supplier-item clearfix">
+						<% unless supplier.image_file_name.nil? %>
+						<div class="supplier-logo">
+							<%= link_to image_tag(supplier.image.url(:thumb)), supplier %>
+						</div>
+						<% end %>
+						<div class="supplier-details">
+							<a href="<%= supplier_path(@country,supplier) %>"><h4><%= supplier.name %></h4></a>
+							<p class="supplier-item-location"><span class="supplier-item-location"><%= supplier.name %></span> in <span class="supplier-item-location"><%= "#{supplier.city}, #{supplier.country}" %></span></p>
+							<span class="supplier-item-time">Posted on <i><%= supplier.created_at.to_formatted_s(:date) %></i> by <%= link_to supplier.user.full_name, user_path(supplier.user) %></span>
+						</div>
 					</div>
-				</div>
-			<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

@@ -24,9 +24,9 @@ class Chat.Controller
 	newMessage: (event) =>
 		$("#chatContainer").scope().receiveMessage(event.from, event.message)
 
-	updateUsersList: (users) =>
-		$("#chatContainer").scope().$apply ->
-			$("#chatContainer").scope().updateUsersList(users)
+	# updateUsersList: (users) =>
+	# 	$("#chatContainer").scope().$apply ->
+	# 		$("#chatContainer").scope().updateUsersList(users)
 
 	sendMessage: (uid, message) =>
 		@dispatcher.trigger 'chat_new_message', {to_user_id: uid, msg_body: message}
