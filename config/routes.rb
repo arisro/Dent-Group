@@ -58,6 +58,7 @@ Drs::Application.routes.draw do
   get "chat/get_user/:id", to: "chat#get_user"
   get "chat/options", to: "chat#edit_options"
   put "chat/options", to: "chat#edit_options"
+  get "chat/history/:user_id", to: "chat#get_history"
 
   resources :chat_ignores, only: [:index, :create, :destroy]
   

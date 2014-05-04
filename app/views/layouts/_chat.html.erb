@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-right sidebar-chat" id="chatContainer" ng-controller="ChatController">
+<div class="sidebar sidebar-right sidebar-chat" id="chatContainer" ng-controller="ChatController" ng-init="init()">
   <div class="search-box">
     <input id="chatSearchInput" class='form-control' ng-model="searchString" type="text" placeholder="Search" />
     <div class="chat-toggle">
@@ -26,7 +26,7 @@
    <div class="chat-box-bot hidden">
     <ul>
       <li class="chat-user-item box" ng-class="{'chat-open': win.window.visible, 'chat-close': !win.window.visible}" ng-repeat="win in openWindows">
-        <div class='chat-window' ng-show="win.window.visible">
+        <div class='chat-window' ng-show="win.window.visible" data-index="{{$index}}">
           <div class='chat-window-title-bar'>
             <div class="chat-window-title-bar-actions rfloat">
               <a href="#" ng-click="ignoreUser(win.user.user_id, $index)" title="Ignore user" ng-show="!win.user.is_ignored"><i class="fa fa-volume-off"></i></a>
@@ -41,6 +41,7 @@
             <div class="chat-window-body-content">
               <table>
                 <tr><td>
+                  <p class="chat-loader-container"><span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span><a href="#" class="load-more-messages">Load more messages</a></p>
                   <div class="messages">
                     <div class="chat-message clearfix" ng-class="{msgfrom: msg.user.user_id != 0, msgto: msg.user.user_id == 0}" ng-repeat="msg in win.window.messages">
                       <div class="message-pic">

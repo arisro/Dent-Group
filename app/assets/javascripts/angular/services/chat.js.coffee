@@ -13,4 +13,7 @@ mod.factory 'Chat', ['$resource', ($resource) ->
 		unignore:
 			method: "DELETE"
 			url: "/chat_ignores/:user_id.json"
+		history:
+			method: "GET"
+			url: "/chat/history/:user_id.json"
 ]

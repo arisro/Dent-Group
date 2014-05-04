@@ -20,18 +20,31 @@ mod.controller "ChatController", [
 
 		searchTimeout = null
 
-		$(document).ready ->
-			setTimeout ->
-				$(".chat-box-bot").removeClass('hidden')
-			,1000
+		$scope.init = ->
+			$ ->
+				setTimeout ->
+					$(".chat-box-bot").removeClass('hidden')
+				,1000
 
-			# load followed users
-			User.followed({id: $scope.uid}, (response) ->
-				$scope.followed_users = response.data
-				$scope.users = $scope.followed_users
-			,(response) ->
-				console.log 'error while loading followed users'
-			)
+				# load followed users
+				User.followed({id: $scope.uid}, (response) ->
+					$scope.followed_users = response.data
+					$scope.users = $scope.followed_users
+				,(response) ->
+					console.log 'error while loading followed users'
+				)
+
+				# load more messages link
+				$('#chatContainer').on 'click', 'a.load-more-messages', (e) ->
+					that = $(this)
+					$(this).addClass('hidden')
+					$(this).parent().find('> span').removeClass('hidden')
+					chat_window = $(this).closest(".chat-window")
+					window_data = $scope.openWindows[chat_window.data('index')]
+					$scope.loadHistory(window_data, ->
+						that.parent().find('> span').addClass('hidden')
+						that.removeClass('hidden') if window_data.window.show_more
+					)
 
 
 		$scope.$watch 'searchString', (search_string) ->
@@ -48,6 +61,24 @@ mod.controller "ChatController", [
 					)
 			,1000
 
+
+		$scope.loadHistory = (wwindow, callback) ->
+			# load history
+			Chat.history({user_id: wwindow.user.user_id, page: wwindow.window.page + 1}, (history_response) ->
+				for m in history_response.messages
+					_u = if m.from_user_id == $scope.uid then $scope.current_user else wwindow.user
+					# $scope.$apply ->
+					wwindow.window.messages.unshift({user: _u, text:m.text}) 
+
+				wwindow.window.show_more = history_response.show_more
+				wwindow.window.page = wwindow.window.page + 1
+
+				if typeof callback != 'undefined'
+					callback()
+			,(history_response) ->
+				console.log 'unable to load chat history'
+			)
+
 		$scope.updateUsersList = (users) ->
 			$scope.users = users
 
@@ -60,9 +91,17 @@ mod.controller "ChatController", [
 							visible: true
 							messages: []
 							message: ''
+							page: 0
+							show_more: false
 						}
 					}
 					$scope.openWindows.push new_window
+
+					$scope.loadHistory(new_window, ->
+						setTimeout(->
+							$(".chat-window-body").scrollTop(10000)
+						,100)
+					)
 
 					# if we also have a message
 					if from_user
@@ -98,21 +137,33 @@ mod.controller "ChatController", [
 		$scope.receiveMessage = (user, msg) ->
 			# console.log "Received message (from "+user.user_id+"): "+msg
 
+			do_scroll = false
+			window_body = null
 			window_found = false
-			for win in $scope.openWindows
+
+			for win, i in $scope.openWindows
 				if win.user.user_id == user.user_id
 					window_found = true
+
+					# check if scroll is at the bottom and auto scroll if yes
+					window_body = $($(".chat-window")[i]).find('.chat-window-body')
+					if $(window_body).scrollTop() >= $(window_body)[0].scrollHeight - $(window_body).height()
+						do_scroll = true
+
 					$scope.$apply ->
 						win.window.messages.push {
 							user: user
 							text: msg
 						}
+					break
 
 			if !window_found
 				$scope.$apply ->
 					$scope.showWindow(user.user_id, user, msg)
 
-			$(".chat-window-body").scrollTop(10000)
+			# check if scroll is at the bottom before auto scroll!
+			if do_scroll
+				window_body.scrollTop(10000)
 
 
 		$scope.ignoreUser = (user_id, index) ->

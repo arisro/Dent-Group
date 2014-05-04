@@ -137,13 +137,17 @@
 				overflow-x: hidden;
 				overflow-y: auto;
 				position: relative;
-				
+
 				table {
 					height: 100%;
 					width: 100%;
 					tr td {
 						vertical-align: bottom;
 					}
+				}
+
+				.chat-loader-container {
+					text-align: center;
 				}
 			}
 			.messages {

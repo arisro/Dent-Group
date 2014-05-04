@@ -28,6 +28,28 @@ class ChatController < ApplicationController
 		render 'users/chat_options'
 	end
 
+	def get_history
+		@messages = ChatMessage.lookup(current_user.id, params[:user_id]).order(created_at: :desc).page(params[:page]).per(15)
+
+		respond_to do |format|
+			format.json {
+				final_messages = []
+				@messages.each do |msg|
+					final_messages.push({
+						from_user_id: msg.from_user_id,
+						to_user_id: msg.to_user_id,
+						text: msg.body,
+						time: msg.created_at
+					})
+				end
+				render json: {
+					messages: final_messages,
+					show_more: !!@messages.next_page
+				}
+			}
+		end
+	end
+
 	def get_online_users
 		@users = User.where(nil)
 		@users = @users.filter(params[:q]) if params[:q].present?

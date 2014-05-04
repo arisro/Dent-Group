@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503190259) do
+ActiveRecord::Schema.define(version: 20140504160106) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20140503190259) do
   add_index "chat_ignores", ["by_user_id", "on_user_id"], name: "index_chat_ignores_on_by_user_id_and_on_user_id", unique: true, using: :btree
   add_index "chat_ignores", ["by_user_id"], name: "index_chat_ignores_on_by_user_id", using: :btree
   add_index "chat_ignores", ["on_user_id"], name: "index_chat_ignores_on_on_user_id", using: :btree
+
+  create_table "chat_messages", force: true do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chat_messages", ["from_user_id"], name: "index_chat_messages_on_from_user_id", using: :btree
+  add_index "chat_messages", ["to_user_id"], name: "index_chat_messages_on_to_user_id", using: :btree
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
