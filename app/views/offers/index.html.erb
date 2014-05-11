@@ -17,7 +17,12 @@
 
 					<span class="offer-item-time">Posted <i><%= time_ago_in_words(offer.created_at) %></i> ago by <%= link_to current_user.full_name, user_path(current_user) %></span>
 
-					<p class="offer-item-summary"><a class="offer-image-link" href="<%= offer.image.url(:large) %>"><%= image_tag offer.image.url(:thumb), align: 'left' %></a> <%= offer.summary %></p>
+					<p class="offer-item-summary">
+						<% unless offer.image_file_name.nil? %>
+							<a class="offer-image-link" href="<%= offer.image.url(:large) %>"><%= image_tag offer.image.url(:thumb), align: 'left' %></a>
+						<% end %>
+						 <%= offer.summary %>
+					</p>
 				</li>
 			<% end %>
 		</ul>
