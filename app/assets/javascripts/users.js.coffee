@@ -19,6 +19,7 @@ $ ->
 		$('#input_files').trigger 'click'
 
 	$('a.feed-item-image-link').fancybox()
+	$('a.offer-image-link').fancybox()
 
 	clearJcrop = ->
 		if $('#picUrl').data('Jcrop')? then $('#picUrl').data('Jcrop').destroy()

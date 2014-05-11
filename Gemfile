@@ -32,6 +32,8 @@ gem 'websocket-rails'
 gem 'roar-rails',     '~> 0.1.4'
 gem 'roar',           '~> 0.12.0'
 
+gem 'i18n', github: 'svenfuchs/i18n'
+
 gem 'devise'
 gem 'pundit'
 gem 'paper_trail', '~> 3.0.0'

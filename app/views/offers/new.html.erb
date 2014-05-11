@@ -12,6 +12,7 @@
 				<%= f.input :type, collection: [['Selling',1],['Buying',2],['Rental',3]], label: 'Type', include_blank: false %>
 				<%= f.input :title, :required => true, label: 'Title' %>
 				<%= f.input :summary, :required => true, label: 'Summary' %>
+				<%= f.input :image, as: :file, required: true, label: 'Image' %>
 				<%= f.input :body, :required => true, label: 'Description', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
 				<%= f.input :contact_email, :required => false, label: 'Contact e-mail' %>
 				<%= f.input :contact_phone, :required => false, label: 'Contact phone' %>

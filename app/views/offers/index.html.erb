@@ -13,10 +13,11 @@
 		<ul class="offers-list">
 			<% @offers.each do |offer| %>
 				<li class="offer-item">
-					<a href="<%= offer_path(offer) %>"><h4><%= offer.title %></h4></a>
+					<a href="<%= offer_path(offer) %>"><h4><span>[<%= ['', 'Selling', 'Buying', 'Rental'][offer.type] %>]</span> <%= offer.title %></h4></a>
+
 					<span class="offer-item-time">Posted <i><%= time_ago_in_words(offer.created_at) %></i> ago by <%= link_to current_user.full_name, user_path(current_user) %></span>
 
-					<p class="offer-item-summary"><%= offer.summary %></p>
+					<p class="offer-item-summary"><a class="offer-image-link" href="<%= offer.image.url(:large) %>"><%= image_tag offer.image.url(:thumb), align: 'left' %></a> <%= offer.summary %></p>
 				</li>
 			<% end %>
 		</ul>

@@ -50,6 +50,6 @@ class OffersController < ApplicationController
 
 	private
 		def offer_params
-			params.require(:offer).permit(:title, :body, :type, :summary, :contact_phone, :contact_email)
+			params.require(:offer).permit(:title, :body, :type, :summary, :contact_phone, :contact_email, :image)
 		end
 end

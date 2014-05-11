@@ -102,13 +102,6 @@ mod.controller "ChatController", [
 							$(".chat-window-body").scrollTop(10000)
 						,100)
 					)
-
-					# if we also have a message
-					if from_user
-						new_window.window.messages.push {
-							user: from_user
-							text: msg
-						}
 				,(response) ->
 					console.log "unable to load user details"
 				)
@@ -159,7 +152,7 @@ mod.controller "ChatController", [
 
 			if !window_found
 				$scope.$apply ->
-					$scope.showWindow(user.user_id, user, msg)
+					$scope.showWindow(user.user_id)
 
 			# check if scroll is at the bottom before auto scroll!
 			if do_scroll
@@ -189,8 +182,8 @@ mod.controller "ChatController", [
 					if win.user.user_id == uid
 						win.window.visible = !win.window.visible
 
-		$scope.showWindow = (uid, from_user, msg) ->
-			$scope.openWindow(uid, from_user, msg)
+		$scope.showWindow = (uid) ->
+			$scope.openWindow(uid)
 			for win in $scope.openWindows
 				if win.user.user_id == uid
 					win.window.visible = true

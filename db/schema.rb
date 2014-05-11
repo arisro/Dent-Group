@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504160106) do
+ActiveRecord::Schema.define(version: 20140511083420) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
@@ -158,14 +158,18 @@ ActiveRecord::Schema.define(version: 20140504160106) do
     t.string   "title"
     t.text     "body"
     t.integer  "views"
-    t.boolean  "deleted",                   default: false
+    t.boolean  "deleted",                      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "website_country", limit: 3
-    t.integer  "type",                                      null: false
+    t.string   "website_country",    limit: 3
+    t.integer  "type",                                         null: false
     t.text     "summary"
     t.string   "contact_phone"
     t.string   "contact_email"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "relationships", force: true do |t|
