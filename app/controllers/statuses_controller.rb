@@ -9,7 +9,7 @@ class StatusesController < ApplicationController
 				params[:images].each {|upid| @status.uploads << Upload.find(upid) }
 			end
 
-			redirect_to feed_path
+			redirect_to session[:return_to]
 		else
 			render 'users/feed'
 		end
@@ -22,6 +22,6 @@ class StatusesController < ApplicationController
 
 	private
 		def status_params
-			params.require(:status).permit(:message)
+			params.require(:status).permit(:message, :user_group_id)
 		end
 end

@@ -15,6 +15,14 @@
         <li class="<%= put_active_menu('homepage') %>"><a href="<%= root_path %>">Home</a></li>
         <li class="<%= put_active_menu('news') %>"><a href="<%= news_index_path %>">News</a></li>
         <li class="<%= put_active_menu('my_profile') %>"><a href="<%= feed_path %>">My profile</a></li>
+        <li class="dropdown <%= put_active_menu('specializations') %>">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Specializations <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% @menu_specializations.each do |mspec| %>
+                <li><%= link_to mspec.name, group_feed_path(mspec.ident) %></a></li>
+              <% end %>
+            </ul>
+        </li>
         <li class="dropdown <%= put_active_menu('offers') %>">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Offers <b class="caret"></b></a>
             <ul class="dropdown-menu">

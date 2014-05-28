@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :chat_ignores, class_name: "ChatIgnore", foreign_key: 'by_user_id'
   has_many :chat_ignored, class_name: "ChatIgnore", foreign_key: 'on_user_id'
 
+  has_and_belongs_to_many :user_groups
+
   ROLES = %w[visitor user moderator admin]
 
   has_paper_trail
@@ -62,12 +64,13 @@ class User < ActiveRecord::Base
     !!chat_ignored.find_by(by_user_id: user_id)
   end
 
-  def activities(country)
-    Activity.where("from_user_id = #{self.id}").where(country: country).order('created_at DESC')
+  def activities
+    # Activity.where("from_user_id = #{self.id}").where(country: country).order('created_at DESC')
+    Activity.where("from_user_id = #{self.id}").order('created_at DESC')
   end
 
-  def feed(country)
-    Activity.where("from_user_id = #{self.id} OR from_user_id in (?)", followed_users.pluck(:id).join(",")).where(country: country).order('created_at DESC')
+  def feed(user_group_id)
+    Activity.where("from_user_id = #{self.id} OR from_user_id in (?)", followed_users.pluck(:id).join(",")).where(user_group_id: user_group_id).order('created_at DESC')
   end
 
   # CAN CAN

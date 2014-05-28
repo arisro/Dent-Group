@@ -3,23 +3,9 @@ class UsersController < ApplicationController
 
   ACTIVITIES_PER_PAGE = 5
 
-  def feed
-    if user_signed_in?
-      session[:return_to] = request.original_url
-
-      @user = current_user
-      @status = Status.new
-      @status_comment = StatusComment.new
-      @activities = current_user.feed(get_country).page(params[:page]).per(ACTIVITIES_PER_PAGE)
-      @upload = Upload.new
-    else
-      render file: 'dashboard/lp'
-    end
-  end
-
   def activity
     @user = User.find(params[:id])
-    @activities = @user.feed(get_country).page(params[:page]).per(ACTIVITIES_PER_PAGE)
+    @activities = @user.activities.page(params[:page]).per(ACTIVITIES_PER_PAGE)
     @status_comment = StatusComment.new
 
     respond_to do |format|
@@ -35,7 +21,7 @@ class UsersController < ApplicationController
     session[:return_to] = request.original_url
     
 		@user = User.find(params[:id])
-    @activities = @user.activities(get_country).page(params[:page]).per(ACTIVITIES_PER_PAGE)
+    @activities = @user.activities.page(params[:page]).per(ACTIVITIES_PER_PAGE)
     @status_comment = StatusComment.new
     @no_forms = true
 

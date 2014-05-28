@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511083420) do
+ActiveRecord::Schema.define(version: 20140524173754) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
     t.string   "subject_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country",      limit: 3,             null: false
-    t.string   "name",                               null: false
-    t.integer  "from_user_id",                       null: false
+    t.string   "country",       limit: 3,             null: false
+    t.string   "name",                                null: false
+    t.integer  "from_user_id",                        null: false
     t.integer  "to_user_id"
-    t.integer  "thumbs_up",              default: 0, null: false
+    t.integer  "thumbs_up",               default: 0, null: false
+    t.integer  "user_group_id"
   end
 
   add_index "activities", ["from_user_id"], name: "index_activities_on_from_user_id", using: :btree
@@ -193,12 +194,13 @@ ActiveRecord::Schema.define(version: 20140511083420) do
   end
 
   create_table "statuses", force: true do |t|
-    t.integer  "user_id",                              null: false
-    t.text     "message",                              null: false
-    t.boolean  "deleted",              default: false
+    t.integer  "user_id",                                 null: false
+    t.text     "message",                                 null: false
+    t.boolean  "deleted",                 default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "country",    limit: 3,                 null: false
+    t.string   "country",       limit: 3,                 null: false
+    t.integer  "user_group_id"
   end
 
   create_table "statuses_uploads", force: true do |t|
@@ -245,6 +247,14 @@ ActiveRecord::Schema.define(version: 20140511083420) do
     t.datetime "updated_at"
   end
 
+  create_table "user_groups", force: true do |t|
+    t.string   "ident"
+    t.string   "name"
+    t.boolean  "has_optin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                            default: "",    null: false
     t.string   "encrypted_password",               default: "",    null: false
@@ -284,6 +294,13 @@ ActiveRecord::Schema.define(version: 20140511083420) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "users_user_groups", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "user_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "versions", force: true do |t|
     t.string   "item_type",      null: false

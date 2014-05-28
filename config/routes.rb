@@ -44,9 +44,11 @@ Drs::Application.routes.draw do
         get :following, :followers, :activity
       end
     end
-    get 'feed', to: 'users#feed'
+    get 'feed', to: 'user_groups#feed'
 
     get 'language/:language', to: 'dashboard#change_language', as: :change_language, language: /en|ro/, defaults: { language: 'en' }
+
+    get 'group/:user_group_ident/feed', to: 'user_groups#feed', as: :group_feed, :constraints => { :user_group_ident => /[^\/]*/ }
 
     resources :homepage_messages
   end

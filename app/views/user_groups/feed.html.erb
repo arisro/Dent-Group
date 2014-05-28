@@ -1,0 +1,46 @@
+<% content_for :page_location, @user_group.name %>
+
+<% if @no_forms.nil? %>
+	<%= simple_form_for @upload, html: { multipart: true, id: "fileupload" } do |f| %>
+	  <%= f.file_field :uploaded_file, multiple: true, name: 'upload[uploaded_file]', id: "input_files" %>
+	<% end %>
+
+	<script id="template-upload" type="text/x-tmpl">
+		<li><div class="upload {%=o.cname%}"></div></li>
+	</script>
+<% end %>
+
+<div class="profile-container row">
+	<div class="profile-info col-sm-2">
+		<%=
+			classes = ['profile-picture']
+			classes.push 'profile-picture-online' if @user.is_online? && !@user.chat_is_invisible?
+			link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: classes.join(' ')), @user
+		%>
+		<p class="profile-info-name"><%= @user_group.name %></p>
+		<p class="profile-info-location">(descriere grup)</p>
+	</div>
+	<div class="profile-feed-container col-sm-7" ng-controller="FeedController">
+		<% if @no_forms.nil? %>
+		<div class="profile-feed-form row">
+			<%= simple_form_for(@status, html: { role: "form", id: 'postStatusForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
+				<%= f.input :user_group_id, as: :hidden, input_html: { value: @user_group.id } %>
+				<%= f.input :message, :required => true, label: false, input_html: { placeholder: "Post something..." } %>
+				<%= f.button :submit, "Post", class: "btn btn-primary btn-dark" %>
+				<%= link_to "Add image", '#', class: "btn btn-warning", id: "but-add-image" %>
+				<div class="images-container">
+					<ul class="images-list"></ul>
+				</div>
+			<% end %>
+		</div>
+		<% end %>
+		<div class="profile-feed-list row">
+			<%= render :partial => 'shared/feed_activities', :locals => { :activities => @activities } %>
+
+			<div class="box <%= 'hidden' unless @activities.next_page %>" id="loadMoreContainer">
+				<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
+				<%= link_to 'Load more', feed_path(id: @user.id, :page => @activities.next_page), :class => 'load-more-posts', :remote => true if @activities.next_page %>
+			</div>
+		</div>
+	</div>
+</div>

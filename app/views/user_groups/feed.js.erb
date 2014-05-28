@@ -1,0 +1,10 @@
+$(".profile-feed-list").append("<%= escape_javascript(render :partial => 'shared/feed_activities', :locals => { :activities => @activities }) %>");
+
+$("#loadMoreContainer").appendTo('.profile-feed-list');
+$('#loadMoreContainer > a').removeClass('hidden')
+$('#loadMoreContainer > span').addClass('hidden')
+$("#loadMoreContainer a").attr('href', '<%= feed_path(id: @user.id, page: @activities.next_page) %>');
+
+<% unless @activities.next_page %>
+$("#loadMoreContainer").remove();
+<% end %>

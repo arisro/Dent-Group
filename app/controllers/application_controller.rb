@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 	before_action :set_locale
 	before_action :set_country
 	before_filter :configure_permitted_parameters, if: :devise_controller?
+	before_action :get_specializations
 
 	protected
 		def set_locale
@@ -40,6 +41,16 @@ class ApplicationController < ActionController::Base
 		# def user_for_paper_trail
 		# 	user_signed_in? ? current_user : User.find(1)
 		# end
+
+		def get_specializations
+			country = get_country
+			if country == 'int'
+				@menu_specializations = ['surgery','orthodontics','prosthetics', 'endodontics']
+			else
+				@menu_specializations = ["#{country}.surgery","#{country}.orthodontics","#{country}.prosthetics", "#{country}.endodontics"]
+			end
+			@menu_specializations = UserGroup.where("ident IN (?)", @menu_specializations)
+		end
 
 		def configure_permitted_parameters
 			devise_parameter_sanitizer.for(:sign_up) do |u|
