@@ -1,4 +1,8 @@
-<% content_for :page_location, @user_group.name %>
+<%
+	title = "My profile"
+	title = @user_group.name if @user_group.ident != 'ro' && @user_group.ident != 'int'
+	content_for :page_location, title
+%>
 
 <% if @no_forms.nil? %>
 	<%= simple_form_for @upload, html: { multipart: true, id: "fileupload" } do |f| %>
@@ -11,15 +15,35 @@
 <% end %>
 
 <div class="profile-container row">
-	<div class="profile-info col-sm-2">
-		<%=
-			classes = ['profile-picture']
-			classes.push 'profile-picture-online' if @user.is_online? && !@user.chat_is_invisible?
-			link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: classes.join(' ')), @user
-		%>
-		<p class="profile-info-name"><%= @user_group.name %></p>
-		<p class="profile-info-location">(descriere grup)</p>
-	</div>
+	<% if @user_group.ident == 'ro' || @user_group.ident == 'int' %>
+		<div class="profile-info col-sm-2">
+			<%=
+				classes = ['profile-picture']
+				classes.push 'profile-picture-online' if @user.is_online? && !@user.chat_is_invisible?
+				link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: classes.join(' ')), @user
+			%>
+			<p class="profile-info-name"><%= @user.full_name %></p>
+			<p class="profile-info-specialization"><%= @user.specialization %></p>
+			<p class="profile-info-location"><%= location_for(@user) %></p>
+			<br/>
+			<%= render 'shared/followers_stats' %>
+
+			<% if !current_user?(@user) && @user.is_online? %>
+				<a href="#" class="btn btn-sm btn-primary btn-chat" data-uid="<%= @user.id %>">Chat</a>
+			<% end %>
+		</div>
+	<% else %>
+		<div class="profile-info col-sm-2">
+			<%=
+				classes = ['profile-picture']
+				classes.push 'profile-picture-online' if @user.is_online? && !@user.chat_is_invisible?
+				link_to image_tag("/profile_pictures/#{@user.get_profile_picture}", class: classes.join(' ')), @user
+			%>
+			<p class="profile-info-name"><%= @user_group.name %></p>
+			<p class="profile-info-location">(descriere grup)</p>
+		</div>
+	<% end %>
+
 	<div class="profile-feed-container col-sm-7" ng-controller="FeedController">
 		<% if @no_forms.nil? %>
 		<div class="profile-feed-form row">
