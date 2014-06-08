@@ -10,7 +10,9 @@
 	end
 %>
 
-<%= link_to 'Add news', new_news_path %>
+<% if current_user.admin? %>
+  <%= link_to 'Add news', new_news_path %>
+<% end %>
 <br/>
 <div class="news-list-container news-list" ng-controller="NewsController">
 	<div class="news-list-box row col-sm-12">

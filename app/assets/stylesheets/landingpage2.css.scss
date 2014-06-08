@@ -658,7 +658,10 @@ section .btn {
     padding-bottom: 40px;
     padding-top: 20px; }
   .content-row {
-    padding-top: 30px; }
+    padding-top: 30px;
+    position: absolute;
+    bottom: 20%;
+  }
   .line-row .hr {
     background-color: #303030;
     height: 5px;

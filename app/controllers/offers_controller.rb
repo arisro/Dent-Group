@@ -7,10 +7,12 @@ class OffersController < ApplicationController
 
 	def new
 		@offer = Offer.new
+    authorize @offer
 	end
 
 	def create
 		@offer = Offer.new(offer_params)
+    authorize @offer
 		@offer.user_id = current_user.id
 		@offer.website_country = get_country
 		if @offer.save
@@ -24,11 +26,13 @@ class OffersController < ApplicationController
 	def edit
 		@offer = Offer.where(deleted: false, id: params[:id]).first
 		not_found if @offer.nil?
+    authorize @offer
 	end
 
 	def update
 		@offer = Offer.where(deleted: false, id: params[:id]).first
 		not_found if @offer.nil?
+    authorize @offer
 		if @offer.update_attributes(offer_params)
 			flash[:success] = "Offer announcement updated!"
       		redirect_to @offer
@@ -44,7 +48,9 @@ class OffersController < ApplicationController
 	end
 
 	def destroy
-		@offer = Offer.find(params[:id]).update_attributes(deleted: true)
+		@offer = Offer.find(params[:id])
+    authorize @offer
+    @offer.update_attributes(deleted: true)
 		redirect_to jobs_path
 	end
 

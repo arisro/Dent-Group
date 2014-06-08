@@ -7,8 +7,10 @@
 
 		<h5><span><%= "#{@supplier.city}, #{@supplier.country}" %></span></h5>
 
-		<div class="supplier-links">
-			<%= link_to 'Edit', edit_supplier_path(@country, @supplier), class: 'btn btn-primary btn-sm' %>
+    <div class="supplier-links">
+      <% if policy(@supplier).edit? %>
+        <%= link_to 'Edit', edit_supplier_path(@country, @supplier), class: 'btn btn-primary btn-sm' %>
+      <% end %>
 		</div>
 
 		<hr/>

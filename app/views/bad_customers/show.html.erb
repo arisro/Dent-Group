@@ -5,8 +5,10 @@
 		<h2 class="hl top-zero"><%= "#{@customer.name} (#{@customer.cnp})" %></h2>
 		<hr/>
 
-		<div class="customer-links">
-			<%= link_to 'Edit', edit_bad_customer_path(@customer), class: 'btn btn-primary btn-sm' %>
+    <div class="customer-links">
+      <% if policy(@customer).edit? %>
+  			<%= link_to 'Edit', edit_bad_customer_path(@customer), class: 'btn btn-primary btn-sm' %>
+      <% end %>
 		</div>
 
 		<div class="customer-info">

@@ -5,8 +5,10 @@
 		<h2 class="hl top-zero">Blacklist</h2>
 		<hr/>
 
-		<%= link_to 'Add new customer to blacklist', new_bad_customer_path %>
-		<br/>
+    <% if policy(BadCustomer).new? %>
+		  <%= link_to 'Add new customer to blacklist', new_bad_customer_path %>
+      <br/>
+      <% end %>
 
 		<%= paginate @customers %>
 

@@ -8,8 +8,10 @@
 
 		<h5><span><%= @job.company_name %></span> in <span><%= "#{@job.city}, #{@job.country}" %></span></h5>
 
-		<div class="job-links">
-			<%= link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary btn-sm' %>
+    <div class="job-links">
+      <% if policy(@job).edit? %>
+        <%= link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary btn-sm' %>
+      <% end %>
 		</div>
 
 		<hr/>

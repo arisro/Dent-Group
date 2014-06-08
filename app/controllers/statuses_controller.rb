@@ -16,7 +16,9 @@ class StatusesController < ApplicationController
 	end
 
 	def destroy
-		Status.find(params[:id]).update_attributes(deleted: true)
+		@status = Status.find(params[:id])
+    authorize @status
+    @status.update_attributes(deleted: true)
 		redirect_to feed_path
 	end
 

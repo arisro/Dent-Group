@@ -6,8 +6,10 @@
 		<h2 class="hl top-zero">Jobs</h2>
 		<hr/>
 
-		<%= link_to 'Add new job offer', new_job_path %>
-		<br/>
+    <% if policy(Job).new? %>
+		  <%= link_to 'Add new job offer', new_job_path %>
+      <br/>
+    <% end %>
 
 		<%= paginate @jobs %>
 		

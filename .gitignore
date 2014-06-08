@@ -21,3 +21,5 @@ config/secrets.yml
 /public
 /public/temp_profile_pictures/*
 /public/profile_pictures/*
+
+.htpasswd
