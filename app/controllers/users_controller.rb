@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   
 	def show
     session[:return_to] = request.original_url
-    
+
 		@user = User.find(params[:id])
     @activities = @user.activities.page(params[:page]).per(ACTIVITIES_PER_PAGE)
     @status_comment = StatusComment.new
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   		cropx, cropy, cropw, croph = params[:cropx], params[:cropy], params[:cropw], params[:croph]
   		image = MiniMagick::Image.open(temp_path)
   		image.crop("#{cropw}x#{croph}+#{cropx}+#{cropy}")
-		image.write original_size_path
+		  image.write original_size_path
 
   		FileUtils.rm(temp_path)
   		

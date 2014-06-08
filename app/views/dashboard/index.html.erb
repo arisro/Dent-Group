@@ -1,6 +1,8 @@
 <% content_for :page_location, "Home" %>
 
-<a href="<%= homepage_messages_path %>">Manage messages</a><br/><br/>
+<% if policy(HomepageMessage).new? %>
+  <a href="<%= homepage_messages_path %>">Manage messages</a><br/><br/>
+<% end %>
 
 <% @messages.each do |message| %>
 <div class="row">
@@ -9,8 +11,10 @@
 			<h2 class="hl top-zero"><%= message.title %></h2>
 			<ul class="text-muted list-inline">
 				<li><i class="fa fa-user"></i> <a href="#">Administrator</a></li>
-				<li><i class="fa fa-calendar"></i> <%= message.published_at.to_formatted_s(:news) %></li>
-				<li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(message), class: "text-muted" %></li>
+        <li><i class="fa fa-calendar"></i> <%= message.published_at.to_formatted_s(:news) %></li>
+        <% if policy(message).edit? %>
+          <li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(message), class: "text-muted" %></li>
+        <% end %>
 			</ul>
 			<hr/>
 			<p class="blog-text">

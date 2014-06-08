@@ -13,7 +13,9 @@ class StatusCommentsController < ApplicationController
 	end
 
 	def destroy
-		StatusComment.find(params[:id]).update_attributes(deleted: true)
+		@comment = StatusComment.find(params[:id])
+    authorize @comment
+    @comment.update_attributes(deleted: true)
 		redirect_to feed_path
 	end
 

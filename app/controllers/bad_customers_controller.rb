@@ -5,10 +5,12 @@ class BadCustomersController < ApplicationController
 
 	def new
 		@customer = BadCustomer.new
+    authorize @customer
 	end
 
 	def create
 		@customer = BadCustomer.new(bad_customer_params)
+    authorize @customer
 		@customer.user_id = current_user.id
 		@customer.website_country = get_country
 		if @customer.save
@@ -22,11 +24,13 @@ class BadCustomersController < ApplicationController
 	def edit
 		@customer = BadCustomer.where(deleted: false, id: params[:id]).first
 		not_found if @customer.nil?
+    authorize @customer
 	end
 
 	def update
 		@customer = BadCustomer.where(deleted: false, id: params[:id]).first
 		not_found if @customer.nil?
+    authorize @customer
 		if @customer.update_attributes(bad_customer_params)
 			flash[:success] = "Customer report updated!"
       		redirect_to @customer
@@ -44,7 +48,9 @@ class BadCustomersController < ApplicationController
 	end
 
 	def destroy
-		@customer = BadCustomer.find(params[:id]).update_attributes(deleted: true)
+		@customer = BadCustomer.find(params[:id])
+    authorize @customer
+    @customer.update_attributes(deleted: true)
 		redirect_to bad_customers_path
 	end
 

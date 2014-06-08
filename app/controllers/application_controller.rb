@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
 	# Prevent CSRF attacks by raising an exception.
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
@@ -7,6 +9,8 @@ class ApplicationController < ActionController::Base
 	before_action :set_country
 	before_filter :configure_permitted_parameters, if: :devise_controller?
 	before_action :get_specializations
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
 	protected
 		def set_locale
@@ -37,7 +41,7 @@ class ApplicationController < ActionController::Base
 		def authorize_paid_user
 			redirect_to root_url unless user_signed_in? && current_user.is_paid?
 		end
-
+    
 		# def user_for_paper_trail
 		# 	user_signed_in? ? current_user : User.find(1)
 		# end
@@ -60,4 +64,9 @@ class ApplicationController < ActionController::Base
 				u.permit(:fname, :lname, :email, :current_password, :password, :password_confirmation, :pic_name, :specialization, :language, :country, :city, :phone, :skype, :yahoo)
 			end
 		end
+
+    def user_not_authorized
+      flash[:alert] = "Access denied."
+      redirect_to (request.referrer || root_path)
+    end
 end

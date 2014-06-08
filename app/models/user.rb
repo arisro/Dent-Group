@@ -88,6 +88,10 @@ class User < ActiveRecord::Base
     roles.include?(role.to_s)
   end
 
+  def admin?
+    is?('admin')
+  end
+
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end

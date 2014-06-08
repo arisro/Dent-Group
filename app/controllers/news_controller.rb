@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
 	before_filter :authorize_paid_user
+  after_action :verify_authorized, except: [:index, :show]
 
 	def index
 		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(9)
@@ -14,10 +15,12 @@ class NewsController < ApplicationController
 	def new
 		@news = News.new
 		@news.published_at = Time.now
+    authorize @news
 	end
 
 	def create
 		@news = News.new(news_params)
+    authorize @news
 		@news.user_id = current_user.id
 		@news.website_country = get_country
 		if @news.save
@@ -30,12 +33,14 @@ class NewsController < ApplicationController
 
 	def edit
 		@news = News.where(deleted: false, id: params[:id]).first
+    authorize @news
 		not_found if @news.nil?
 	end
 
 	def update
 		@news = News.where(deleted: false, id: params[:id]).first
 		not_found if @news.nil?
+    authorize @news
 		if @news.update_attributes(news_params)
 			flash[:success] = "News updated!"
       		redirect_to @news
@@ -53,7 +58,9 @@ class NewsController < ApplicationController
 	end
 
 	def destroy
-		@news = News.find(params[:id]).update_attributes(deleted: true)
+		@news = News.find(params[:id])
+    authorize @news
+    @news.update_attributes(deleted: true)
 		redirect_to news_index_path
 	end
 

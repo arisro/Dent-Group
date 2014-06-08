@@ -5,7 +5,9 @@
 		<h2 class="hl top-zero">Suppliers</h2>
 		<hr/>
 
-		<%= link_to 'Add new supplier', new_supplier_path %>
+    <% if policy(Supplier).new? %>
+      <%= link_to 'Add new supplier', new_supplier_path %>
+    <% end %>
 		<br/>
 
 		<%= paginate @suppliers %>

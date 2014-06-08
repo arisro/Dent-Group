@@ -64,7 +64,7 @@ $(document).ready(function() {
 		});
 
 		jQuery(window).resize(function() {
-			window.homeHeight = jQuery("#home").height() - window.navHeight;
+			//window.homeHeight = jQuery("#home").height() - window.navHeight;
 		});
 
 	}

@@ -5,10 +5,12 @@ class JobsController < ApplicationController
 
 	def new
 		@job = Job.new
+    authorize @job
 	end
 
 	def create
 		@job = Job.new(job_params)
+    authorize @job
 		@job.user_id = current_user.id
 		@job.website_country = get_country
 		if @job.save
@@ -22,11 +24,13 @@ class JobsController < ApplicationController
 	def edit
 		@job = Job.where(deleted: false, id: params[:id]).first
 		not_found if @job.nil?
+    authorize @job
 	end
 
 	def update
 		@job = Job.where(deleted: false, id: params[:id]).first
 		not_found if @job.nil?
+    authorize @job
 		if @job.update_attributes(job_params)
 			flash[:success] = "Job announcement updated!"
       		redirect_to @job
@@ -43,7 +47,9 @@ class JobsController < ApplicationController
 	end
 
 	def destroy
-		@job = Job.find(params[:id]).update_attributes(deleted: true)
+		@job = Job.find(params[:id])
+    authorize @job
+    @job.update_attributes(deleted: true)
 		redirect_to jobs_path
 	end
 

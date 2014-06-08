@@ -5,8 +5,10 @@
 		<h2 class="hl top-zero"><span>[<%= ['', 'Selling', 'Buying', 'Rental'][@offer.type] %>]</span> <%= @offer.title %></h2>
 		<hr/>
 
-		<div class="offer-links">
-			<%= link_to 'Edit', edit_offer_path(@offer), class: 'btn btn-primary btn-sm' %>
+    <div class="offer-links">
+      <% if policy(@offer).edit? %>
+        <%= link_to 'Edit', edit_offer_path(@offer), class: 'btn btn-primary btn-sm' %>
+      <% end %>
 		</div>
 
 		<hr/>

@@ -5,10 +5,12 @@ class SuppliersController < ApplicationController
 
 	def new
 		@supplier = Supplier.new
+    authorize @supplier
 	end
 
 	def create
 		@supplier = Supplier.new(supplier_params)
+    authorize @supplier
 		@supplier.user_id = current_user.id
 		@supplier.website_country = get_country
 		if @supplier.save
@@ -22,11 +24,13 @@ class SuppliersController < ApplicationController
 	def edit
 		@supplier = Supplier.where(deleted: false, id: params[:id]).first
 		not_found if @supplier.nil?
+    authorize @supplier
 	end
 
 	def update
 		@supplier = Supplier.where(deleted: false, id: params[:id]).first
 		not_found if @supplier.nil?
+    authorize @supplier
 		if @supplier.update_attributes(supplier_params)
 			flash[:success] = "Supplier updated!"
       		redirect_to @supplier
@@ -44,7 +48,9 @@ class SuppliersController < ApplicationController
 	end
 
 	def destroy
-		@supplier = Supplier.find(params[:id]).update_attributes(deleted: true)
+		@supplier = Supplier.find(params[:id])
+    authorize @supplier
+    @supplier.update_attributes(deleted: true)
 		redirect_to suppliers_path
 	end
 

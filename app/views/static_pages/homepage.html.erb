@@ -1,6 +1,8 @@
 <% content_for :page_location, "Home" %>
 
-<a href="<%= homepage_messages_path %>">Manage messages</a><br/><br/>
+<% if current_user.admin? %>
+  <a href="<%= homepage_messages_path %>">Manage messages</a><br/><br/>
+<% end %>
 
 <% @messages.each do |message| %>
 <div class="row">

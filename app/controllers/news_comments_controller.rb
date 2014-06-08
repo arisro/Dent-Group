@@ -12,6 +12,7 @@ class NewsCommentsController < ApplicationController
 
 	def destroy
 		@comment = NewsComment.find(params[:id])
+    authorize @comment
 		@comment.update_attributes(deleted: true)
 		redirect_to news_path(@comment.news.id)
 	end
