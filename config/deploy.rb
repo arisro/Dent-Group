@@ -16,7 +16,7 @@ before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
 set :rvm_ruby_string, '2.0.0-p353'
 
-set :deploy_to, "/var/www/com.buzachis-aris.drs"
+set :deploy_to, "/var/www/eu.dentgroup.www"
 set :rails_env, "development"
 set :user, 'aris'
 
@@ -24,14 +24,14 @@ set :user, 'aris'
 
 task :production do
   server "www.dentgroup.eu", :app, :web, :db, :primary => true
-  set :deploy_to, "/var/www/com.dent-group.www"
+  set :deploy_to, "/var/www/eu.dentgroup.www"
   set :rails_env, "production"
 end
 
 task :staging do
   server "drs.buzachis-aris.com", :app, :web, :db, :primary => true
-  set :deploy_to, "/var/www/com.buzachis-aris.drs"
-  set :rails_env, "development"
+  set :deploy_to, "/var/www/eu.dentgroup.staging"
+  set :rails_env, "production"
 end
 
 namespace :deploy do
