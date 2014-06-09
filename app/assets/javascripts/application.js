@@ -20,6 +20,7 @@
 //= require jquery.Jcrop
 //= require jquery.remotipart
 //= require jquery.inview.min.js
+//= require bootbox.min.js
 //= require script
 
 //= require ckeditor/override

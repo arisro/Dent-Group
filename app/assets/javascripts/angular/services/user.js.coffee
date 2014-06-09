@@ -13,4 +13,7 @@ mod.factory 'User', ['$resource', ($resource) ->
 		followed:
 			method: "GET"
 			url: "/users/:id/following.json"
+		resendEmail:
+      method: "POST"
+      url: "/user/confirmation.json"
 ]

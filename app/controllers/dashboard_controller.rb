@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
 	layout :dashboard_layout
 	
 	def index
-		if user_signed_in? && current_user.is_paid?
+		#if user_signed_in? && current_user.is_paid?
+    if user_signed_in? && current_user.confirmed?
 			@messages = HomepageMessage.where( website_country: get_country ).limit(10)
 		else
 			render file: 'dashboard/lp'
@@ -36,7 +37,8 @@ class DashboardController < ApplicationController
 
 	private
 		def dashboard_layout
-			params[:action] == 'index' && (!user_signed_in? || !current_user.is_paid?) ? 'landingpage2' : nil
+			#params[:action] == 'index' && (!user_signed_in? || !current_user.is_paid?) ? 'landingpage2' : nil
+			params[:action] == 'index' && (!user_signed_in? || !current_user.confirmed?) ? 'landingpage2' : nil
 		end
 
 		# disable this check

@@ -9,6 +9,7 @@
 //= require_tree ./angular
 //= require app
 //= require jquery.qtip.js
+//= require bootbox.min.js
 
 $(document).ready(function() {
 	var _scrollSpeed			= 1000;
