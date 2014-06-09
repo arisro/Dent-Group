@@ -8,7 +8,7 @@ Drs::Application.routes.draw do
   put 'user/pay', to: "users#set_payed"
   put 'user/cancel_reset', to: "users#cancel_reset_password"
   
-  devise_for :user, controllers: { registrations: "registrations", passwords: "passwords" }
+  devise_for :user, controllers: { registrations: "registrations", passwords: "passwords", omniauth_callbacks: "omniauth_callbacks" }
   as :user do
     post "/sessions" => "sessions#create"
     delete "/sessions" => "sessions#destroy"
@@ -30,6 +30,7 @@ Drs::Application.routes.draw do
     resources :offers
 
     get 'search', to: 'dashboard#search'
+    get 'privacy', to: 'static_pages#privacy'
   
     resources :suppliers do
       resources :supplier_comments, only: [:create, :destroy]
