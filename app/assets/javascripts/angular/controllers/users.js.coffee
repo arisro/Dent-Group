@@ -47,15 +47,22 @@ mod.controller "UsersController", [
 		$scope.cancel = ->
 			$scope.newUser.currentStep = 1
 
+		$scope.resendEmail = (email) ->
+			User.resendEmail({user: {email: email}}, ->
+        bootbox.alert "The confirmation e-mail has been sent to " + email + "."
+        console.log ''
+      ,(response) ->
+        console.log response.data.errors
+      )
+
 		$scope.sendResetPassword = ->
 			Password.create({user: { email: $(".signin #user_email").val() } }, ->
-				alert "Password reset instructions sent!"
+        bootbox.alert "The password reset instructions e-mail has been sent."
 			,(response) ->
 				console.log response.data.errors
 			)
 
 		$scope.changePasswordReset = ->
-			console.log $scope.forgotPassword
 			Password.update({user: $scope.forgotPassword }, ->
 				$scope.window.location.href = "/"
 			,(response) ->

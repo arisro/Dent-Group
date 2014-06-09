@@ -25,7 +25,7 @@
 
       <div class="fullscreen-img"></div>
 
-      <% if !session[:reset_password_token].nil? %>
+      <% unless session[:reset_password_token].nil? %>
         <div class="forgot-password-cont collapse in" id="forgotPasswordContainer" ng-controller="UsersController" ng-init="forgotPassword.reset_password_token='<%= session[:reset_password_token] %>';">
           <p>Change password</p>
           <%= simple_form_for(:user, html: { id: "forgotPasswordForm", role: "form" , 'ng-submit' => 'changePasswordReset()' }, url: '' ) do |f| %>
@@ -59,7 +59,7 @@
               <div class="errors-container" ng-show="register_errors.fname || register_errors.lname">
                 <p class="text-danger"><%= t('signup_names_error') %></p>
               </div>
-
+              
               <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "newUser.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': register_errors.email}" } %>
               <div class="errors-container" ng-show="register_errors.email">
                 <p class="text-danger">E-mail address {{register_errors.email[0]}}</p>
@@ -71,20 +71,35 @@
               </div>
             </div>
 
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+
             <div class="form-actions">
               <%= f.button :submit, t('sign_up'), class: "btn btn-success btn-lg" %>
             </div>
           <% end %>
         </div>
-        <div id="reg-step-2" ng-show="newUser.currentStep == 2">
-          <p>Payment info</p>
-          The first month is free and you will get full access. This is the reason for which we need to control the users that can get into this community, but asking for payment info.
+        <%
+        #<div id="reg-step-2" ng-show="newUser.currentStep == 2">
+        #  <p>Payment info</p>
+        #  The first month is free and you will get full access. This is the reason for which we need to control the users that can get into this community, but asking for payment info.
+        #
+        #  <center>
+        #    <button class="btn btn-success" ng-click="pay()">Pay</button>
+        #    <= link_to 'Cancel', destroy_user_session_path, method: :delete, class: "btn btn-warning" >
+        #  </center>
+        #</div>
+        %>
+        <% unless current_user.nil? %>
+          <div id="reg-step-2" ng-show="newUser.currentStep == 2">
+            <p>E-mail confirmation required</p>
+            We sent you an e-mail to <%= current_user.email %> containing instructions on how to confirm your e-mail address.<br/>
+            If you did not receive the e-mail click the button below to resend it.
+            <center>
+              <button class="btn btn-success" ng-click="resendEmail('<%= current_user.email %>')">Resend e-mail</button>
+            </center>
+          </div>
+        <% end %>
 
-          <center>
-            <button class="btn btn-success" ng-click="pay()">Pay</button>
-            <%= link_to 'Cancel', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
-          </center>
-        </div>
         <button id="signupClose" data-toggle="collapse" data-target="#signupContainer">
           &#10006;
         </button>

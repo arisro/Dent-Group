@@ -39,7 +39,8 @@ class ApplicationController < ActionController::Base
 		end
 
 		def authorize_paid_user
-			redirect_to root_url unless user_signed_in? && current_user.is_paid?
+			#redirect_to root_url unless user_signed_in? && current_user.is_paid?
+      redirect_to root_url unless user_signed_in? && current_user.confirmed?
 		end
     
 		# def user_for_paper_trail
@@ -68,5 +69,9 @@ class ApplicationController < ActionController::Base
     def user_not_authorized
       flash[:alert] = "Access denied."
       redirect_to (request.referrer || root_path)
+    end
+
+    def after_sign_in_path_for(resource)
+      root_path
     end
 end
