@@ -2,7 +2,7 @@ require "bundler/capistrano"
 require "capistrano-unicorn"
 require "rvm/capistrano"
 
-set :application, "DRS"
+set :application, "DentGroupWebsite"
 set :repository,  "git@github.com:arisro/drs.git"
 set :scm, :git
 set :branch, "master"

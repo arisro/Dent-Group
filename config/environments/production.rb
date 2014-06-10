@@ -55,7 +55,7 @@ Drs::Application.configure do
   config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = "http://d1quxvuervikup.cloudfront.net"
+  config.action_controller.asset_host = "http://static.dentgroup.eu"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
