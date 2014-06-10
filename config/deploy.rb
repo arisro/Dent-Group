@@ -37,7 +37,8 @@ end
 namespace :deploy do
   task :copy_config_files do
     put File.read("config/unicorn.rb.deploy"), "#{shared_path}/config/unicorn.rb"
-    put File.read("config/initializers/secret_token.rb.dist"), "#{shared_path}/config/secret_token.rb"
+    put File.read("config/initializers/secret_token.rb.dist"), "#{shared_path}/config/secret_token.rb"    
+    put File.read("config/newrelic.yml.dist"), "#{shared_path}/config/newrelic.yml"
     
     put File.read("config/unicorn_init.sh"), "#{shared_path}/config/unicorn_init.sh"
     run "#{try_sudo} chmod +x #{shared_path}/config/unicorn_init.sh && #{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn_init.sh /etc/init.d/unicorn_#{application}_#{rails_env}"
@@ -48,7 +49,8 @@ namespace :deploy do
   task :symlink_config_files do
       run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/database.yml #{deploy_to}/releases/#{release_name}/config/database.yml"
       run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/releases/#{release_name}/config/unicorn.rb"      
-      run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/secret_token.rb #{deploy_to}/releases/#{release_name}/config/initializers/secret_token.rb"
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/secret_token.rb #{deploy_to}/releases/#{release_name}/config/initializers/secret_token.rb"      
+      run "#{try_sudo} ln -nfs #{deploy_to}/shared/config/newrelic.yml #{deploy_to}/releases/#{release_name}/config/newrelic.yml"
   end
   after "deploy:finalize_update", "deploy:symlink_config_files"
 

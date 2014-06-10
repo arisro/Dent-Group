@@ -4,6 +4,7 @@ gem 'rails', '4.0.2'
 gem 'mysql2'
 gem 'unicorn'
 gem 'geoip'
+gem 'newrelic_rpm'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-select-rails', git: 'https://github.com/Slashek/bootstrap-select-rails.git'
