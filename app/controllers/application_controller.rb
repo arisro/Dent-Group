@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		def default_url_options(options={})
-			session[:current_country].nil? ? { country: 'int' } : { country: session[:current_country] } 
+			session[:current_country].nil? ? { country: 'ro' } : { country: session[:current_country] } 
 		end
 
 		def not_found

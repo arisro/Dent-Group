@@ -3,6 +3,8 @@ class NewsController < ApplicationController
   after_action :verify_authorized, except: [:index, :show]
 
 	def index
+    @news_categories = NewsCategory.joins(:news).where(deleted:false, 'news.website_country' => get_country).where("published_at <= ?", Time.now)
+    # abort @news_categories.inspect
 		@news = News.where(deleted: false, website_country: get_country).where("published_at <= ?", Time.now).order("id desc").page(params[:page]).per(9)
 		@columns = 3
 
@@ -66,6 +68,6 @@ class NewsController < ApplicationController
 
 	private
 		def news_params
-			params.require(:news).permit(:title, :summary, :body, :published_at, :image)
+			params.require(:news).permit(:title, :summary, :body, :published_at, :image, :news_category_id)
 		end
 end

@@ -14,8 +14,10 @@ Drs::Application.routes.draw do
     delete "/sessions" => "sessions#destroy"
   end
 
-  scope '(:country)', country: /int|ro|de/ do
+  scope '(:country)', country: /ro/ do
     root 'dashboard#index'
+    get 'homepage/:category_id', to: 'dashboard#index', as: 'dashboard'
+
     resources :news do
       resources :news_comments, only: [:create, :destroy]
     end
@@ -56,6 +58,8 @@ Drs::Application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   resources :uploads
+  resources :news_categories
+  resources :homepage_messages_categories
 
   get "chat/online", to: "chat#get_online_users"
   get "chat/get_user/:id", to: "chat#get_user"

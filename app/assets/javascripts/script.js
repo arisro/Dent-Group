@@ -6,11 +6,14 @@ $(document).ready(function(e) {
 	$('.selectpicker').selectpicker({showContent: true, width: '160px'});
 	$("#countrySelect").on('change', function(e) {
 		var _url = '/' + $(this).val();
-		if (/\/(int|ro|de)/.test(window.location.href)) {
-			_url = window.location.href.replace(/\/(int|ro|de)/, '/' + $(this).val());
-			// _url = _url.replace(/\/\d+$/, '');
+		if (/\/(int|ro)/.test(window.location.href)) {
+      if ($(this).val() == 'int') {
+        bootbox.alert("The International section is still in implementation.");
+      } else {
+			  _url = window.location.href.replace(/\/(int|ro)/, '/' + $(this).val());
+		     window.location.href = _url;
+      }
 		}
-		window.location.href = _url;
 	});
 
 	// open chat buttons

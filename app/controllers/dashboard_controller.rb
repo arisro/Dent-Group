@@ -4,7 +4,17 @@ class DashboardController < ApplicationController
 	def index
 		#if user_signed_in? && current_user.is_paid?
     if user_signed_in? && current_user.confirmed?
-			@messages = HomepageMessage.where( website_country: get_country ).limit(10)
+      where = { website_country: get_country }
+   
+      @category = nil
+      unless params[:category_id].nil?
+        @category = HomepageMessagesCategory.find(params[:category_id])
+        where[:homepage_messages_category_id] = params[:category_id]
+      end
+
+      @messages = HomepageMessage.where(where).limit(10)
+      @latest = HomepageMessage.where(website_country: get_country)[0, 5]
+      @categories = HomepageMessagesCategory.joins("LEFT JOIN homepage_messages ON homepage_messages_categories.id = homepage_messages.homepage_messages_category_id").select("homepage_messages_categories.*, count(homepage_messages.id) as msgs_count").group("homepage_messages_categories.id").where(deleted: false).where("homepage_messages.website_country = ?", get_country).having("msgs_count > 0").order(ident: :asc).order('msgs_count desc')
 		else
 			render file: 'dashboard/lp'
 		end

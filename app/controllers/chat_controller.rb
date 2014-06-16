@@ -9,7 +9,7 @@ class ChatController < ApplicationController
 					user_id: user.id,
 				    user_name: user.full_name,
 				    specialization: user.specialization,
-				    profile_picture: user.get_profile_picture,
+			    profile_picture: user.get_profile_picture,
 				    is_ignored: user.chat_ignored_by?(current_user.id)
 				}}
 			}

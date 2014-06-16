@@ -71,7 +71,9 @@
               </div>
             </div>
 
-            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+            <%=
+              # link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+            %>
 
             <div class="form-actions">
               <%= f.button :submit, t('sign_up'), class: "btn btn-success btn-lg" %>

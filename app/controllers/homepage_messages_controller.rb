@@ -44,6 +44,10 @@ class HomepageMessagesController < ApplicationController
 		@message = HomepageMessage.where(deleted: false, id: params[:id]).first
 		not_found if @message.nil?
     authorize @message
+
+    where = { website_country: get_country  }
+    @latest = HomepageMessage.where(where).limit(5)
+    @categories = HomepageMessagesCategory.joins("LEFT JOIN homepage_messages ON homepage_messages_categories.id = homepage_messages.homepage_messages_category_id").select("homepage_messages_categories.*, count(homepage_messages.id) as msgs_count").group("homepage_messages_categories.id").where(deleted: false).where("homepage_messages.website_country= ?", get_country).having("msgs_count > 0").order(ident: :asc).order('msgs_count desc')
 	end
 
 	def destroy
@@ -55,6 +59,6 @@ class HomepageMessagesController < ApplicationController
 
 	private
 		def page_params
-			params.require(:homepage_message).permit(:title, :body, :published_at, :website_country)
+			params.require(:homepage_message).permit(:title, :body, :published_at, :website_country, :homepage_messages_category_id)
 		end
 end

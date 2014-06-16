@@ -1,6 +1,7 @@
 <% cache ['v1', 'news_thumb', news_thumb] do %>
 <div class="news-item clearfix box">
-	<a href="<%= news_path(news_thumb) %>"><h4><%= news_thumb.title %></h4></a>
+  <a href="<%= news_path(news_thumb) %>"><h4><%= news_thumb.title %></h4></a>
+  <i class="fa fa-folder-o"> <%= news_thumb.news_category.ident %></i>
 	<span class="news-item-time timestamp"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(news_thumb.published_at) %></i></span>
 	<p class="news-item-summary">
 		<%= image_tag news_thumb.image.url(:thumb), align: "left", class: "news-thumb-image" unless news_thumb.image_file_name.nil? %>

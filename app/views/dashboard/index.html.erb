@@ -1,15 +1,25 @@
-<% content_for :page_location, "Home" %>
+<% 
+    location = "Home"
+    unless @category.nil?
+      location << ' / ' << @category.ident
+    end
+    content_for :page_location, location
+%>
 
 <% if policy(HomepageMessage).new? %>
-  <a href="<%= homepage_messages_path %>">Manage messages</a><br/><br/>
+  <a href="<%= homepage_messages_path %>">Manage messages</a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="<%= homepage_messages_categories_path %>">Manage messages categories</a><br/><br/>
 <% end %>
 
+<div class="row"> 
+	<div class="col-sm-8">
 <% @messages.each do |message| %>
-<div class="row">
-	<div class="col-sm-12">
+	 <div class="row col-sm-12 blog-summary">
 		<% unless message.nil? %>
-			<h2 class="hl top-zero"><%= message.title %></h2>
-			<ul class="text-muted list-inline">
+      <h4 class="hl top-zero"><a href="<%= homepage_message_path(message) %>"><%= message.title %></a></h4>
+      <ul class="text-muted list-inline">
+        <li><i class="fa fa-folder-o"></i> <a href="<%= dashboard_path(message.homepage_messages_category.id) %>"><%= message.homepage_messages_category.ident %></a></li>
 				<li><i class="fa fa-user"></i> <a href="#">Administrator</a></li>
         <li><i class="fa fa-calendar"></i> <%= message.published_at.to_formatted_s(:news) %></li>
         <% if policy(message).edit? %>
@@ -23,6 +33,39 @@
 		<% else %>
 			No message.
 		<% end %>
-	</div>
-</div>
+  </div>
+  <br/>
 <% end %>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Recently Added</h3>
+      </div>
+      <div class="panel-body">
+        <div class="recent-blogs">        
+          <ul>
+            <% @latest.each do |message| %>
+              <%
+                  cclass = ''
+                  if message.published_at > Time.now-1.day
+                    cclass = 'new-story'
+                  end
+              %>
+
+            <li><a href=" <%= homepage_message_path(message) %>" class="<%= cclass %>"><%= message.title %></a></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="hl">Categories</h3>
+    <hr/>
+    <p class="tags">
+      <% @categories.each do |cat| %>
+        <a href="<%= dashboard_path(cat.id) %>"><%= cat.ident %></a>
+      <% end %>
+    <p>
+  </div>
+</div>
