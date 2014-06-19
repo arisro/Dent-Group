@@ -31,6 +31,8 @@ module Drs
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.assets.precompile += %w(landingpage2.js landingpage2.css)
 
+    config.middleware.use Rack::Deflater
+
     # config.assets.css_compressor = :yui
     # config.assets.js_compressor = :yui
   end
