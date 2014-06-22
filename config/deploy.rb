@@ -29,7 +29,7 @@ task :production do
 end
 
 task :staging do
-  server "drs.buzachis-aris.com", :app, :web, :db, :primary => true
+  server "staging.dentgroup.eu", :app, :web, :db, :primary => true
   set :deploy_to, "/var/www/eu.dentgroup.staging"
   set :rails_env, "production"
 end
