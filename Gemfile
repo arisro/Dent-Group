@@ -35,7 +35,6 @@ gem 'roar-rails',     '~> 0.1.4'
 gem 'roar',           '~> 0.12.0'
 
 gem 'i18n', github: 'svenfuchs/i18n'
-gem 'rails-i18n', '~> 4.0.0'
 
 gem 'devise'
 gem 'omniauth-facebook'
