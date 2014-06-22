@@ -1,24 +1,24 @@
-<% content_for :page_location, "Blacklist" %>
+<% content_for :page_location, t('blacklist.title') %>
 
 <div class="row">
 	<div class="col-sm-12 customers-box">
-		<h2 class="hl top-zero">Edit reported customer</h2>
+		<h2 class="hl top-zero"><%= t('blacklist.edit_title') %></h2>
 		<hr/>
 
 		<%= simple_form_for(@customer, html: { role: "form", id: 'addCustomerForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
 			<%= f.error_notification %>
 			<div class="form-inputs">
-				<%= f.input :name, :required => true, label: 'Name' %>
-				<%= f.input :cnp, :required => true, label: 'CNP', input_html: { maxlength: '4' }, hint: 'Last 4 digits' %>
+				<%= f.input :name, :required => true, label: t('blacklist.label_name') %>
+				<%= f.input :cnp, :required => true, label: t('blacklist.label_cnp'), input_html: { maxlength: '4' }, hint: t('blacklist.label_cnp_info') %>
 
-				<%= f.input :message, :required => true, label: 'Reason' %>
+				<%= f.input :message, :required => true, label: t('blacklist.label_reason') %>
 			</div>
 
 			<br/>
-	        <%= f.button :submit, "Post", class: "btn btn-green" %>
-	        <%= link_to "Cancel", bad_customer_path(@customer), class: "btn btn-warning" %>
-	        <%= link_to "Delete", bad_customer_path(@customer), method: :delete, :confirm => "Are you sure you want to delete this report?", class: "btn btn-danger" %>
+	        <%= f.button :submit, t('post'), class: "btn btn-green" %>
+	        <%= link_to t('cancel'), bad_customer_path(@customer), class: "btn btn-warning" %>
+	        <%= link_to t('delete'), bad_customer_path(@customer), method: :delete, :confirm => t('blacklist.delete_confirmation'), class: "btn btn-danger" %>
 		<% end %>
 	</div>
 </div>

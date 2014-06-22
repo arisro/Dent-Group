@@ -1,12 +1,12 @@
-<% content_for :page_location, "Offers" %>
+<% content_for :page_location, t('offers.title') %>
 
 <div class="row">
 	<div class="col-sm-12 offers-box">
-		<h2 class="hl top-zero">Offers</h2>
+		<h2 class="hl top-zero"><%= t('offers.title') %></h2>
 		<hr/>
 
     <% if policy(Offer).new? %>
-		  <%= link_to 'Add new offer', new_offer_path %>
+		  <%= link_to t('offers.add_new_offer'), new_offer_path %>
       <br/>
     <% end %>
 
@@ -15,7 +15,7 @@
 		<ul class="offers-list">
 			<% @offers.each do |offer| %>
 				<li class="offer-item clearfix">
-					<a href="<%= offer_path(offer) %>"><h4><span>[<%= ['', 'Selling', 'Buying', 'Rental'][offer.type] %>]</span> <%= offer.title %></h4></a>
+					<a href="<%= offer_path(offer) %>"><h4><span>[<%= ['', t('offers.selling'), t('offers.buying'), t('offers.rental')][offer.type] %>]</span> <%= offer.title %></h4></a>
 
 					<span class="offer-item-time">Posted <i><%= time_ago_in_words(offer.created_at) %></i> ago by <%= link_to current_user.full_name, user_path(current_user) %></span>
 

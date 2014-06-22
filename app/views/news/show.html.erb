@@ -1,4 +1,4 @@
-<% content_for :page_location, "News" %>
+<% content_for :page_location, t('news.title') %>
 
 <div class="row">
 	<div class="col-sm-8">
@@ -8,7 +8,7 @@
 			<li><i class="fa fa-calendar"></i> <%= @news.published_at.to_formatted_s(:news) %></li>
       <li><i class="fa fa-comments-o"></i> <%= pluralize(@news.comments_count, 'comment') %></li>
       <% if current_user.admin? %>
-  			<li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_news_path(@news), class: "text-muted" %></li>
+  			<li><i class="fa fa-edit"></i> <%= link_to t('edit'), edit_news_path(@news), class: "text-muted" %></li>
       <% end %>
 		</ul>
 		<hr>

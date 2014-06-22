@@ -1,22 +1,22 @@
-<% content_for :page_location, "Blacklist" %>
+<% content_for :page_location, t('blacklist.title') %>
 
 <div class="row">
 	<div class="col-sm-12 customers-box">
-		<h2 class="hl top-zero">Report customer</h2>
+		<h2 class="hl top-zero"><%= t('blacklist.report_customer') %></h2>
 		<hr/>
 
 		<%= simple_form_for(@customer, url: bad_customers_path, html: { role: "form", id: 'addCustomerForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
 			<%= f.error_notification %>
 			<div class="form-inputs">
-				<%= f.input :name, :required => true, label: 'Name' %>
-				<%= f.input :cnp, :required => true, label: 'CNP', input_html: { maxlength: '4' }, hint: 'Last 4 digits' %>
+				<%= f.input :name, :required => true, label: t('blacklist.label_name') %>
+				<%= f.input :cnp, :required => true, label: t('blacklist.label_cnp'), input_html: { maxlength: '4' }, hint: t('blacklist.label_cnp_info') %>
 
-				<%= f.input :message, :required => true, label: 'Reason' %>
+				<%= f.input :message, :required => true, label: t('blacklist.label_reason') %>
 			</div>
 
 			<br/>
-	        <%= f.button :submit, "Post", class: "btn btn-green" %>
+	        <%= f.button :submit, t('post'), class: "btn btn-green" %>
 		<% end %>
 	</div>
 </div>

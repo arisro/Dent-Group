@@ -1,13 +1,13 @@
-<% content_for :page_location, "Jobs" %>
+<% content_for :page_location, t('jobs.title') %>
 
 <% cache ['v1', @jobs] do %>
 <div class="row">
 	<div class="col-sm-12 jobs-box">
-		<h2 class="hl top-zero">Jobs</h2>
+		<h2 class="hl top-zero"><%= t('jobs.title') %></h2>
 		<hr/>
 
     <% if policy(Job).new? %>
-		  <%= link_to 'Add new job offer', new_job_path %>
+		  <%= link_to t('jobs.add_new_job'), new_job_path %>
       <br/>
     <% end %>
 
@@ -23,7 +23,7 @@
 						<div class="job-details">
 							<h4><%= job.title %></h4>
 							<p class="job-item-company"><span class="job-item-company-name"><%= job.company_name %></span> in <span class="job-item-location"><%= "#{job.city}, #{job.country}" %></span></p>
-							<span class="job-item-time">Posted on <i><%= job.created_at.to_formatted_s(:date) %></i> Valid until <i><%= job.valid_until.to_formatted_s(:date) %></i></span>
+							<span class="job-item-time"><%= t('posted_on') %> <i><%= job.created_at.to_formatted_s(:date) %></i> <%= t('valid_until') %> <i><%= job.valid_until.to_formatted_s(:date) %></i></span>
 						</div>
 					</a>
 				</li>

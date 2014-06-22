@@ -1,13 +1,13 @@
 <div class="sidebar sidebar-right sidebar-chat" id="chatContainer" ng-controller="ChatController" ng-init="init()">
   <div class="search-box">
-    <input id="chatSearchInput" class='form-control' ng-model="searchString" type="text" placeholder="Search" />
+    <input id="chatSearchInput" class='form-control' ng-model="searchString" type="text" placeholder="<%= t('chat.search') %>" />
     <div class="chat-toggle">
-        <a id="chat-toggle-link" href="" title="Toggle chat"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+        <a id="chat-toggle-link" href="" title="<%= t('chat.toggle_chat') %>"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
     </div>
   </div>
   <hr />
   <div class="chat-box">
-    <div id="chatbox" data-uid="<%= current_user.id %>" data-profile-picture="<%= current_user.get_profile_picture %>" data-user-name="<%= current_user.full_name %>" data-key="<%= Digest::MD5.hexdigest("#{current_user.id}saltlol") %>">
+    <div id="chatbox" data-uid="<%= current_user.id %>" data-profile-picture="<%= current_user.get_profile_picture %>" data-user-name="<%= current_user.full_name %>" data-key="<%= Digest::MD5.hexdigest("#{current_user.id}saltgoeshere") %>">
     </div>
 
     <ul class="chat-list">
@@ -29,8 +29,8 @@
         <div class='chat-window' ng-show="win.window.visible" data-index="{{$index}}">
           <div class='chat-window-title-bar'>
             <div class="chat-window-title-bar-actions rfloat">
-              <a href="#" ng-click="ignoreUser(win.user.user_id, $index)" title="Ignore user" ng-show="!win.user.is_ignored"><i class="fa fa-volume-off"></i></a>
-              <a href="#" ng-click="unignoreUser(win.user.user_id, $index)" title="Unignore user" ng-show="win.user.is_ignored"><i class="fa fa-volume-up"></i></a>
+              <a href="#" ng-click="ignoreUser(win.user.user_id, $index)" title="<%= t('chat.ignore_user') %>" ng-show="!win.user.is_ignored"><i class="fa fa-volume-off"></i></a>
+              <a href="#" ng-click="unignoreUser(win.user.user_id, $index)" title="<%= t('chat.unignore_user') %>" ng-show="win.user.is_ignored"><i class="fa fa-volume-up"></i></a>
               <a href="#" ng-click="win.window.visible = false"><i class="glyphicon glyphicon-remove"></i></a>
             </div>
             <div class="chat-window-title-label clearfix">
@@ -41,7 +41,7 @@
             <div class="chat-window-body-content">
               <table>
                 <tr><td>
-                  <p class="chat-loader-container"><span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span><a href="#" class="load-more-messages">Load more messages</a></p>
+                  <p class="chat-loader-container"><span class="hidden"><%= image_tag('preloader.gif') %> <%= t('chat.loading') %></span><a href="#" class="load-more-messages">Load more messages</a></p>
                   <div class="messages">
                     <div class="chat-message clearfix" ng-class="{msgfrom: msg.user.user_id != 0, msgto: msg.user.user_id == 0}" ng-repeat="msg in win.window.messages">
                       <div class="message-pic">

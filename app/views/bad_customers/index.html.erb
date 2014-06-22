@@ -1,12 +1,12 @@
-<% content_for :page_location, "Blacklist" %>
+<% content_for :page_location, t('blacklist.title') %>
 
 <div class="row">
 	<div class="col-sm-12 customers-box">
-		<h2 class="hl top-zero">Blacklist</h2>
+		<h2 class="hl top-zero"><%= t('blacklist.title') %></h2>
 		<hr/>
 
     <% if policy(BadCustomer).new? %>
-		  <%= link_to 'Add new customer to blacklist', new_bad_customer_path %>
+		  <%= link_to t('blacklist.add_new_customer'), new_bad_customer_path %>
       <br/>
       <% end %>
 
@@ -22,7 +22,7 @@
 						<% end %>
 					</h4>
 					<p class="customer-item-reason"><%= customer.message %></p>
-					<span class="customer-item-time">Reported on <i><%= customer.created_at.to_formatted_s(:date) %></i> by <%= link_to customer.user.full_name, user_path(customer.user) %></span>
+					<span class="customer-item-time"><%= t('blacklist.reported_on') %> <i><%= customer.created_at.to_formatted_s(:date) %></i> <%= t('by') %> <%= link_to customer.user.full_name, user_path(customer.user) %></span>
 					<hr/>
 				</li>
 			<% end %>

@@ -1,4 +1,4 @@
-<% content_for :page_location, "My profile" %>
+<% content_for :page_location, t('users.my_profile') %>
 
 <% if @no_forms.nil? %>
 	<%= simple_form_for @upload, html: { multipart: true, id: "fileupload" } do |f| %>
@@ -32,9 +32,9 @@
 		<div class="profile-feed-form row">
 			<%= simple_form_for(@status, html: { role: "form", id: 'postStatusForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
-				<%= f.input :message, :required => true, label: false, input_html: { placeholder: "Post something..." } %>
-				<%= f.button :submit, "Post", class: "btn btn-primary btn-dark" %>
-				<%= link_to "Add image", '#', class: "btn btn-warning", id: "but-add-image" %>
+				<%= f.input :message, :required => true, label: false, input_html: { placeholder: t('users.profile.post_something') } %>
+				<%= f.button :submit, t('post'), class: "btn btn-primary btn-dark" %>
+				<%= link_to t('users.profile.add_image'), '#', class: "btn btn-warning", id: "but-add-image" %>
 				<div class="images-container">
 					<ul class="images-list"></ul>
 				</div>
@@ -45,8 +45,8 @@
 			<%= render :partial => 'shared/feed_activities', :locals => { :activities => @activities } %>
 
 			<div class="box <%= 'hidden' unless @activities.next_page %>" id="loadMoreContainer">
-				<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
-				<%= link_to 'Load more', activity_user_path(id: @user.id, :page => @activities.next_page), :class => 'load-more-posts', :remote => true if @activities.next_page %>
+				<span class="hidden"><%= image_tag('preloader.gif') %> <%= t('users.profile.loading') %></span>
+				<%= link_to t('users.profile.load_more'), activity_user_path(id: @user.id, :page => @activities.next_page), :class => 'load-more-posts', :remote => true if @activities.next_page %>
 			</div>
 		</div>
 	</div>

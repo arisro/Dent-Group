@@ -1,12 +1,12 @@
-<span class="label label-info search-label">Job</span><h3><%= link_to object.title, object %></h3>
+<span class="label label-info search-label"><%= t('jobs.job') %></span><h3><%= link_to object.title, object %></h3>
 
 <ul class="search-job-details pull-left">
-	<li>Company: <span><%= object.company_name %></span></li>
-	<li>Location: <span><%= "#{object.city}, #{object.country}" %></span></li>
-	<li>Type: <span><%= ['', 'Full time', 'Part time'][object.type] %></span></li>
+	<li><%= t('jobs.company') %>: <span><%= object.company_name %></span></li>
+	<li><%= t('jobs.location') %>: <span><%= "#{object.city}, #{object.country}" %></span></li>
+	<li><%= t('jobs.type') %>: <span><%= ['', 'Full time', 'Part time'][object.type] %></span></li>
 </ul>
 <ul class="search-job-details pull-left">
-	<li>Positions opened: <span><%= object.count %></span></li>
-	<li>Valid until: <span><%= object.valid_until.to_formatted_s(:date) %></span></li>
-	<li>Posted by: <span><%= link_to object.user.full_name, user_path(object.user) %></span></li>
+	<li><%= t('jobs.positions_opened') %>: <span><%= object.count %></span></li>
+	<li><%= t('valid_until') %>: <span><%= object.valid_until.to_formatted_s(:date) %></span></li>
+	<li><%= t('posted_by') %>: <span><%= link_to object.user.full_name, user_path(object.user) %></span></li>
 </ul>

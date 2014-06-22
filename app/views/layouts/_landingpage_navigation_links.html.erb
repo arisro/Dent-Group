@@ -1,9 +1,9 @@
 <div class="signin" ng-controller="UsersController">
 	 <%= simple_form_for(:user, url: '', html: { id: "signinForm", role: "form" } ) do |f| %>
         <div class="form-inputs">
-          <%= f.input :email, :required => false, label: false, placeholder: t('your_email'), input_html: { class: "form-control", 'ng-model' => "user.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': login_error}" } %>
-          <%= f.input :password, :required => false, label: false, placeholder: t('password'), input_html: { class: "form-control", 'ng-model' => "user.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': login_error}" } %>
-          <%= f.button :submit, t('sign_in'), class: "btn btn-primary btn-xs", 'ng-click' => 'signIn()' %>
+          <%= f.input :email, :required => false, label: false, placeholder: t('lp.navi.your_email'), input_html: { class: "form-control", 'ng-model' => "user.email" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': login_error}" } %>
+          <%= f.input :password, :required => false, label: false, placeholder: t('lp.navi.password'), input_html: { class: "form-control", 'ng-model' => "user.password" }, wrapper_html: { class: 'form-group', 'ng-class' => "{'has-error': login_error}" } %>
+          <%= f.button :submit, t('lp.navi.sign_in'), class: "btn btn-primary btn-xs", 'ng-click' => 'signIn()' %>
 
           <div class="errors-container" ng-show="login_errors.password">
             <p class="text-danger" ng-repeat="err in login_errors.password">Password {{err}}</p>
@@ -15,11 +15,11 @@
         		<div class="checkbox-inline remember-me">
         			<label>
         				<input type="checkbox" value="" ng-model="user.remember_me">
-        				<%= t('remember_me') %>
+        				<%= t('lp.navi.remember_me') %>
         			</label>
         		</div>
         	<% end %>
-        		<div class="forgot-password"><a href="#"><%= t('forgot_password') %></a></div>
+        		<div class="forgot-password"><a href="#"><%= t('lp.navi.forgot_password') %></a></div>
         </div>
       <% end %>
 </div>

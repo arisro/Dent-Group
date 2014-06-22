@@ -10,16 +10,16 @@
 		<% unless message.nil? %>
 			<h2 class="hl top-zero"><%= message.title %></h2>
 			<ul class="text-muted list-inline">
-				<li><i class="fa fa-user"></i> <a href="#">Administrator</a></li>
+				<li><i class="fa fa-user"></i> <a href="#"><%= t('administrator') %></a></li>
 				<li><i class="fa fa-calendar"></i> <%= message.published_at.to_formatted_s(:news) %></li>
-				<li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(message), class: "text-muted" %></li>
+				<li><i class="fa fa-edit"></i> <%= link_to t('edit'), edit_homepage_message_path(message), class: "text-muted" %></li>
 			</ul>
 			<hr/>
 			<p class="blog-text">
 				<%= raw(message.body) %>
 			</p>
 		<% else %>
-			No message.
+			<%= t('hmessages.no_message') %>
 		<% end %>
 	</div>
 </div>

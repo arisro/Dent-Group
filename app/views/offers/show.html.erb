@@ -1,13 +1,13 @@
-<% content_for :page_location, "Offers" %>
+<% content_for :page_location, t('offers.title') %>
 
 <div class="row">
 	<div class="col-sm-12 offer-box">
-		<h2 class="hl top-zero"><span>[<%= ['', 'Selling', 'Buying', 'Rental'][@offer.type] %>]</span> <%= @offer.title %></h2>
+		<h2 class="hl top-zero"><span>[<%= ['', t('offers.selling'), t('offers.buying'), t('offers.rental')][@offer.type] %>]</span> <%= @offer.title %></h2>
 		<hr/>
 
     <div class="offer-links">
       <% if policy(@offer).edit? %>
-        <%= link_to 'Edit', edit_offer_path(@offer), class: 'btn btn-primary btn-sm' %>
+        <%= link_to t('edit'), edit_offer_path(@offer), class: 'btn btn-primary btn-sm' %>
       <% end %>
 		</div>
 
@@ -20,12 +20,12 @@
 						<% unless @offer.image_file_name.nil? %>
 							<td class="offer-image" rowspan="4"><a class="offer-image-link" href="<%= @offer.image.url(:large) %>"><%= image_tag @offer.image.url(:thumb) %></a></td>
 						<% end %>
-						<td class='offer-cname' align="left">Contact e-mail:</td><td class='offer-cvalue'><%= @offer.contact_email.blank? ? 'nespecificat' : @offer.contact_email %></td>
-						<td class='offer-cname' align="left">Contact phone:</td><td class='offer-cvalue'><%= @offer.contact_phone.blank? ? 'nespecificat' : @offer.contact_phone %></td>
+						<td class='offer-cname' align="left"><%= t('offers.contact_email') %>:</td><td class='offer-cvalue'><%= @offer.contact_email.blank? ? t('unspecified') : @offer.contact_email %></td>
+						<td class='offer-cname' align="left"><%= t('offers.contact_phone') %>:</td><td class='offer-cvalue'><%= @offer.contact_phone.blank? ? t('unspecified') : @offer.contact_phone %></td>
 					</tr>
 					<tr>
-						<td class='offer-cname' align="left">Views:</td><td class='offer-cvalue'><%= @offer.views %></td>
-						<td class='offer-cname' align="left">Postred by:</td><td class='offer-cvalue'><%= link_to @offer.user.full_name, user_path(@offer.user) %></td>
+						<td class='offer-cname' align="left"><%= t('views') %>:</td><td class='offer-cvalue'><%= @offer.views %></td>
+						<td class='offer-cname' align="left"><%= t('posted_by') %>:</td><td class='offer-cvalue'><%= link_to @offer.user.full_name, user_path(@offer.user) %></td>
 					</tr>
 					<tr><td colspan="4">&nbsp;</td></tr>
 				</tbody>

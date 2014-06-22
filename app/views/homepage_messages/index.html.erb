@@ -1,20 +1,20 @@
-<% content_for :page_location, "Homepage messages" %>
+<% content_for :page_location, t('hmessages.title') %>
 
 <div class="row">
 	<div class="col-sm-12 jobs-box">
-		<h2 class="hl top-zero">Homepage messages</h2>
+		<h2 class="hl top-zero"><%= t('hmessages.title') %></h2>
 		<hr/>
-		<%= link_to 'Add new message', new_homepage_message_path %>
+		<%= link_to t('hmessages.add_new_message'), new_homepage_message_path %>
 		<br/>
 
 		<%= paginate @messages %>
 
 		<div class="row index-table">
 			<div class="row head-row">
-				<div class="col-sm-6">Title</div>
-				<div class="col-sm-1">Country</div>
-				<div class="col-sm-1">Views</div>
-				<div class="col-sm-2">Modified</div>
+				<div class="col-sm-6"><%= t('hmessages.label_title') %></div>
+				<div class="col-sm-1"><%= t('hmessages.country') %></div>
+				<div class="col-sm-1"><%= t('views') %></div>
+				<div class="col-sm-2"><%= t('modified') %></div>
 				<div class="col-sm-2"></div>
 			</div>
 
@@ -24,7 +24,7 @@
 					<div class="col-sm-1"><%= msg.website_country %></div>
 					<div class="col-sm-1"><%= msg.views %></div>
 					<div class="col-sm-2"><%= msg.updated_at.to_formatted_s(:short) %></div>
-					<div class="col-sm-2"><a href="<%= edit_homepage_message_path(msg) %>">Edit</a></div>
+					<div class="col-sm-2"><a href="<%= edit_homepage_message_path(msg) %>"><%= t('edit') %></a></div>
 				</div>
 			<% end %>
 		</div>

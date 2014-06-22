@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524173754) do
+ActiveRecord::Schema.define(version: 20140616151844) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
@@ -92,11 +92,19 @@ ActiveRecord::Schema.define(version: 20140524173754) do
   create_table "homepage_messages", force: true do |t|
     t.string   "title"
     t.text     "body"
-    t.integer  "views",                     default: 0
+    t.integer  "views",                                   default: 0
     t.integer  "user_id"
     t.datetime "published_at"
-    t.boolean  "deleted",                   default: false, null: false
-    t.string   "website_country", limit: 3
+    t.boolean  "deleted",                                 default: false, null: false
+    t.string   "website_country",               limit: 3
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "homepage_messages_category_id"
+  end
+
+  create_table "homepage_messages_categories", force: true do |t|
+    t.string   "ident"
+    t.boolean  "deleted",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -141,6 +149,14 @@ ActiveRecord::Schema.define(version: 20140524173754) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "news_category_id"
+  end
+
+  create_table "news_categories", force: true do |t|
+    t.string   "ident"
+    t.boolean  "deleted",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "news_comments", force: true do |t|
@@ -288,6 +304,8 @@ ActiveRecord::Schema.define(version: 20140524173754) do
     t.string   "yahoo"
     t.boolean  "is_online",                        default: false
     t.boolean  "chat_is_invisible",                default: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

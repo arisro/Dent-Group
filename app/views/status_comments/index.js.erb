@@ -7,7 +7,7 @@
 	var new_showing = showing+<%= @comments.count %>;
 	$("#feed-item-<%= @status.id %> .feed-item-status-comments-list").data('showing', new_showing);
 
-	$("#feed-item-<%= @status.id %> .comments-counter").text('('+new_showing+' of '+total+')');
+	$("#feed-item-<%= @status.id %> .comments-counter").text('('+new_showing+' <%= t("of") %> '+total+')');
 
 	if (new_showing >= total) {
 		$("#feed-item-<%= @status.id %> li:first").remove();

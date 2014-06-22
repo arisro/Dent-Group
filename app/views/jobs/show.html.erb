@@ -1,4 +1,4 @@
-<% content_for :page_location, "Jobs" %>
+<% content_for :page_location, t('jobs.title') %>
 
 <% cache ['v1', @job] do %>
 <div class="row">
@@ -6,11 +6,11 @@
 		<h2 class="hl top-zero"><%= @job.title %></h2>
 		<hr/>
 
-		<h5><span><%= @job.company_name %></span> in <span><%= "#{@job.city}, #{@job.country}" %></span></h5>
+		<h5><span><%= @job.company_name %></span> <%= t('in') %> <span><%= "#{@job.city}, #{@job.country}" %></span></h5>
 
     <div class="job-links">
       <% if policy(@job).edit? %>
-        <%= link_to 'Edit', edit_job_path(@job), class: 'btn btn-primary btn-sm' %>
+        <%= link_to t('edit'), edit_job_path(@job), class: 'btn btn-primary btn-sm' %>
       <% end %>
 		</div>
 
@@ -23,20 +23,20 @@
 						<% unless @job.image_file_name.nil? %>
 							<td class="job-image" rowspan="4"><%= image_tag @job.image.url(:thumb) %></td>
 						<% end %>
-						<td class='job-cname' align="left">Type:</td><td class='job-cvalue'><%= ['', 'Full time', 'Part time'][@job.type] %></td>
-						<td class='job-cname' align="left">Contact e-mail:</td><td class='job-cvalue'><%= @job.contact_email.blank? ? 'nespecificat' : @job.contact_email %></td>
+						<td class='job-cname' align="left"><%= t('jobs.type') %>:</td><td class='job-cvalue'><%= ['', t('jobs.full_time'), t('jobs.part_time')][@job.type] %></td>
+						<td class='job-cname' align="left"><%= t('jobs.contact_email') %>:</td><td class='job-cvalue'><%= @job.contact_email.blank? ? t('unspecified') : @job.contact_email %></td>
 					</tr>
 					<tr>
-						<td class='job-cname' align="left">Positions opened:</td><td class='job-cvalue'><%= @job.count.blank? ? 'nespecificat' : @job.count %></td>
-						<td class='job-cname' align="left">Contact phone:</td><td class='job-cvalue'><%= @job.contact_phone.blank? ? 'nespecificat' : @job.contact_phone %></td>
+						<td class='job-cname' align="left"><%= t('jobs.positions_opened') %>:</td><td class='job-cvalue'><%= @job.count.blank? ? t('unspecified') : @job.count %></td>
+						<td class='job-cname' align="left"><%= t('jobs.contact_phone') %>:</td><td class='job-cvalue'><%= @job.contact_phone.blank? ? t('unspecified') : @job.contact_phone %></td>
 					</tr>
 					<tr>
-						<td class='job-cname' align="left">Wage offer:</td><td class='job-cvalue'><%= @job.offer.blank? ? 'nespecificat' : @job.offer %></td>
-						<td class='job-cname' align="left">Views:</td><td class='job-cvalue'><%= @job.views %></td>
+						<td class='job-cname' align="left"><%= t('jobs.wage_offer') %>:</td><td class='job-cvalue'><%= @job.offer.blank? ? t('unspecified') : @job.offer %></td>
+						<td class='job-cname' align="left"><%= t('views') %>:</td><td class='job-cvalue'><%= @job.views %></td>
 					</tr>
 					<tr>
-						<td class='job-cname' align="left">Valid until:</td><td class='job-cvalue'><%= @job.valid_until.to_formatted_s(:date) %></td>
-						<td class='job-cname' align="left">Posted by:</td><td class='job-cvalue'><%= link_to @job.user.full_name, user_path(@job.user) %></td>
+						<td class='job-cname' align="left"><%= t('valid_until') %>:</td><td class='job-cvalue'><%= @job.valid_until.to_formatted_s(:date) %></td>
+						<td class='job-cname' align="left"><%= t('posted_by') %>:</td><td class='job-cvalue'><%= link_to @job.user.full_name, user_path(@job.user) %></td>
 					</tr>
 				</tbody>
 			</table>

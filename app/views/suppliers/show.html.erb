@@ -1,4 +1,4 @@
-<% content_for :page_location, "Suppliers" %>
+<% content_for :page_location, t('suppliers.title') %>
 
 <div class="row">
 	<div class="col-sm-12 supplier-box">
@@ -9,7 +9,7 @@
 
     <div class="supplier-links">
       <% if policy(@supplier).edit? %>
-        <%= link_to 'Edit', edit_supplier_path(@country, @supplier), class: 'btn btn-primary btn-sm' %>
+        <%= link_to t('edit'), edit_supplier_path(@country, @supplier), class: 'btn btn-primary btn-sm' %>
       <% end %>
 		</div>
 
@@ -22,15 +22,15 @@
 						<% unless @supplier.image_file_name.nil? %>
 							<td class="supplier-image" rowspan="4"><%= image_tag @supplier.image.url(:thumb) %></td>
 						<% end %>
-						<td class='supplier-cname' align="left">E-mail:</td><td class='supplier-cvalue'><%= @supplier.email %></td>
-						<td class='supplier-cname' align="left">Views:</td><td class='supplier-cvalue'><%= @supplier.views %></td>
+						<td class='supplier-cname' align="left"><%= t('suppliers.email') %>:</td><td class='supplier-cvalue'><%= @supplier.email %></td>
+						<td class='supplier-cname' align="left"><%= t('views') %>:</td><td class='supplier-cvalue'><%= @supplier.views %></td>
 					</tr>
 					<tr>
-						<td class='supplier-cname' align="left">Phone:</td><td class='supplier-cvalue'><%= @supplier.phone %></td>
-						<td class='supplier-cname' align="left">Posted by:</td><td class='supplier-cvalue'><%= link_to @supplier.user.full_name, user_path(@supplier.user) %></td>
+						<td class='supplier-cname' align="left"><%= t('suppliers.phone') %>:</td><td class='supplier-cvalue'><%= @supplier.phone %></td>
+						<td class='supplier-cname' align="left"><%= t('posted_by') %>:</td><td class='supplier-cvalue'><%= link_to @supplier.user.full_name, user_path(@supplier.user) %></td>
 					</tr>
 					<tr>
-						<td class='supplier-cname' align="left">Address:</td><td class='supplier-cvalue'><%= @supplier.address %></td>
+						<td class='supplier-cname' align="left"><%= t('suppliers.address') %>:</td><td class='supplier-cvalue'><%= @supplier.address %></td>
 						<td class='supplier-cname' align="left"></td><td class='supplier-cvalue'></td>
 					</tr>
 					<tr><td colspan="2">&nbsp;</td></tr>

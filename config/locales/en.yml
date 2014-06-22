@@ -1,49 +1,228 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  about: "About us"
-  news: "News"
-  offers: "Offers"
-  jobs: "Jobs"
-  suppliers: "Suppliers"
-  edit_profile: "Edit profile"
-  sign_out: "Sign out"
-  sign_up: "Sign up"
-  sign_in: "Sign in"
-  your_email: "Your e-mail"
-  password: "Password"
-  remember_me: "Remember me"
-  forgot_password: "Forgot password?"
-  lp_subtitle_html: "We are a <span class='font-semibold'>closed community</span>, dedicated for dentists."
   pick_language: "Pick language:"
-  first_name: "First name"
-  last_name: "Last name"
-  signup_names_error: "Please type in your first and last names"
-  signup_email_error: "Please type a valid e-mail address"
   homepage: "Homepage"
-  my_profile: "My profile"
-  selling: "Selling"
-  buying: "Buying"
-  rentals: "Rentals"
+  delete: "Delete"
+  cancel: "Cancel"
+  post: "Post"
+  edit: "Edit"
+  save: "Save"
+  by: "by"
+  valid_until: "Valid until"
+  posted_by: "Posted by"
+  posted_on: "Posted on"
+  added_by: "Added by"
+  publish_at: "Publish at"
+  views: "Views"
+  modified: "Modified"
+  x_out_of_y: "%{x} of %{y}"
+  of: "of"
+  administrator: "Administrator"
+  unspecified: "unspecified"
+  in: "in"
+
+  header:
+    home: "Home"
+    news: "News"
+    my_profile: "My profile"
+    specializations: "Specializations"
+    offers: "Offers"
+    selling: "Selling"
+    buying: "Buying"
+    rentals: "Rentals"
+    blacklist: "Blacklist"
+    jobs: "Jobs"
+    suppliers: "Suppliers"
+    international: "International"
+    romania: "Romania"
+    edit_profile: "Edit profile"
+    sign_out: "Sign out"
+    search: "Search"
+    chat: "Chat"
+
+  lp:
+    html_title: "Welcome to Dent Group"
+    html_description: "Dent Group"
+    navi:
+      your_email: "Your e-mail"
+      password: "Password"
+      remember_me: "Remember me"
+      forgot_password: "Forgot password?"
+      sign_in: "Sign in"
+      create_account: "Create account"
+    texts:
+      lets_work: "Let's work together"
+      about: "ABOUT DENT GROUP"
+      connects_big: "%{logo_image} <span class='font-semibold'>connects</span> you with your colleagues from <span class='font-semibold'>everywhere around the world.</span>"
+      we_can_offer: "This is what <span class='font-semibold'>we can offer you</span>"
+      all_rights_reserved: "All Rights Reserved."
+      connect: "Connect"
+      connect_desc: "Dental Group establishes new connections between dentists around the world in full privacy."
+      connect_tooltip: "<p><span class='red bold'>Dent Group</span> establishes new conections aimed at ensuring communication, organization and systematization of knowledge in the field of dentistry.</p><p>The <span class='red bold'>Dent Group</span> website shares the vision of global teamwork, shaped as a closed circuit platform, in response to the needs of communication for the dentists worldwide.</p><p><span class='red bold'>Dent Group</span> focuses on the formation of a community at a large scale, in order to build a maximum responsiveness unit for every stomatological physicians, which can be understood by optimizing the online communication between them. The priority is to encourage the creativity, the enunciation of ideas and of original opinions of the members of this website.</p>"
+      share: "Share"
+      share_desc: "You may share ideas and personal opinions that can be read and considered by other doctors, members of this community."
+      share_tooltip: "<p>By using the <span class='red bold'>Dent Group</span> website you can share ideas and personal opinions that can be read and considered by other doctors, members of this community.</p><p>So you are offered the chance to post pictures, pleasant or unpleasant experiences during surgery or dental work, which can be used as guidance for all professional dentists.</p>"
+      discuss: "Discuss"
+      discuss_desc: "The first and only website dedicated to the dentists, which can be used to communicate more effectively."
+      discuss_tooltip: "<p>An effective communication is the key to confidence among dentists; a solid principle in establishing a functional unit, facilitating the access to information on the dental treatment provided to patients.</p><p><span class='red bold'>Dent Group</span> is the website that helps you communicate and establish effective relationships and lasting fellowships with doctors all around the world.</p><p>World Wide Networking - a concept that is implemented by this website in order to put in contact practitioners of the craft and which focuses to deliver the ideas and the information to those who are interested.</p><p>The website is of a closed circuit can be accessed only by dentists, active members of this community.</p>"
+      a_lot_more: "A lot more"
+      a_lot_more_desc: "The usage of the Dent Group website is on hand for each dentist, and aims to establish a relational system which can improve the quality of the decisions that the members of this community take every day."
+      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> encourages constant concern for the continuous professional training and dedication to work; facilitates cooperation relations, speedy resolution of problems arising spontaneously or periodically and may have positive results in terms of growth operability or efficiency of professional workload.</p><p>You will have access to news, suppliers and sales, purchases and rental of equipment, chat, jobs, bad payers - all for a monthly subscription of only 7 euros.</p><p class='bold'>Register now and you will get the first two months for free.</p>"
+    pass:
+      change_password: "Change password"
+      new_password: "New password"
+      confirm_new_password: "Confirm your new password"
+    signup:
+      your_email: "Your e-mail"
+      password: "Password"
+      sign_up: "Sign up"
+      first_name: "First name"
+      last_name: "Last name"
+      signup_names_error: "Please type in your first and last names"
+      signup_email_error: "Please type a valid e-mail address"
+    emailconf:
+      required: "E-mail confirmation required"
+      description: "We sent you an e-mail to %{email} containing instructions on how to confirm your e-mail address.<br/>If you did not receive the e-mail click the button below to resend it."
+      resend_email: "Resend e-mail"
+
+
+
+  status:
+    delete_confirmation: "Are you sure you want to delete this status?"
+    comment_delete_confirmation: "Are you sure you want to delete this comment?"
+    view_more_comments: "View more comments"
+    write_a_comment: "Write a comment"
+
+  blacklist:
+    title: "Blacklist"
+    edit_title: "Edit reported customer"
+    label_name: "Name"
+    label_cnp: "CNP"
+    label_cnp_info: "Last 4 digits"
+    label_reason: "Reason"
+    delete_confirmation: "Are you sure you want to delete this report?"
+    add_new_customer: "Add new customer to blacklist"
+    reported_on: "Reported on"
+    report_customer: "Report customer"
+    add_comment: "Add comment"
+    comment_delete_confirmation: "Are you sure you want to delete this comment?"
+
+  jobs:
+    title: "Jobs"
+    job: "Job"
+    company: "Company"
+    location: "Location"
+    type: "Type"
+    positions_opened: "Positions opened"
+    job_title: "Job title"
+    description: "Description"
+    image: "Image"
+    country: "Country"
+    city: "City"
+    full_time: "Full time"
+    part_time: "Part time"
+    count: "Count"
+    wage_offer: "Wage offer"
+    contact_email: "Contact e-mail"
+    contact_phone: "Contact phone"
+    delete_confirmation: "Are you sure you want to delete this announcement?"
+    add_new_job: "Add new job"
+
+  news:
+    title: "News"
+    one_news: "News"
+    loading: "Loading..."
+    load_more: "Load more"
+
+  offers:
+    title: "Offers"
+    offer: "Offer"
+    type: "Type"
+    selling: 'Selling'
+    buying: "Buying"
+    add_new_offer: "Add new offer"
+    rental: "Rental"
+    contact_email: "Contact e-mail"
+    contact_phone: "Contact phone"
+
+  suppliers:
+    title: "Suppliers"
+    supplier: "Supplier"
+    address: "Address"
+    location: "Location"
+    add_new_supplier: "Add new supplier"
+    email: "E-mail"
+    phone: "Phone"
+    address: "Address"
+
+  search:
+    title: "Search results"
+    search: "Search"
+    search_results_for: "Search results for"
+
+  chat:
+    search: "Search"
+    toggle_chat: "Toggle chat"
+    ignore_user: "Ignore user"
+    unignore_user: "Unignore user"
+    loading: "Loading..."
+
+  home:
+    title: "Home"
+
+  hmessages:
+    title: "Homepage messages"
+    manage_messages: "Manage messages"
+    manage_categories: "Manage messages categories"
+    no_message: "No message."
+    recently_added: "Recently Added"
+    categories: "Categories"
+    edit_message: "Edit message"
+    label_title: "Title"
+    category: "Category"
+    country: "Country"
+    content: "Content"
+    delete_confirmation: "Are you sure you want to delete this news?"
+    add_new_message: "Add new message"
+    add_new_category: "Add new category"
+    name: "Name"
+    messages_count: "Messages count"
+
+  users:
+    user: "User"
+    follow: "Follow"
+    unfollow: "Unfollow"
+    profile:
+      edit_profile: "Edit profile"
+      chat_options: "Chat options"
+      chat_opts_desc: "Here you can adjust various settings for the chat."
+      invisible_mode: "Invisible mode"
+      invisible_mode_desc: "Check if you don't want to be visible for the other users."
+      my_profile: "My profile"
+      post_something: "Post something..."
+      loading: "Loading..."
+      load_more: "Load more"
+      add_image: "Add image"
+      edit:
+        description: "Please fill out the form below to update your profile."
+        general_information: "General Information"
+        first_name: "First name"
+        last_name: "Last name"
+        email: "E-mail"
+        specialization: "Specialization"
+        language: "Language"
+        country: "Country"
+        city: "City"
+        contact_info: "Contact info"
+        phone: "Phone"
+        change_password: "Change password"
+        current_password: "Current password"
+        new_password: "New password"
+        confirm_password: "Confirm password"
+        change: "Change"
+        upload_desc: "Please choose a file to upload. JPG, PNG only."
+        change_profile_pic: "Change profile picture"
+        choose_a_picture: "Choose a picture"
+        upload: "Upload"
 
   activerecord:
     errors:

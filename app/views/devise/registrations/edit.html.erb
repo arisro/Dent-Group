@@ -4,40 +4,40 @@
   <%= render partial: 'users/edit_profile_tabs', locals: { active: 'profile' } %>
 
   <div class="col-sm-5">
-    <h3 class="hl">Edit profile <small><%= current_user.full_name %></small></h3>
-    <p class="text-muted">Please fill out the form below to update your profile.</p>
+    <h3 class="hl"><%= t('users.profile.edit_profile') %> <small><%= current_user.full_name %></small></h3>
+    <p class="text-muted"><%= t('users.profile.edit.description') %></p>
     <hr>
-    <h4 class="hl bottom-15">General Information</h4>
+    <h4 class="hl bottom-15"><%= t('users.profile.edit.general_information') %></h4>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, role: "form", id: 'updateProfieForm' } ) do |f| %>
       <%= f.error_notification %>
 
-      <%= f.input :fname, :required => true, label: 'First name' %>
-      <%= f.input :lname, :required => true, label: 'Last name' %>
-      <%= f.input :email, :required => true, label: 'E-mail' %>
-      <%= f.input :specialization, :required => true, label: 'Specialization' %>
-      <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], include_blank: false, label: 'Language' %>
-      <%= f.input :country, label: 'Country', include_blank: false %>
-      <%= f.input :city, label: 'City' %>
+      <%= f.input :fname, :required => true, label: t('users.profile.edit.first_name') %>
+      <%= f.input :lname, :required => true, label: t('users.profile.edit.last_name') %>
+      <%= f.input :email, :required => true, label: t('users.profile.edit.email') %>
+      <%= f.input :specialization, :required => true, label: t('users.profile.edit.specialization') %>
+      <%= f.input :language, collection: [["English","en"], ["Romana","ro"]], include_blank: false, label: t('users.profile.edit.language') %>
+      <%= f.input :country, label: t('users.profile.edit.country'), include_blank: false %>
+      <%= f.input :city, label: t('users.profile.edit.city') %>
 
-      <h4 class="hl bottom-15">Contact info</h4>
+      <h4 class="hl bottom-15"><%= t('users.profile.edit.contact_info') %></h4>
       <hr>
-      <%= f.input :phone, label: 'Phone' %>
+      <%= f.input :phone, label: t('users.profile.edit.phone') %>
       <%= f.input :skype, label: 'Skype' %>
       <%= f.input :yahoo, label: 'Yahoo! ID' %>
 
-      <%= f.button :submit, "Save", class: "btn btn-green" %>
+      <%= f.button :submit, t('save'), class: "btn btn-green" %>
     <% end %>
 
-    <h4 class="hl bottom-15">Change password</h4>
+    <h4 class="hl bottom-15"><%= t('users.profile.edit.change_password') %></h4>
     <hr>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :multipart => true, role: "form", id: 'updateProfieForm' } ) do |f| %>
       <%= f.error_notification %>
       
-      <%= f.input :current_password, :required => true, label: 'Current password', wrapper_html: { class: resource.errors.messages.has_key?(:current_password) ? 'has-error' : '' } %>
-      <%= f.input :password, :required => false, label: 'New password' %>
-      <%= f.input :confirm_password, :required => false, label: 'Confirm password' %>
+      <%= f.input :current_password, :required => true, label: t('users.profile.edit.current_password'), wrapper_html: { class: resource.errors.messages.has_key?(:current_password) ? 'has-error' : '' } %>
+      <%= f.input :password, :required => false, label: t('users.profile.edit.new_password') %>
+      <%= f.input :confirm_password, :required => false, label: t('users.profile.edit.confirm_password') %>
 
-      <%= f.button :submit, "Change password", class: "btn btn-green" %>
+      <%= f.button :submit, t('users.profile.edit.change_password'), class: "btn btn-green" %>
     <% end %>
   </div>
 
@@ -46,7 +46,7 @@
       <div class="avatar">
         <a id="bUploader" href="#" data-toggle="modal" data-target="#upload-pic" class="thumbnail"><%= image_tag "/profile_pictures/thumbs2/#{current_user.get_profile_picture}", id: 'iCurrentProfilePic' %></a>
         <div class="avatar-bubble">
-          <a href="#" data-toggle="modal" data-target="#upload-pic"><i class="fa fa-plus"></i> Change</a>
+          <a href="#" data-toggle="modal" data-target="#upload-pic"><i class="fa fa-plus"></i> <%= t('users.profile.edit.change') %></a>
         </div>
       </div>
     </div>
@@ -55,10 +55,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="upload-avatar-title">Change profile picture</h4>
+            <h4 class="modal-title" id="upload-avatar-title"><%= t('users.profile.edit.change_profile_pic') %></h4>
           </div>
           <div class="modal-body">
-            <p>Please choose a file to upload. JPG, PNG only.</p>
+            <p><%= t('users.profile.edit.upload_desc') %></p>
             <%= simple_form_for(:temp_image, url: user_upload_profile_picture_path, :html => { :multipart => true, id: "fProfilePicture" }, :remote => true) do |f| %>
                 <input type="file" name="profile_picture" id="tiInput" />
 
@@ -71,9 +71,9 @@
                   <input type="hidden" id="user_pic_croph" value="0" />
                 </div>
 
-                <a href="#" class="btn btn-primary" id="fPicker">Choose a picture</a>
-                <button type="button" id="fPickerDone" class="btn btn-green" data-dismiss="modal">Upload</button>
-                <button type="button" id="fPickerCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a href="#" class="btn btn-primary" id="fPicker"><%= t('users.profile.edit.choose_a_picture') %></a>
+                <button type="button" id="fPickerDone" class="btn btn-green" data-dismiss="modal"><%= t('users.profile.edit.upload') %></button>
+                <button type="button" id="fPickerCancel" class="btn btn-default" data-dismiss="modal"><%= t('cancel') %></button>
             <% end %>
           </div>
         </div>

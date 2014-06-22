@@ -1,30 +1,28 @@
-<% content_for :page_location, "Edit profile" %>
+<% content_for :page_location, t('users.profile.edit_profile') %>
 
 <div class="row">
   <%= render partial: 'users/edit_profile_tabs', locals: { active: 'chat' } %>
 
   <div class="col-sm-5">
-    <h3 class="hl">Chat options</h3>
-    <p class="text-muted">Here you can adjust various settings for the chat.</p>
+    <h3 class="hl"><%= t('users.profile.chat_options') %></h3>
+    <p class="text-muted"><%= t('users.profile.chat_opts_desc') %></p>
     <hr>
     
     <%= simple_form_for(@user, url: chat_options_path, html: { method: :put, role: "form" } ) do |f| %>
       <%= f.error_notification %>
 
       <div class="form-group">
-      		<label>Invisible mode</label>
+      		<label><%= t('users.profile.invisible_mode') %></label>
       		<div class="checkbox">
 				<label>
 					<input name="user[chat_is_invisible]" type="hidden" value="0">
 					<input class="boolean optional" id="user_chat_is_invisible" name="user[chat_is_invisible]" type="checkbox" value="1" <%= 'checked="checked"' if @user.chat_is_invisible? %>>
-					Check if you don't want to be visible for the other users
+					<%= t('users.profile.invisible_mode_desc') %>
 				</label>
 			</div>
 	  </div>
 
-      
-
-      <%= f.button :submit, "Save", class: "btn btn-green" %>
+      <%= f.button :submit, t('save'), class: "btn btn-green" %>
     <% end %>
   </div>
 </div>

@@ -12,7 +12,7 @@
 				<div class="feed-item-image-container" id="upload-<%= upl.id %>">
 					<a class="feed-item-image-link" rel="group<%= subject.id %>" href="<%= upl.uploaded_file.url(:large) %>"><%= image_tag(upl.uploaded_file.url(:small), class: 'feed-item-image-thumb') %></a>
 					<% if current_user?(status_user) %>
-					<a href="#" class="feed-item-image-delete glyphicon glyphicon-remove" ng-click="removeUpload(<%= upl.id %>)"></a>
+						<a href="#" class="feed-item-image-delete glyphicon glyphicon-remove" ng-click="removeUpload(<%= upl.id %>)"></a>
 					<% end %>
 				</div>
 			<% end %>
@@ -21,7 +21,7 @@
 
 		<% if current_user?(status_user) %>
 			&nbsp;&nbsp;<span class="timestamp"><i class="fa fa-trash-o"></i> 
-			<%= link_to "Delete", status_path(subject), method: :delete, :confirm => "Are you sure you want to delete this status?", class: "btn-remove-status text-muted" %>
+			<%= link_to t('delete'), status_path(subject), method: :delete, :confirm => t('status.delete_confirmation'), class: "btn-remove-status text-muted" %>
 		<% end %>
 
 		<%= simple_form_for([subject, @status_comment], html: { role: "form", class: 'feed-comment-form' }) do |f| %>
@@ -35,8 +35,8 @@
 			<ul class="feed-item-status-comments-list" data-showing="<%= @comments.count %>" data-total="<%= @total_comments %>">
 				<% if @comments.count < @total_comments %>
 					<li>
-						<%= link_to "Show previous comments", status_status_comments_path(status_id: subject.id, from: @comments.first.id), class: "load-previous-comments", remote: true %>
-						<span class="comments-counter">(<%= @comments.count %> of <%= @total_comments %>)</span>
+						<%= link_to t('status.view_more_comments'), status_status_comments_path(status_id: subject.id, from: @comments.first.id), class: "load-previous-comments", remote: true %>
+						<span class="comments-counter">(<%= t('x_out_of_y', x: @comments.count, y: @total_comments) %>)</span>
 					</li>
 				<% end %>
 
@@ -44,7 +44,7 @@
 
 				<li>
 					<%= image_tag("/profile_pictures/thumbs/#{current_user.get_profile_picture}", class: 'feed-item-comment-user-icon') %>
-					<%= f.input_field :message, :required => true, as: :string, label: false, placeholder: "Write a comment...", class: 'comment_input form-control' %>
+					<%= f.input_field :message, :required => true, as: :string, label: false, placeholder: t('status.write_a_comment'), class: 'comment_input form-control' %>
 				</li>
 			</ul>	
 		<% end %>

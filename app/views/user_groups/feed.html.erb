@@ -1,5 +1,5 @@
 <%
-	title = "My profile"
+	title = t('header.my_profile')
 	title = @user_group.name if @user_group.ident != 'ro' && @user_group.ident != 'int'
 	content_for :page_location, title
 %>
@@ -29,7 +29,7 @@
 			<%= render 'shared/followers_stats' %>
 
 			<% if !current_user?(@user) && @user.is_online? %>
-				<a href="#" class="btn btn-sm btn-primary btn-chat" data-uid="<%= @user.id %>">Chat</a>
+				<a href="#" class="btn btn-sm btn-primary btn-chat" data-uid="<%= @user.id %>"><%= t('header.chat') %></a>
 			<% end %>
 		</div>
 	<% else %>
@@ -49,9 +49,9 @@
 		<div class="profile-feed-form row">
 			<%= simple_form_for(@status, html: { role: "form", id: 'postStatusForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 				<%= f.input :user_group_id, as: :hidden, input_html: { value: @user_group.id } %>
-				<%= f.input :message, :required => true, label: false, input_html: { placeholder: "Post something..." } %>
-				<%= f.button :submit, "Post", class: "btn btn-primary btn-dark" %>
-				<%= link_to "Add image", '#', class: "btn btn-warning", id: "but-add-image" %>
+				<%= f.input :message, :required => true, label: false, input_html: { placeholder: t('users.profile.post_something') } %>
+				<%= f.button :submit, t('post'), class: "btn btn-primary btn-dark" %>
+				<%= link_to t('users.profile.add_image'), '#', class: "btn btn-warning", id: "but-add-image" %>
 				<div class="images-container">
 					<ul class="images-list"></ul>
 				</div>
@@ -62,8 +62,8 @@
 			<%= render :partial => 'shared/feed_activities', :locals => { :activities => @activities } %>
 
 			<div class="box <%= 'hidden' unless @activities.next_page %>" id="loadMoreContainer">
-				<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
-				<%= link_to 'Load more', feed_path(id: @user.id, :page => @activities.next_page), :class => 'load-more-posts', :remote => true if @activities.next_page %>
+				<span class="hidden"><%= image_tag('preloader.gif') %> <%= t('users.profile.loading') %></span>
+				<%= link_to t('users.profile.load_more'), feed_path(id: @user.id, :page => @activities.next_page), :class => 'load-more-posts', :remote => true if @activities.next_page %>
 			</div>
 		</div>
 	</div>

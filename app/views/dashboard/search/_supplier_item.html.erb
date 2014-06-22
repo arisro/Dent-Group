@@ -1,6 +1,6 @@
-<span class="label label-warning search-label">Supplier</span><h3><%= link_to object.name, object %></h3>
+<span class="label label-warning search-label"><%= t('suppliers.supplier') %></span><h3><%= link_to object.name, object %></h3>
 
 <ul class="search-supplier-details pull-left">
-	<li>Address: <span><%= object.address %></span></li>
-	<li>Location: <span><%= "#{object.city}, #{object.country}" %></span></li>
+	<li><%= t('suppliers.address') %>: <span><%= object.address %></span></li>
+	<li><%= t('suppliers.location') %>: <span><%= "#{object.city}, #{object.country}" %></span></li>
 </ul>

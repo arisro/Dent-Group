@@ -3,12 +3,12 @@
     <ul>
       <li>
         <a href="<%= edit_user_registration_path %>" <%= 'class=active' if active == 'profile' %>>
-          <i class="sign fa fa-edit bg-blue"></i> Edit profile <i class="fa fa-chevron-right pull-right"></i>
+          <i class="sign fa fa-edit bg-blue"></i> <%= t('users.profile.edit_profile') %> <i class="fa fa-chevron-right pull-right"></i>
         </a>  
       </li>
       <li>
         <a href="<%= chat_options_path %>" <%= 'class=active' if active == 'chat' %>>
-          <i class="sign fa fa-comment-o bg-red"></i> Chat options <i class="fa fa-chevron-right pull-right"></i>
+          <i class="sign fa fa-comment-o bg-red"></i> <%= t('users.profile.chat_options') %> <i class="fa fa-chevron-right pull-right"></i>
         </a>  
       </li>
     </ul>

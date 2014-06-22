@@ -1,14 +1,14 @@
-<% content_for :page_location, "Home / #{@message.title}" %>
+<% content_for :page_location, t('home.title') << " / #{@message.title}" %>
 
 <div class="row">
   <div class="col-sm-8 blog-summary">
     <h4 class="hl top-zero"><a href="<%= homepage_message_path(@message) %>"><%= @message.title %></a></h4>
     <ul class="text-muted list-inline">
       <li><i class="fa fa-folder-o"></i> <a href="<%= dashboard_path(@message.homepage_messages_category.id) %>"><%= @message.homepage_messages_category.ident %></a></li>
-      <li><i class="fa fa-user"></i> <a href="#">Administrator</a></li>
+      <li><i class="fa fa-user"></i> <a href="#"><%= t('administrator') %></a></li>
       <li><i class="fa fa-calendar"></i> <%= @message.published_at.to_formatted_s(:news) %></li>
       <% if policy(@message).edit? %>
-        <li><i class="fa fa-edit"></i> <%= link_to "Edit", edit_homepage_message_path(@message), class: "text-muted" %></li>
+        <li><i class="fa fa-edit"></i> <%= link_to t('edit'), edit_homepage_message_path(@message), class: "text-muted" %></li>
       <% end %>
     </ul>
     <hr/>
@@ -19,7 +19,7 @@
   <div class="col-sm-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Recently Added</h3>
+        <h3 class="panel-title"><%= t('hmessages.recently_added') %></h3>
       </div>
       <div class="panel-body">
         <div class="recent-blogs">
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <h3 class="hl">Categories</h3>
+    <h3 class="hl"><%= t('hmessages.categories') %></h3>
     <hr/>
     <p class="tags">
       <% @categories.each do |cat| %>

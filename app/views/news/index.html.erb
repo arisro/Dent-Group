@@ -1,4 +1,4 @@
-<% content_for :page_location, "News" %>
+<% content_for :page_location, t('news.title') %>
 
 <%
 	column1, column2, column3 = [], [], []
@@ -56,7 +56,7 @@
 		<% end %>
 	</div>
 	<div class="box col-sm-12 <%= 'hidden' unless @news.next_page %>" id="loadMoreContainer">
-		<span class="hidden"><%= image_tag('preloader.gif') %> Loading...</span>
-		<%= link_to 'Load more', news_index_path(:page => @news.next_page), :class => 'load-more-news', :remote => true if @news.next_page %>
+		<span class="hidden"><%= image_tag('preloader.gif') %> <%= t('news.loading') %></span>
+		<%= link_to t('news.load_more'), news_index_path(:page => @news.next_page), :class => 'load-more-news', :remote => true if @news.next_page %>
 	</div>
 </div>

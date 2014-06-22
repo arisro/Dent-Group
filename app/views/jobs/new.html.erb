@@ -1,31 +1,31 @@
-<% content_for :page_location, "Jobs" %>
+<% content_for :page_location, t('jobs.title') %>
 
 <div class="row">
 	<div class="col-sm-12 jobs-box">
-		<h2 class="hl top-zero">Add new job</h2>
+		<h2 class="hl top-zero"><%= t('jobs.add_new_job') %></h2>
 		<hr/>
 
 		<%= simple_form_for(@job, url: jobs_path, html: { role: "form", id: 'addJobForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
 			<%= f.error_notification %>
 			<div class="form-inputs">
-				<%= f.input :company_name, :required => true, label: 'Company name' %>
-				<%= f.input :title, :required => true, label: 'Job title' %>
-				<%= f.input :description, :required => true, label: 'Description', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
-				<%= f.input :image, as: :file, :required => false, label: 'Image' %>
-				<%= f.input :country, :required => true, label: 'Country', include_blank: false %>
-				<%= f.input :city, :required => true, label: 'City' %>
+				<%= f.input :company_name, :required => true, label: t('jobs.company') %>
+				<%= f.input :title, :required => true, label: t('jobs.job_title') %>
+				<%= f.input :description, :required => true, label: t('jobs.description'), as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
+				<%= f.input :image, as: :file, :required => false, label: t('jobs.image') %>
+				<%= f.input :country, :required => true, label: t('jobs.countr'), include_blank: false %>
+				<%= f.input :city, :required => true, label: t('jobs.city') %>
 
-				<%= f.input :type, collection: [['Full time',1],['Part time',2]], label: 'Type', include_blank: false %>
-				<%= f.input :count, label: 'Count' %>
-				<%= f.input :offer, :required => false, label: 'Wage offer' %>
-				<%= f.input :valid_until, :as => :date_picker, :required => true, label: 'Valid until', :input_html => {:class => 'col-span-3 form-control'} %>
-				<%= f.input :contact_email, :required => false, label: 'Contact e-mail' %>
-				<%= f.input :contact_phone, :required => false, label: 'Contact phone' %>
+				<%= f.input :type, collection: [[t('jobs.full_time'), 1], [t('jobs.part_time'), 2]], label: t('jobs.type'), include_blank: false %>
+				<%= f.input :count, label: t('jobs.count') %>
+				<%= f.input :offer, :required => false, label: t('jobs.wage_offer') %>
+				<%= f.input :valid_until, :as => :date_picker, :required => true, label: t('valid_until'), :input_html => {:class => 'col-span-3 form-control'} %>
+				<%= f.input :contact_email, :required => false, label: t('jobs.contact_email') %>
+				<%= f.input :contact_phone, :required => false, label: t('jobs.contact_phone') %>
 			</div>
 
 			<br/>
-	        <%= f.button :submit, "Post", class: "btn btn-green" %>
+	        <%= f.button :submit, t('post'), class: "btn btn-green" %>
 		<% end %>
 	</div>
 </div>

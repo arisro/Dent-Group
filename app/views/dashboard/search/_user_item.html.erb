@@ -1,3 +1,3 @@
-<span class="label label-primary search-label">User</span>
+<span class="label label-primary search-label"><%= t('users.user') %></span>
 <%= image_tag("/profile_pictures/#{object.get_profile_picture}", class: 'profile-picture') %>
 <h3><%= link_to object.full_name, user_path(object) %></h3>

@@ -1,6 +1,6 @@
-<span class="label label-default search-label">Offer</span><h3><%= link_to object.title, object %></h3>
+<span class="label label-default search-label"><%= t('offers.offer') %></span><h3><%= link_to object.title, object %></h3>
 
 <ul class="search-supplier-details pull-left">
-	<li>Type: <span><%= ['', 'Selling', 'Buying', 'Rental'][object.type] %></span></li>
-	<li>Posted by: <span><%= link_to object.user.full_name, user_path(object.user) %></span></li>
+	<li><%= t('offers.type') %>: <span><%= ['', t('offers.selling'), t('offers.buying'), t('offers.rental')][object.type] %></span></li>
+	<li><%= t('posted_by') %>: <span><%= link_to object.user.full_name, user_path(object.user) %></span></li>
 </ul>
