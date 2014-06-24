@@ -20,6 +20,9 @@ ro:
   unspecified: "nespecificat"
   in: "in"
 
+  signup_welcome: "Bine ati venit in comunitatea noastra!<br/>In primele doua luni accesul este grauit, dupa care veti beneficia de serviciile website-ului platind un abonament lunar de doar 4 euro."
+  internation_in_progress: "Sectiunea International nu este inca implementata."
+
   header:
     home: "Acasa"
     news: "Stiri"
@@ -50,10 +53,10 @@ ro:
       sign_in: "Conecteaza-te"
       create_account: "Inscrie-te"
     texts:
-      lets_work: "Haideti sa lucram impreuna!"
+      lets_work: "Let's work together!"
       about: "DESPRE DENT GROUP"
       connects_big: "%{logo_image} <span class='font-semibold'>te conecteaza</span> cu colegii <span class='font-semibold'>din intreaga lume</span>"
-      we_can_offer: "Ce va putem <span class='font-semibold'>oferi dumneafoasta:</span>"
+      we_can_offer: "Ce va putem <span class='font-semibold'>oferi dumneavoastra:</span>"
       all_rights_reserved: "Toate drepturile rezervate."
       connect: "Conecteaza-te"
       connect_desc: "Dent Group pune bazele unei noi conexiuni intre medicii stomatologi din intreaga lume in deplina intimitate."
@@ -66,7 +69,7 @@ ro:
       discuss_tooltip: "<p>O Comunicare eficienta este cheia increderii intre medicii stomatologi, un principiu solid in stabilirea unei unitati functionale facilitand accesul la informatii in tratamentul dentar oferit pacientilor.</p><p><span class='red bold'>Dent Group</span> este site-ul care te ajuta sa comunici si sa stabilesti relatii de colegialitate eficiente si de durata cu medici aflati atat pe plan national cat si pe plan international.</p><p>World Wide Networking - un concept pe care acest site il dezvolta pentru a pune in contact practicantii acestei meserii, locul unde ideile si informatiile se concentreaza, pentru a fi 'livrate' ulterior celor ce sunt interesati.</p><p>Site-ul are un caracter de circuit inchis putend fi accesat doar de medicii stomatologi membrii activi ai acestui site.</p>"
       a_lot_more: "Multe altele"
       a_lot_more_desc: "Utilizarea site-ului Dent Group este la indemana fiecarui medic stomatolog, si are ca obiectiv, stabilirea bazelor unui sistem relational pentru a imbunatati calitativ deciziile membrilor acestui grup online."
-      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> incurajeaza in permanenta preocuparea pentru ridicarea continuă a pregătirii profesionale şi dăruirea la locul de muncă. Relaţiile de cooperare faciliteaza solutionarea rapida a unor probleme care apar spontan sau periodic si pot avea rezultate pozitive in planul creşterii operativităţii profesionale sau eficientizarii volumului de munca depus.</p><p>Veti avea acces la stiri, informatii despre furnizori si vanzari, cumparari si inchirieri de echipamente, chat, angajari, rau-platnici - totul pentru un abonament lunar in valoare de numai 7 euro.</p><p class='bold'>Inregistrati-va acum si veti avea prima luna gratuita.</p>"
+      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> incurajeaza in permanenta preocuparea pentru ridicarea continuă a pregătirii profesionale şi dăruirea la locul de muncă. Relaţiile de cooperare faciliteaza solutionarea rapida a unor probleme care apar spontan sau periodic si pot avea rezultate pozitive in planul creşterii operativităţii profesionale sau eficientizarii volumului de munca depus.</p><p>Veti avea acces la stiri, informatii despre furnizori si vanzari, cumparari si inchirieri de echipamente, chat, angajari, rau-platnici - totul pentru un abonament lunar in valoare de numai 4 euro.</p><p class='bold'>Inregistrati-va acum si veti avea <span class='red bold'>primele doua luni gratuite</span>.</p>"
     pass:
       change_password: "Schimba parola"
       new_password: "Parola noua"
@@ -179,6 +182,7 @@ ro:
     category: "Categoria"
     country: "Tara"
     content: "Continut"
+    priority: "Prioritate"
     delete_confirmation: "Sigur doriti sa stergeti acest mesaj?"
     add_new_message: "Adauga mesaj"
     add_new_category: "Adauga categorie"
@@ -214,7 +218,7 @@ ro:
         phone: "Telefon"
         change_password: "Schimba parola"
         current_password: "Parola curenta"
-        new_password: "Paroal noua"
+        new_password: "Parola noua"
         confirm_password: "Confirmati parola"
         change: "Schimba"
         upload_desc: "Alegeti un fisier pentru a-l incarca. Numai JPG si PNG sunt acceptate."

@@ -2,17 +2,18 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h3 class="hl"><%= t('hmessages.add_new_message')%></h3>
+		<h3 class="hl"><%= t('hmessages.add_new_message') %></h3>
 		<hr>
 		<%= simple_form_for(@message, url: homepage_messages_path, html: { role: "form", id: 'addMessageForm' }, defaults: { input_html: { class: 'form-control' } } ) do |f| %>
 
 			<%= f.error_notification %>
 			<div class="form-inputs">
 				<%= f.input :title, :required => true, label: t('hmessages.label_title') %>
-        		<%= f.association :homepage_messages_category, required: true, label: t('hmessages.category') collection: HomepageMessagesCategory.where(deleted: false).order(ident: :asc), include_blank: false %>
-				<%= f.input :published_at, :as => :datetime_picker, :required => true, label: t('published_at'), :input_html => {:class => 'col-span-3 form-control'} %>
+        		<%= f.association :homepage_messages_category, required: true, label: t('hmessages.category'), collection: HomepageMessagesCategory.where(deleted: false).order(ident: :asc), include_blank: false %>
+				<%= f.input :published_at, :as => :date_picker, :required => true, label: t('published_at'), :input_html => {:class => 'col-span-3 form-control', value: Time.now.to_formatted_s(:date) } %>
 				<%= f.input :website_country, label: t('hmessages.country'), collection: { 'International' => 'int', 'Romania' => 'ro' }, include_blank: false %>
 				<%= f.input :body, :required => true, label: t('hmessages.content'), as: :ckeditor %>
+				<%= f.input :priority, required: true, label: t('hmessages.priority'), default: 1 %>
 			</div>
 
 			<br/>

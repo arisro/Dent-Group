@@ -40,7 +40,8 @@ class ApplicationController < ActionController::Base
 
 		def authorize_paid_user
 			#redirect_to root_url unless user_signed_in? && current_user.is_paid?
-      redirect_to root_url unless user_signed_in? && current_user.confirmed?
+      		#redirect_to root_url unless user_signed_in? && current_user.confirmed?
+      		redirect_to root_url unless user_signed_in?
 		end
     
 		# def user_for_paper_trail

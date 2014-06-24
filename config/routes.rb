@@ -54,6 +54,7 @@ Drs::Application.routes.draw do
     get 'group/:user_group_ident/feed', to: 'user_groups#feed', as: :group_feed, :constraints => { :user_group_ident => /[^\/]*/ }
 
     resources :homepage_messages
+    get 'welcome', to: "homepage_messages#show", id: 1
   end
 
   resources :relationships, only: [:create, :destroy]

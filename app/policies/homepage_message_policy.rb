@@ -15,7 +15,7 @@ class HomepageMessagePolicy
   end
 
   def show?
-    user.admin?
+    true
   end
 
   def create?

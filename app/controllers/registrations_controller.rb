@@ -19,6 +19,11 @@ class RegistrationsController < Devise::RegistrationsController
 		end
 	end
 
+	def sign_up(resource_name, resource)
+		flash[:notice] = t('signup_welcome')
+		sign_in(resource_name, resource)
+	end
+
 	private
 		def needs_password?(user, params)
 			user.email != params[:user][:email] ||

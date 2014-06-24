@@ -6,13 +6,13 @@ $(document).ready(function(e) {
 	$('.selectpicker').selectpicker({showContent: true, width: '160px'});
 	$("#countrySelect").on('change', function(e) {
 		var _url = '/' + $(this).val();
-		if (/\/(int|ro)/.test(window.location.href)) {
-      if ($(this).val() == 'int') {
-        bootbox.alert("The International section is still in implementation.");
-      } else {
-			  _url = window.location.href.replace(/\/(int|ro)/, '/' + $(this).val());
-		     window.location.href = _url;
-      }
+		if ($(this).val() == 'int') {
+			bootbox.alert("<%= I18n.t('internation_in_progress') %>");
+		} else {
+			if (/\/(int|ro)/.test(window.location.href)) {
+				_url = window.location.href.replace(/\/(int|ro)/, '/' + $(this).val());
+				window.location.href = _url;
+			}
 		}
 	});
 

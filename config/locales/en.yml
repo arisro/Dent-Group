@@ -20,6 +20,9 @@ en:
   unspecified: "unspecified"
   in: "in"
 
+  signup_welcome: "Welcome to our community!<br/>The first two months you will have free-of-charge access; afterward you can benefit of the website's services for a monthly subscription of 4 euros."
+  internation_in_progress: "The International section is still work in progress."
+
   header:
     home: "Home"
     news: "News"
@@ -50,7 +53,7 @@ en:
       sign_in: "Sign in"
       create_account: "Create account"
     texts:
-      lets_work: "Let's work together"
+      lets_work: "Let's work together!"
       about: "ABOUT DENT GROUP"
       connects_big: "%{logo_image} <span class='font-semibold'>connects</span> you with your colleagues from <span class='font-semibold'>everywhere around the world.</span>"
       we_can_offer: "This is what <span class='font-semibold'>we can offer you</span>"
@@ -66,7 +69,7 @@ en:
       discuss_tooltip: "<p>An effective communication is the key to confidence among dentists; a solid principle in establishing a functional unit, facilitating the access to information on the dental treatment provided to patients.</p><p><span class='red bold'>Dent Group</span> is the website that helps you communicate and establish effective relationships and lasting fellowships with doctors all around the world.</p><p>World Wide Networking - a concept that is implemented by this website in order to put in contact practitioners of the craft and which focuses to deliver the ideas and the information to those who are interested.</p><p>The website is of a closed circuit can be accessed only by dentists, active members of this community.</p>"
       a_lot_more: "A lot more"
       a_lot_more_desc: "The usage of the Dent Group website is on hand for each dentist, and aims to establish a relational system which can improve the quality of the decisions that the members of this community take every day."
-      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> encourages constant concern for the continuous professional training and dedication to work; facilitates cooperation relations, speedy resolution of problems arising spontaneously or periodically and may have positive results in terms of growth operability or efficiency of professional workload.</p><p>You will have access to news, suppliers and sales, purchases and rental of equipment, chat, jobs, bad payers - all for a monthly subscription of only 7 euros.</p><p class='bold'>Register now and you will get the first two months for free.</p>"
+      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> encourages constant concern for the continuous professional training and dedication to work; facilitates cooperation relations, speedy resolution of problems arising spontaneously or periodically and may have positive results in terms of growth operability or efficiency of professional workload.</p><p>You will have access to news, suppliers and sales, purchases and rental of equipment, chat, jobs, bad payers - all for a monthly subscription of only 4 euros.</p><p class='bold'>Register now and you will get <span class='red bold'>the first two months for free</span>.</p>"
     pass:
       change_password: "Change password"
       new_password: "New password"
@@ -180,6 +183,7 @@ en:
     label_title: "Title"
     category: "Category"
     country: "Country"
+    priority: "Priority"
     content: "Content"
     delete_confirmation: "Are you sure you want to delete this news?"
     add_new_message: "Add new message"

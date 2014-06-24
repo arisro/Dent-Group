@@ -13,6 +13,7 @@
 				<%= f.input :published_at, :as => :datetime_picker, :required => true, label: t('publish_at'), :input_html => {:class => 'col-span-3 form-control'} %>
 				<%= f.input :website_country, label: t('hmessages.country'), collection: { 'International' => 'int', 'Romania' => 'ro' }, include_blank: false %>
 				<%= f.input :body, :required => true, label: t('hmessages.content'), as: :ckeditor %>
+				<%= f.input :priority, required: true, label: t('hmessages.priority') %>
 			</div>
 
 			<br/>

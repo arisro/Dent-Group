@@ -23,7 +23,7 @@ mod.controller "UsersController", [
 			$scope.newUser.password_confirmation = $scope.newUser.password
 
 			User.create({user: $scope.newUser, authenticity_token: $('.signup input[name="authenticity_token"]').val() }, ->
-				$scope.window.location.href = "/"
+				$scope.window.location.href = "/welcome"
 			,(response) ->
 				$scope.register_errors = response.data.errors
 			)
@@ -43,9 +43,6 @@ mod.controller "UsersController", [
 			,(response) ->
 				console.log response.data.errors
 			)
-
-		$scope.cancel = ->
-			$scope.newUser.currentStep = 1
 
 		$scope.resendEmail = (email) ->
 			User.resendEmail({user: {email: email}}, ->

@@ -440,7 +440,12 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 .message-answer > form {
 	width: 80%;
 	float: left;
-}	
+}
+
+.sidebar-nav-fixed {
+  position:fixed;
+  left: 65%;
+}
 
 /* ===== Blog ===== */
 
@@ -453,6 +458,8 @@ h1.hl small, h2.hl small, h3.hl small, h4.hl small, h5.hl small, h6.hl small {
 }
 .blog-text {
 	line-height: 1.8;
+	white-space: normal;
+	word-wrap: break-word;
 }
 .timeline-block .blog-img { /* Making images smalled for timeline page */
 	width: 250px;

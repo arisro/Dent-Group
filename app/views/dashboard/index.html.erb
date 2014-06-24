@@ -27,9 +27,9 @@
         <% end %>
 			</ul>
 			<hr/>
-			<p class="blog-text">
+			<div class="blog-text">
 				<%= raw(message.body) %>
-			</p>
+			</div>
 		<% else %>
 			<%= t('hmessages.no_message') %>
 		<% end %>
@@ -37,7 +37,7 @@
   <br/>
 <% end %>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-3 sidebar-nav-fixed">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= t('hmessages.recently_added') %></h3>

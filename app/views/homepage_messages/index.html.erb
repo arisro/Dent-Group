@@ -11,8 +11,9 @@
 
 		<div class="row index-table">
 			<div class="row head-row">
-				<div class="col-sm-6"><%= t('hmessages.label_title') %></div>
+				<div class="col-sm-5"><%= t('hmessages.label_title') %></div>
 				<div class="col-sm-1"><%= t('hmessages.country') %></div>
+				<div class="col-sm-1"><%= t('hmessages.priority') %></div>
 				<div class="col-sm-1"><%= t('views') %></div>
 				<div class="col-sm-2"><%= t('modified') %></div>
 				<div class="col-sm-2"></div>
@@ -20,8 +21,9 @@
 
 			<% @messages.each do |msg| %>
 				<div class="row">
-					<div class="col-sm-6"><a href="<%= homepage_message_path(@country,msg) %>"><%= msg.title %></a></div>
+					<div class="col-sm-5"><a href="<%= homepage_message_path(@country,msg) %>"><%= msg.title %></a></div>
 					<div class="col-sm-1"><%= msg.website_country %></div>
+					<div class="col-sm-1"><%= msg.priority %></div>
 					<div class="col-sm-1"><%= msg.views %></div>
 					<div class="col-sm-2"><%= msg.updated_at.to_formatted_s(:short) %></div>
 					<div class="col-sm-2"><a href="<%= edit_homepage_message_path(msg) %>"><%= t('edit') %></a></div>
