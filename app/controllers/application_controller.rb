@@ -14,12 +14,15 @@ class ApplicationController < ActionController::Base
 
 	protected
 		def set_locale
+			country_code = GeoIP.new(Drs::Application.config.geoip_dat_path).country(request.remote_ip).country_code2
+			I18n.locale = :ro if country_code == 'RO'
 			I18n.locale = session[:current_language] if session.has_key?(:current_language)
 			I18n.locale = current_user.language if user_signed_in?
 		end
 
 		def set_country
 			session[:current_country] = params[:country] unless params[:country].nil?
+			session[:current_country] = 'ro' if session[:current_country].nil?
 		end
 
 		def get_country

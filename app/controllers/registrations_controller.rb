@@ -22,6 +22,8 @@ class RegistrationsController < Devise::RegistrationsController
 	def sign_up(resource_name, resource)
 		flash[:notice] = t('signup_welcome')
 		sign_in(resource_name, resource)
+		@user = User.find(current_user.id)
+		@user.update(language: I18n.locale.to_s)
 	end
 
 	private

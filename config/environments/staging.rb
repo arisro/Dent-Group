@@ -74,6 +74,7 @@ Drs::Application.configure do
   config.active_support.deprecation = :notify
 
   config.chat_service_url = 'chat.dentgroup.eu';
+  config.geoip_dat_path = "/var/geoip/GeoIP.dat"
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

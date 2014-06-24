@@ -29,6 +29,7 @@ Drs::Application.configure do
   config.assets.debug = true
 
   config.chat_service_url = 'msg.drs.local';
+  config.geoip_dat_path = "/var/geoip/GeoIP.dat"
 
   config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
   

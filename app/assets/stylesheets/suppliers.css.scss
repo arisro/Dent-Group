@@ -36,6 +36,10 @@
 		margin: 10px 0 10px 10px;
 	}
 
+	.supplier-short-description {
+		margin: 10px 0 10px 10px;
+	}
+
 	.comments-list {
 		margin-top: 10px;
 		.comment-item {
@@ -130,7 +134,7 @@
 		}
 
 		.supplier-item {
-			margin-bottom: 10px;
+			margin-bottom: 20px;
 
 			a {
 				color: #006AA4;
@@ -156,18 +160,14 @@
 				margin-right: 10px;
 
 				img {
-					width: 80px;
+					width: 100px;
 				}
 			}
 			.supplier-details {
-				float: left;				
+				float: left;
+				margin-left: 10px;
 			}
 		}
-	}
-	hr {
-		margin: 5px 0;
-		border-top: 1px solid #ccc;
-		clear: both;
 	}
 }
 
