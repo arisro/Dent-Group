@@ -31,7 +31,7 @@ class DashboardController < ApplicationController
 		@results = []
 		@query = params[:query]
 
-		[News, Offer, User, Job, Supplier].each do |model|
+		[News, Offer, Job, Supplier].each do |model|
 			query = Searchkick::Query.new model, @query, load: true, operator: "or", limit: 100
 			@results = @results.concat query.execute.response['hits']['hits']
 		end
