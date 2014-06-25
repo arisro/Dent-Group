@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
 		#if user_signed_in? && current_user.is_paid?
     # if user_signed_in? && current_user.confirmed?
 	    if user_signed_in?
-	      where = { website_country: get_country }
+	      where = { website_country: get_country, deleted: false }
 	   
 	      @category = nil
 	      unless params[:category_id].nil?
