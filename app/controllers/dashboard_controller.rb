@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
 	        where[:homepage_messages_category_id] = params[:category_id]
 	      end
 
-	      @messages = HomepageMessage.where(where).limit(10)
+	      @messages = HomepageMessage.where(where).limit(20)
 	      @latest = HomepageMessage.where(website_country: get_country, deleted: false)[0, 5]
         @categories = HomepageMessagesCategory.joins("LEFT JOIN homepage_messages ON homepage_messages_categories.id = homepage_messages.homepage_messages_category_id").select("homepage_messages_categories.*, count(homepage_messages.id) as msgs_count").group("homepage_messages_categories.id").where(deleted: false).where("homepage_messages.website_country = ?", get_country).where("homepage_messages.deleted = 0").having("msgs_count > 0").order(ident: :asc).order('msgs_count desc')
 		else

@@ -1,6 +1,6 @@
 class HomepageMessagesController < ApplicationController
 	def index
-		@messages = HomepageMessage.where(deleted: false, website_country: get_country).order("id desc").page(params[:page]).per(10)
+		@messages = HomepageMessage.where(deleted: false, website_country: get_country).order("id desc").page(params[:page]).per(20)
     authorize @messages
 	end
 
