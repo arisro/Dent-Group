@@ -37,12 +37,20 @@
         </div>
       </div>
     </div>
-    <h3 class="hl"><%= t('hmessages.categories') %></h3>
-    <hr/>
-    <p class="tags">
-      <% @categories.each do |cat| %>
-        <a href="<%= dashboard_path(cat.id) %>"><%= cat.ident %></a>
-      <% end %>
-    </p>
+ 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= t('hmessages.categories') %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="recent-blogs">        
+          <ul>
+            <% @categories.each do |cat| %>
+            <li><a href=" <%= dashboard_path(cat.id) %>"><%= cat.ident %></a></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
