@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624214344) do
+ActiveRecord::Schema.define(version: 20140624203545) do
 
   create_table "activities", force: true do |t|
     t.integer  "subject_id"
@@ -139,13 +139,13 @@ ActiveRecord::Schema.define(version: 20140624214344) do
     t.string   "title"
     t.text     "summary"
     t.text     "body"
+    t.integer  "views",                        default: 0
     t.integer  "user_id"
     t.datetime "published_at"
-    t.integer  "deleted",                      default: 0, null: false
+    t.boolean  "deleted",                      default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "website_country",    limit: 3
-    t.integer  "views",                        default: 0, null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20140624214344) do
 
   create_table "news_categories", force: true do |t|
     t.string   "ident"
-    t.boolean  "deleted",    default: false
+    t.integer  "deleted",    limit: 1, default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -221,8 +221,8 @@ ActiveRecord::Schema.define(version: 20140624214344) do
   end
 
   create_table "statuses_uploads", force: true do |t|
-    t.integer "upload_id"
     t.integer "status_id", null: false
+    t.integer "upload_id", null: false
   end
 
   create_table "supplier_comments", force: true do |t|
@@ -297,8 +297,8 @@ ActiveRecord::Schema.define(version: 20140624214344) do
     t.string   "profile_picture"
     t.string   "specialization"
     t.datetime "paid_until"
-    t.integer  "roles_mask",                       default: 1,     null: false
-    t.string   "language",               limit: 5, default: "en",  null: false
+    t.integer  "roles_mask",                       default: 1
+    t.string   "language",               limit: 5, default: "en"
     t.string   "country"
     t.string   "city"
     t.string   "phone"
@@ -308,7 +308,6 @@ ActiveRecord::Schema.define(version: 20140624214344) do
     t.boolean  "chat_is_invisible",                default: false
     t.string   "provider"
     t.string   "uid"
-    t.string   "chat_client_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
