@@ -30,7 +30,8 @@ module Drs
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.assets.precompile += %w(landingpage2.js landingpage2.css)
-    config.assets.precomiple += %w(ckeditor/*)
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
 
     config.middleware.use Rack::Deflater
 
