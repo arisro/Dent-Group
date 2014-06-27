@@ -11,7 +11,7 @@
         <%= f.association :news_category, required: true, collection: NewsCategory.where(deleted: false).order(ident: :asc), include_blank: false %>
 				<%= f.input :published_at, :as => :date_picker, :required => true, label: 'Publish at', :input_html => {:class => 'col-span-3 form-control', value: Time.now.to_formatted_s(:date) } %>
 				<%= f.input :summary, :required => true, label: 'Summary' %>
-				<%= f.input :image, as: :file, :required => true, label: 'Image' %>
+				<%= f.input :image, as: :file, :required => true, label: 'Image', hint: 'Only PNG or JPG.' %>
 				<%= f.input :body, :required => true, label: 'Content', as: :ckeditor, input_html: { ckeditor: { height: 300 } } %>
 			</div>
 
