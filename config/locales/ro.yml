@@ -20,7 +20,7 @@ ro:
   unspecified: "nespecificat"
   in: "in"
 
-  signup_welcome: "Bine ati venit in comunitatea noastra!<br/>In primele doua luni accesul este grauit, dupa care veti beneficia de serviciile website-ului platind un abonament lunar de doar 4 euro."
+  signup_welcome: "Bine ati venit in comunitatea noastra!"
   internation_in_progress: "Sectiunea International nu este inca implementata."
 
   header:
@@ -69,7 +69,7 @@ ro:
       discuss_tooltip: "<p>O Comunicare eficienta este cheia increderii intre medicii stomatologi, un principiu solid in stabilirea unei unitati functionale facilitand accesul la informatii in tratamentul dentar oferit pacientilor.</p><p><span class='red bold'>Dent Group</span> este site-ul care te ajuta sa comunici si sa stabilesti relatii de colegialitate eficiente si de durata cu medici aflati atat pe plan national cat si pe plan international.</p><p>World Wide Networking - un concept pe care acest site il dezvolta pentru a pune in contact practicantii acestei meserii, locul unde ideile si informatiile se concentreaza, pentru a fi 'livrate' ulterior celor ce sunt interesati.</p><p>Site-ul are un caracter de circuit inchis putend fi accesat doar de medicii stomatologi membrii activi ai acestui site.</p>"
       a_lot_more: "Multe altele"
       a_lot_more_desc: "Utilizarea site-ului Dent Group este la indemana fiecarui medic stomatolog, si are ca obiectiv, stabilirea bazelor unui sistem relational pentru a imbunatati calitativ deciziile membrilor acestui grup online."
-      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> incurajeaza in permanenta preocuparea pentru ridicarea continuă a pregătirii profesionale şi dăruirea la locul de muncă. Relaţiile de cooperare faciliteaza solutionarea rapida a unor probleme care apar spontan sau periodic si pot avea rezultate pozitive in planul creşterii operativităţii profesionale sau eficientizarii volumului de munca depus.</p><p>Veti avea acces la stiri, informatii despre furnizori si vanzari, cumparari si inchirieri de echipamente, chat, angajari, rau-platnici - totul pentru un abonament lunar in valoare de numai 4 euro.</p><p class='bold'>Inregistrati-va acum si veti avea <span class='red bold'>primele doua luni gratuite</span>.</p>"
+      a_lot_more_tooltip: "<p><span class='red bold'>Dent Group</span> incurajeaza in permanenta preocuparea pentru ridicarea continuă a pregătirii profesionale şi dăruirea la locul de muncă. Relaţiile de cooperare faciliteaza solutionarea rapida a unor probleme care apar spontan sau periodic si pot avea rezultate pozitive in planul creşterii operativităţii profesionale sau eficientizarii volumului de munca depus.</p><p>Veti avea acces la stiri, informatii despre furnizori si vanzari, cumparari si inchirieri de echipamente, chat, angajari, rau-platnici.</p>"
     pass:
       change_password: "Schimba parola"
       new_password: "Parola noua"
